@@ -14,13 +14,12 @@ documentation:
   - title: Atomic Measurement
     content: |
       Atomic Measurement is a specialization of the OCF Collection, which is an
-      extension of OIC Resource. In addition to properties, collections also
-      have an array of OIC web links which point to the items in the collection.
+      extension of OIC Resource.
 
       Atomic Measurement applies a special restricton in that the items
       in the collection may only be accessed through the collection interfaces,
       oic.if.ll and oic.if.b, and that the items pointed to in the Atomic
-      Measurement must be hosted locally, that is on the same platform as the
+      Measurement are hosted locally, on the same platform as the
       Atomic Measurement resource itself.
 
   - title: Atomic Measurement Restrictions on included resources
@@ -30,24 +29,29 @@ documentation:
       of the items are accessed "atomically" as a batch.
 
       If a client attempts to access an item in an Atomic Measurement individually,
-      the resource must return a client error (4xx). It is recommended that a
-      CoAP 4.05 or HTTP 405 "Method Not Allowed" be returned.
+      the server will return a client error (4xx). It is recommended that a
+      CoAP 4.03 or HTTP 403 "Forbidden" be returned.
 
-      Atomic Measurement may only contain resources within the same device.
+      Atomic Measurements only contain resources within the same device.
       If the device is unable to supply all of the items of the atomic collection,
-      it must signal a server error (5xx).
+      the server will signal a server error (5xx).
 
-      Items within an Atomic Measurement should only be exposed via links within
-      the Atomic Measurement. Specifically, /oic/res may contain a link to the
-      Atomic Measurement, but may not contain links to the individual items in
-      the Atomic Measurement.
+      Items within an Atomic Measurement are only exposed via links within
+      the Atomic Measurement. Specifically, /oic/res contains a link to the
+      Atomic Measurement, but will not contain links to the individual items in
+      the Atomic Measurement. Since a client can only retrieve links to items of
+      an Atomic Measurement from within the Atomic Measurement, the client will
+      be expected to understand that it may not retrieve items individually,
+      but it may use information in the link parameters to help identify and
+      understand the data items in the Atomic Measurement.
 
-      Items within an atomic measurement must expose all of the properties
+      Items within an atomic measurement expose all of the properties
       expected by the application in the default interface of the item. For
       example, an Atomic Measurement exposing a temperature value where the
-      range and units may be selected should include the range and units
-      properties in the default interface along with the temperature property,
-      the default interface being oic.if.s in the case of a thermometer.
+      range and units are user-selecteble would be expected to include the
+      range and units properties in the default interface, along with the
+      temperature property. In the the case of a thermometer, the default
+      interface would be oic.if.s.
 
   - title: Resource Design
     content: |
@@ -61,7 +65,6 @@ schemas:
   - baseline: !include schemas/oic.collection-schema.json
   - batch-retrieve: !include schemas/oic.collection.batch-retrieve-schema.json
   - links: !include schemas/oic.collection.linkslist-schema.json
-  - diag-payload: !include schemas/oic.diag-payload-schema.json
 
 traits:
   - interface-all:
@@ -129,29 +132,9 @@ traits:
               }
 
 
-  post:
-    description: |
-      Update on Baseline Interface
-
-    body:
-      application/json:
-        schema: baseline
-
-    responses:
-      200:
-        body:
-          application/json:
-            schema: baseline
-
-
 /AtomicMeasurementURI?if=oic.if.b:
     description: |
-      The oic.if.b interface exposes a composite representation of the
-      resources pointed to by the links
-
-      oic.if.b, by default, exposes the default interface of the items in the
-      collection. 
-
+      The oic.if.b interface returns data items retrieved from resources pointed to by the links.
       This ensures that all accesses to the items in the collection are atomic.
 
     displayName: Batch Representation
@@ -159,11 +142,12 @@ traits:
 
     get:
       description: |
-        Retrieve on Batch Interface
+        Retrieve the data elements of the Atomic Measurement using the OCF Batch Interface
 
       responses:
         200:
-          description: "All targets returned OK status (HTTP 200 or CoAP 2.05 Content)"
+          description: |
+             Normal response, no errors, all properties are returned correctly
           body:
             application/json:
               schema: batch-retrieve
@@ -189,24 +173,17 @@ traits:
                     "href": "timestamp",
                     "rep":
                       {
-                        "datetime": "2007-04-05T14:30+09:00"
+                        "observedtime": "2007-04-05T14:30+09:00"
                       }
                   }
                 ]
-        500:
-          description: "Internal error, return a diagnostic payload without data elements"
-          body:
-            application/json:
-              schema: diag-payload
-              example: |
-                "Internal Server Error"
 
 
 /AtomicMeasurementURI?if=oic.if.ll:
     description: |
       The oic.if.ll interface exposes a representation of the links
 
-    displayName: Batch Representation
+    displayName: Link List Representation
     is: [ interface-ll ]
 
     get:
