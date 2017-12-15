@@ -7,7 +7,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "oic.collection-schema.json#/definitions/oic.collection"
+          "$ref": "../../core/schemas/oic.collection-schema.json#/definitions/oic.collection"
         },
         {
           "properties": {
@@ -48,7 +48,7 @@
   },
   "type": "object",
   "allOf": [
-    { "$ref": "oic.core-schema.json#/definitions/oic.core"},
+    { "$ref": "../../core/schemas/oic.core-schema.json#/definitions/oic.core"},
     { "$ref": "#/definitions/oic.r.easysetup" }
   ]
 }
