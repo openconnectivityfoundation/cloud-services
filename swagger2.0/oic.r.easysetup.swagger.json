@@ -1,0 +1,724 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Easy Setup Collection Batch Interface",
+    "version": "v0.0.3-20170611",
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
+      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/example/EasySetupBatchInterfaceResURI" : {
+      "get": {
+        "description": "Easy Setup resource stores useful information including current status of\nunboxing device and last error code which are produced in a process of\neasy setup.\nNote that, Easy Setup resource is a type of collection resource, which\ncontains links to WiFiConf, DevConf resources and may additionally contain\nlinks to other resources.\nRetrieve useful information during easy setup process :\n1. A current status in easy setup process.\n2. A last error code describing reason for failure occurred at the last\n   time.\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-batch"}
+        ],
+        "responses": {
+            "200": {
+              "description" : "",
+              "x-example":
+                [
+                  {
+                    "href": "/EasySetupResURI",
+                    "rep":{
+                      "ps" : 0,
+                      "lec": 0,
+                      "cn": [1]
+                    }
+                  },
+                  {
+                    "href": "/WiFiConfResURI",
+                    "rep":{
+                      "swmt" : ["A", "B", "G"],
+                      "swf": ["2.4G", "5G"],
+                      "tnn": "Home_AP_SSID",
+                      "cd": "Home_AP_PWD",
+                      "wat": "WPA2_PSK",
+                      "wet": "AES"
+                    }
+                  },
+                  {
+                    "href": "/DevConfResURI",
+                    "rep":{
+                      "dn" : "My Refrigerator"
+                    }
+                  }
+                ]
+                ,
+              "schema": { "$ref": "#/definitions/sbatch" }
+            }
+        }
+      },
+      "post": {
+        "description": "Able to deliver Wi-Fi, Device configuration and other configuration\ninformation in a batch by utilizing 'batch' interface.\nIf you want to deliver Wi-Fi and Device configuration information in a batch,\nyou can write all properties you want to send with a 'batch' interface.\nThe below example is the case to send Easy Setup and Wi-Fi configuration\n(i.e. connection type, target network, auth type information) in a batch.\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-batch"},
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/sbatch-update" },
+            "x-example":
+              [
+                {
+                  "href": "/EasySetupResURI",
+                  "rep":{
+                    "cn": [1]
+                  }
+                },
+                {
+                  "href": "/WiFiConfResURI",
+                  "rep":{
+                    "tnn": "Home_AP_SSID",
+                    "cd": "Home_AP_PWD",
+                    "wat": "WPA2_PSK",
+                    "wet": "AES"
+                  }
+                }
+              ]
+          }
+        ],
+        "responses": {
+            "200": {
+              "description" : "",
+              "x-example":
+                [
+                  {
+                    "href": "/EasySetupResURI",
+                    "rep" : {
+                      "ps" : 0,
+                      "lec": 0,
+                      "cn": [1]
+                    }
+                  },
+                  {
+                    "href": "/WiFiConfResURI",
+                    "rep" : {
+                      "swmt" : ["A", "B", "G"],
+                      "swf": ["2.4G", "5G"],
+                      "tnn": "Home_AP_SSID",
+                      "cd": "Home_AP_PWD",
+                      "wat": "WPA2_PSK",
+                      "wet": "AES"
+                    }
+                  },
+                  {
+                    "href": "/DevConfResURI",
+                    "rep" : {
+                      "dn" : "My Refrigerator"
+                    }
+                  }
+                ]
+                ,
+              "schema": { "$ref": "#/definitions/sbatch" }
+            }
+        }
+      }
+    },
+    "/example/EasySetupLLInterfaceResURI" : {
+      "get": {
+        "description": "Easy Setup resource stores useful information including current status of\nunboxing device and last error code which are produced in a process of\neasy setup.\nNote that, Easy Setup resource is a type of collection resource, which\ncontains links to WiFiConf, DevConf resources and may additionally contain\nlinks to other resources.\nRetrieve useful information during easy setup process :\n1. A current status in easy setup process.\n2. A last error code describing reason for failure occurred at the last\n   time.\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-ll"}
+        ],
+        "responses": {
+            "200": {
+              "description" : "",
+              "x-example":
+                [
+                  {
+                    "href": "/EasySetupResURI",
+                    "rt": ["oic.r.easysetup", "oic.wk.col"],
+                    "if": ["oic.if.b"],
+                    "p":{"bm":3},
+                    "eps": [
+                      {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                    ],
+                    "rel":["self", "item"]
+                  },
+                  {
+                    "href": "/WiFiConfResURI",
+                    "rt":   ["oic.r.wificonf"],
+                    "if":   ["oic.if.baseline"],
+                    "p":{"bm":3},
+                    "eps": [
+                      {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                    ]
+                  },
+                  {
+                    "href": "/DevConfResURI",
+                    "rt":   ["oic.r.devconf"],
+                    "if":   ["oic.if.baseline"],
+                    "p":{"bm":3},
+                    "eps": [
+                      {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                    ]
+                  }
+                ]
+                ,
+              "schema": { "$ref": "#/definitions/slinks" }
+            }
+        }
+      }
+    },
+    "/example/EasySetupBaselineInterfaceResURI" : {
+      "get": {
+        "description": "Easy Setup resource stores useful information including current status of\nunboxing device and last error code which are produced in a process of\neasy setup.\nNote that, Easy Setup resource is a type of collection resource, which\ncontains links to WiFiConf, DevConf resources and may additionally contain\nlinks to other resources.\nRetrieve useful information during easy setup process :\n  1. A current status in easy setup process.\n  2. A last error code describing reason for failure occurred at the last\n     time.\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-baseline"}
+        ],
+        "responses": {
+            "200": {
+              "description" : "",
+              "x-example":
+                {
+                  "rt" : ["oic.r.easysetup", "oic.wk.col"],
+                  "if" : ["oic.if.ll", "oic.if.baseline", "oic.if.b"],
+                  "ps" : 0,
+                  "lec": 0,
+                  "cn": [1],
+                  "links": [
+                    {
+                      "href": "/EasySetupResURI",
+                      "rt": ["oic.r.easysetup", "oic.wk.col"],
+                      "if": ["oic.if.b"],
+                      "p":{"bm":3},
+                      "eps": [
+                        {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                      ],
+                      "rel":["self", "item"]
+                    },
+                    {
+                      "href": "/WiFiConfResURI",
+                      "rt":   ["oic.r.wificonf"],
+                      "if":   ["oic.if.baseline"],
+                      "p":{"bm":3},
+                      "eps": [
+                        {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                      ]
+                    },
+                    {
+                      "href": "/DevConfResURI",
+                      "rt":   ["oic.r.devconf"],
+                      "if":   ["oic.if.baseline"],
+                      "p":{"bm":3},
+                      "eps": [
+                        {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                      ]
+                    }
+                  ]
+                }
+                ,
+              "schema": { "$ref": "#/definitions/EasySetup" }
+            }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "interface-ll" : {
+      "in" : "query",
+      "name" : "if",
+      "type" : "string",
+      "enum" : ["oic.if.ll"]
+    },
+    "interface-baseline" : {
+      "in" : "query",
+      "name" : "if",
+      "type" : "string",
+      "enum" : ["oic.if.baseline"]
+    },
+    "interface-all" : {
+      "in" : "query",
+      "name" : "if",
+      "type" : "string",
+      "enum" : ["oic.if.baseline", "oic.if.ll", "oic.if.b"]
+    },
+    "interface-batch" : {
+      "in" : "query",
+      "name" : "if",
+      "type" : "string",
+      "enum" : ["oic.if.b"]
+    }
+  },
+  "definitions": {
+    "sbatch" : 
+            {
+        "items": {
+          "additionalProperties": true,
+          "properties": {
+            "href": {
+              "description": "URI of the target resource relative assuming the collection URI as anchor",
+              "format": "uri",
+              "maxLength": 256,
+              "type": "string"
+            },
+            "rep": {
+              "oneOf": [
+                {
+                  "description": "The response payload from a single resource",
+                  "type": "object"
+                },
+                {
+                  "description": " The response payload from a collection (batch) resource",
+                  "type": "array"
+                }
+              ]
+            }
+          },
+          "required": [
+            "href",
+            "rep"
+          ],
+          "type": "object"
+        },
+        "minItems": 1,
+        "type": "array"
+      }
+
+    ,
+    "sbatch-update" : 
+            {
+        "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
+        "items": {
+          "additionalProperties": true,
+          "properties": {
+            "href": {
+              "description": "URI of the target resource relative assuming the collection URI as anchor",
+              "format": "uri",
+              "maxLength": 256,
+              "type": "string"
+            },
+            "rep": {
+              "oneOf": [
+                {
+                  "description": "The response payload from a single resource",
+                  "type": "object"
+                },
+                {
+                  "description": " The response payload from a collection (batch) resource",
+                  "type": "array"
+                }
+              ]
+            }
+          },
+          "required": [
+            "href",
+            "rep"
+          ],
+          "type": "object"
+        },
+        "minItems": 1,
+        "type": "array"
+      }
+
+    ,
+    "slinks" : 
+            {
+        "description": "All forms of links in a collection",
+        "oneOf": [
+          {
+            "description": "A set (array) of simple or individual OIC Links. In addition to properties required for an OIC Link, the identifier for that link in this set is also required",
+            "items": {
+              "properties": {
+                "anchor": {
+                  "description": "This is used to override the context URI e.g. override the URI of the containing collection",
+                  "format": "uri",
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                "di": {
+                  "description": "Unique identifier for device (UUID)",
+                  "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                  "type": "string"
+                },
+                "eps": {
+                  "description": "the Endpoint information of the target Resource",
+                  "items": {
+                    "properties": {
+                      "ep": {
+                        "description": "URI with Transport Protocol Suites + Endpoint Locator as specified in 10.2.1",
+                        "format": "uri",
+                        "type": "string"
+                      },
+                      "pri": {
+                        "description": "The priority among multiple Endpoints as specified in 10.2.3",
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "href": {
+                  "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI. Relative Reference should be used along with the di parameter to make it unique.",
+                  "format": "uri",
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                "if": {
+                  "description": "The interface set supported by this resource",
+                  "items": {
+                    "enum": [
+                      "oic.if.baseline",
+                      "oic.if.ll",
+                      "oic.if.b",
+                      "oic.if.rw",
+                      "oic.if.r",
+                      "oic.if.a",
+                      "oic.if.s"
+                    ],
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "ins": {
+                  "description": "The instance identifier for this web link in an array of web links - used in collections",
+                  "oneOf": [
+                    {
+                      "description": "An ordinal number that is not repeated - must be unique in the collection context",
+                      "type": "integer"
+                    },
+                    {
+                      "description": "Any unique string including a URI",
+                      "format": "uri",
+                      "maxLength": 256,
+                      "type": "string"
+                    },
+                    {
+                      "description": "Unique identifier (UUID)",
+                      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "p": {
+                  "description": "Specifies the framework policies on the Resource referenced by the target URI",
+                  "properties": {
+                    "bm": {
+                      "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "bm"
+                  ],
+                  "type": "object"
+                },
+                "rel": {
+                  "description": "The relation of the target URI referenced by the link to the context URI",
+                  "oneOf": [
+                    {
+                      "default": [
+                        "hosts"
+                      ],
+                      "items": {
+                        "maxLength": 64,
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    {
+                      "default": "hosts",
+                      "maxLength": 64,
+                      "type": "string"
+                    }
+                  ]
+                },
+                "rt": {
+                  "description": "Resource Type",
+                  "items": {
+                    "maxLength": 64,
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "title": {
+                  "description": "A title for the link relation. Can be used by the UI to provide a context",
+                  "maxLength": 64,
+                  "type": "string"
+                },
+                "type": {
+                  "default": "application/cbor",
+                  "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting",
+                  "items": {
+                    "maxLength": 64,
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "href",
+                "rt",
+                "if"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        ]
+      }
+
+    ,
+    "EasySetup" : 
+            {
+        "description": "A collection is a set (array) of tagged-link or set (array) of simple links along with additional properties to describe the collection itself",
+        "properties": {
+          "cn": {
+            "description": "Indicates an array of connection types that trigger an attempt to connect to the Enroller to start.",
+            "items": {
+              "description": "Connection type to attempt. (1 : Wi-Fi, 2 : other entities / transports to be added in future (e.g. Connect to cloud / BLE))",
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "di": {
+            "description": "The device ID which is an UUIDv4 string; used for backward compatibility with Spec A definition of /oic/res",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+            "type": "string"
+          },
+          "drel": {
+            "description": "When specified this is the default relationship to use when an OIC Link does not specify an explicit relationship with *rel* parameter",
+            "type": "string"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "description": "A number that is unique to that collection; like an ordinal number that is not repeated",
+                "type": "integer"
+              },
+              {
+                "description": "A unique string that could be a hash or similarly unique",
+                "type": "string"
+              },
+              {
+                "description": "A unique string that could be a UUIDv4",
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            ],
+            "description": "ID for the collection. Can be an value that is unique to the use context or a UUIDv4"
+          },
+          "lec": {
+            "description": "Indicates a failure reason (0: NO error, 1: A given SSID is not found, 2: Wi-Fi's password is wrong, 3: IP address is not allocated, 4: No internet connection, 5: Timeout, 6: Wi-Fi Auth Type is not supported by the Enrollee, 7: Wi-Fi Encryption Type is not supported by the Enrollee, 8: Wi-Fi Auth Type is wrong (failure while connecting to the Enroller), 9: Wi-Fi Encryption Type is wrong (failure while connecting to the Enroller), 10~254: Reserved, 255: Unknown error)",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              255
+            ],
+            "readOnly": true,
+            "type": "integer"
+          },
+          "links": {
+            "description": "All forms of links in a collection",
+            "oneOf": [
+              {
+                "description": "A set (array) of simple or individual OIC Links. In addition to properties required for an OIC Link, the identifier for that link in this set is also required",
+                "items": {
+                  "properties": {
+                    "anchor": {
+                      "description": "This is used to override the context URI e.g. override the URI of the containing collection",
+                      "format": "uri",
+                      "maxLength": 256,
+                      "type": "string"
+                    },
+                    "di": {
+                      "description": "Unique identifier for device (UUID)",
+                      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                      "type": "string"
+                    },
+                    "eps": {
+                      "description": "the Endpoint information of the target Resource",
+                      "items": {
+                        "properties": {
+                          "ep": {
+                            "description": "URI with Transport Protocol Suites + Endpoint Locator as specified in 10.2.1",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "pri": {
+                            "description": "The priority among multiple Endpoints as specified in 10.2.3",
+                            "minimum": 1,
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "href": {
+                      "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI. Relative Reference should be used along with the di parameter to make it unique.",
+                      "format": "uri",
+                      "maxLength": 256,
+                      "type": "string"
+                    },
+                    "if": {
+                      "description": "The interface set supported by this resource",
+                      "items": {
+                        "enum": [
+                          "oic.if.baseline",
+                          "oic.if.ll",
+                          "oic.if.b",
+                          "oic.if.rw",
+                          "oic.if.r",
+                          "oic.if.a",
+                          "oic.if.s"
+                        ],
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "ins": {
+                      "description": "The instance identifier for this web link in an array of web links - used in collections",
+                      "oneOf": [
+                        {
+                          "description": "An ordinal number that is not repeated - must be unique in the collection context",
+                          "type": "integer"
+                        },
+                        {
+                          "description": "Any unique string including a URI",
+                          "format": "uri",
+                          "maxLength": 256,
+                          "type": "string"
+                        },
+                        {
+                          "description": "Unique identifier (UUID)",
+                          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "p": {
+                      "description": "Specifies the framework policies on the Resource referenced by the target URI",
+                      "properties": {
+                        "bm": {
+                          "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "bm"
+                      ],
+                      "type": "object"
+                    },
+                    "rel": {
+                      "description": "The relation of the target URI referenced by the link to the context URI",
+                      "oneOf": [
+                        {
+                          "default": [
+                            "hosts"
+                          ],
+                          "items": {
+                            "maxLength": 64,
+                            "type": "string"
+                          },
+                          "minItems": 1,
+                          "type": "array"
+                        },
+                        {
+                          "default": "hosts",
+                          "maxLength": 64,
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "rt": {
+                      "description": "Resource Type",
+                      "items": {
+                        "maxLength": 64,
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "title": {
+                      "description": "A title for the link relation. Can be used by the UI to provide a context",
+                      "maxLength": 64,
+                      "type": "string"
+                    },
+                    "type": {
+                      "default": "application/cbor",
+                      "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting",
+                      "items": {
+                        "maxLength": 64,
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "href",
+                    "rt",
+                    "if"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            ]
+          },
+          "ps": {
+            "description": "Indicates the easy setup status of the device. (0: Need to Setup, 1: Connecting to Enroller, 2: Connected to Enroller, 3: Failed to Connect to Enroller, 4~254: Reserved, 255: EOF)",
+            "enum": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "readOnly": true,
+            "type": "integer"
+          },
+          "rt": {
+            "items": {
+              "enum": [
+                "oic.r.easysetup",
+                "oic.wk.col"
+              ]
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "rts": {
+            "description": "Defines the list of allowable resource types (for Target and anchors) in links included in the collection; new links being created can only be from this list",
+            "items": {
+              "maxLength": 64,
+              "type": "string"
+            },
+            "minItems": 1,
+            "readOnly": true,
+            "type": "array"
+          }
+        },
+        "required": [
+          "ps",
+          "lec",
+          "cn"
+        ],
+        "type": "object"
+      }
+
+  }
+}
