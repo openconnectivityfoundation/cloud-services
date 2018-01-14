@@ -16,42 +16,11 @@ documentation:
       Atomic Measurement is a specialization of the OCF Collection, which is an
       extension of OIC Resource.
 
-      Atomic Measurement applies a special restricton in that the items
-      in the collection may only be accessed through the collection interfaces,
-      oic.if.ll and oic.if.b, and that the items pointed to in the Atomic
-      Measurement are hosted locally, on the same platform as the
-      Atomic Measurement resource itself.
-
   - title: Atomic Measurement Restrictions on included resources
     content: |
       Atomic Measurement restricts properties to be exposed only through the
       oic.if.b interface of the Atomic Measurement, thus insuring that all
       of the items are accessed "atomically" as a batch.
-
-      If a client attempts to access an item in an Atomic Measurement individually,
-      the server will return a client error (4xx). It is recommended that a
-      CoAP 4.03 or HTTP 403 "Forbidden" be returned.
-
-      Atomic Measurements only contain resources within the same device.
-      If the device is unable to supply all of the items of the atomic collection,
-      the server will signal a server error (5xx).
-
-      Items within an Atomic Measurement are only exposed via links within
-      the Atomic Measurement. Specifically, /oic/res contains a link to the
-      Atomic Measurement, but will not contain links to the individual items in
-      the Atomic Measurement. Since a client can only retrieve links to items of
-      an Atomic Measurement from within the Atomic Measurement, the client will
-      be expected to understand that it may not retrieve items individually,
-      but it may use information in the link parameters to help identify and
-      understand the data items in the Atomic Measurement.
-
-      Items within an atomic measurement expose all of the properties
-      expected by the application in the default interface of the item. For
-      example, an Atomic Measurement exposing a temperature value where the
-      range and units are user-selecteble would be expected to include the
-      range and units properties in the default interface, along with the
-      temperature property. In the the case of a thermometer, the default
-      interface would be oic.if.s.
 
   - title: Resource Design
     content: |
@@ -91,9 +60,7 @@ traits:
 /AtomicMeasurementURI?if=oic.if.baseline:
   description: |
     The oic.if.baseline interface exposes a representation of the links and
-    the common properties of the Atomic Measurement resource. It does not expose
-    any properties of the items in the Atomic Measurement
-
+    the common properties of the Atomic Measurement resource.
 
   displayName: Baseline Interface
   is: [ interface-baseline ]
@@ -135,7 +102,6 @@ traits:
 /AtomicMeasurementURI?if=oic.if.b:
     description: |
       The oic.if.b interface returns data items retrieved from resources pointed to by the links.
-      This ensures that all accesses to the items in the collection are atomic.
 
     displayName: Batch Representation
     is: [ interface-b ]
