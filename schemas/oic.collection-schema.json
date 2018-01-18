@@ -33,6 +33,16 @@
                     }
                   ]
                 },
+              "rts-m": {
+                "anyOf": [
+                  {
+                    "$ref": "oic.core-schema.json#/definitions/oic.core/properties/rt"
+                  },
+                  {
+                    "description": "The list of mandatory resources if any in links included in the collection"
+                  }
+                ]
+              },
                 "links": {
                     "$ref": "#/definitions/oic.collection.alllinks"
                 }
