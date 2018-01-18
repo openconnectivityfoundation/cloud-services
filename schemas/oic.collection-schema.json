@@ -34,7 +34,7 @@
                   ]
                 },
               "rts-m": {
-                "anyOf": [
+                "allOf": [
                   {
                     "$ref": "oic.core-schema.json#/definitions/oic.core/properties/rt"
                   },
