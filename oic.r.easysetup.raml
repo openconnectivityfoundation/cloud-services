@@ -11,9 +11,9 @@ documentation:
 
 schemas:
   - EasySetup: !include schemas/oic.r.easysetup-schema.json
-  - slinks: !include schemas/oic.collection.linkslist-schema.json
-  - sbatch: !include schemas/oic.collection.batch-retrieve-schema.json
-  - sbatch-update: !include schemas/oic.collection.batch-update-schema.json
+  - slinks: !include schemas/oic.r.easysetup-ll-schema.json
+  - sbatch: !include schemas/oic.r.easysetup.batch-retrieve-schema.json
+  - sbatch-update: !include schemas/oic.r.easysetup.batch-update-schema.json
 
 
 traits:
@@ -37,7 +37,7 @@ traits:
         if:
           enum: [ "oic.if.ll" ]
 
-/example/EasySetupBaselineInterfaceResURI:
+/exampleEasySetupBaselineInterfaceResURI:
   description: |
     Easy Setup resource stores useful information including current status of
     unboxing device and last error code which are produced in a process of
@@ -99,7 +99,7 @@ traits:
                 ]
               }
 
-/example/EasySetupBatchInterfaceResURI:
+/exampleEasySetupBatchInterfaceResURI:
   description: |
     Easy Setup resource stores useful information including current status of
     unboxing device and last error code which are produced in a process of
@@ -214,7 +214,7 @@ traits:
                 }
               ]
 
-/example/EasySetupLLInterfaceResURI:
+/exampleEasySetupLLInterfaceResURI:
   description: |
     Easy Setup resource stores useful information including current status of
     unboxing device and last error code which are produced in a process of
