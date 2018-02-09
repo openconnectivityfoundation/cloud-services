@@ -9,7 +9,7 @@
         "minItems": 1,
         "items": {
           "items": {
-            "$ref": "../../core/schemas/oic.collection.batch-update-schema#/definitions/oic.wk.col-batch-update"
+            "$ref": "../../core/schemas/oic.collection.batch-update-schema.json#/definitions/oic.wk.col-batch-update"
           }
         }
       }
