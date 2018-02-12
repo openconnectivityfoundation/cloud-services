@@ -6,21 +6,18 @@ version: 0.1
 documentation:
 
   - title: OCF Copyright
-    content: Copyright (c) 2016, 2017 Open Connectivity Foundation, Inc. All rights reserved.
+    content: Copyright (c) 2016, 2017, 2018 Open Connectivity Foundation, Inc. All rights reserved.
   - title: OCF License
     content: !include LICENSE.md
   - title: OCF Disclaimer
     content: !include DISCLAIMER.md
   - title: Atomic Measurement
     content: |
-      Atomic Measurement is a specialization of the OCF Collection, which is an
-      extension of OIC Resource.
+      Atomic Measurement is a specialization of the collection pattern to insure
+      that the linked resources are only accessed together.
 
-  - title: Atomic Measurement Restrictions on included resources
-    content: |
-      Atomic Measurement restricts properties to be exposed only through the
-      oic.if.b interface of the Atomic Measurement, thus ensuring that all
-      of the items are accessed "atomically" as a batch.
+      Atomic Measurement exposes properties only through the oic.if.b interface,
+      thus ensuring that all of the items are accessed "atomically" in the batch.
 
   - title: Resource Design
     content: |
