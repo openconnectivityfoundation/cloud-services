@@ -30,7 +30,7 @@ traits:
           enum: ["oic.if.rw"]
 
 
-/example/CoAPCloudConfBaselineInterfaceResURI:
+/example/CoAPCloudConfResURI?if=oic.if.baseline:
   description: |
     CoAPCloudConf resource exposes configuration information for connecting to a
     cloud server.
@@ -39,12 +39,6 @@ traits:
 
   get:
     description: |
-      Retrieve all essential information used for cloud registration
-      1. Access Token
-      2. Authentication provider name
-      3. Cloud interface server URL
-      4. Error Code (optional)
-      5. Additonal configuration properties supported by device
     responses:
       200:
         body:
@@ -82,7 +76,7 @@ traits:
                 "cis": "https://CloudServerURI",
                 "clec": 0
               }
-/example/CoAPCloudConfRWInterfaceResURI:
+/example/CoAPCloudConfResURI?if=oic.if.rw:
   description: |
     CoAPCloudConf resource exposes configuration information for connecting to a
     cloud server.
