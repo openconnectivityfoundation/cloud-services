@@ -3,7 +3,7 @@ title: CoAP Cloud Configuration Resource
 version: v0.0.3-20180116
 documentation:
   - title: OCF Copyright
-    content: Copyright (c) 2017 Open Connectivity Foundation, Inc. All rights reserved.
+    content: Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.
   - title: OCF License
     content: !include LICENSE.md
   - title: OCF Disclaimer
@@ -40,10 +40,10 @@ traits:
   get:
     description: |
       Retrieve all essential information used for cloud registration
-      1. Access Token & Access Token Type
+      1. Access Token
       2. Authentication provider name
       3. Cloud interface server URL
-      4. Present Status & Error Code (optional)
+      4. Error Code (optional)
       5. Additonal configuration properties supported by device
     responses:
       200:
@@ -54,10 +54,8 @@ traits:
               {
                 "rt": ["oic.r.coapcloudconf"],
                 "at": "0f3d9f7fe5491d54077d",
-                "att": "Bearer",
                 "apn": "Authentication server",
                 "cis": "https://CloudServerURI",
-                "cps": 0,
                 "clec": 0
               }
   post:
@@ -69,7 +67,6 @@ traits:
         example: |
           {
             "at": "0f3d9f7fe5491d54077d",
-            "att": "Bearer",
             "apn": "Authentication server",
             "cis": "https://CloudServerURI"
           }
@@ -81,10 +78,8 @@ traits:
             example: |
               {
                 "at": "0f3d9f7fe5491d54077d",
-                "att": "Bearer",
                 "apn": "Authentication server",
                 "cis": "https://CloudServerURI",
-                "cps": 0,
                 "clec": 0
               }
 /example/CoAPCloudConfRWInterfaceResURI:
@@ -98,7 +93,7 @@ traits:
     description: |
       Retrieve all essential information used for cloud registration that can
       be updated by a client.
-      1. Access Token & Access Token Type
+      1. Access Token
       2. Authentication provider name
       3. Cloud interface server URL
       4. Additonal configuration properties supported by device
@@ -111,7 +106,6 @@ traits:
               {
                 "rt": ["oic.r.coapcloudconf"],
                 "at": "0f3d9f7fe5491d54077d",
-                "att": "Bearer",
                 "apn": "Authentication server",
                 "cis": "https://CloudServerURI"
               }
@@ -124,7 +118,6 @@ traits:
         example: |
           {
             "at": "0f3d9f7fe5491d54077d",
-            "att": "Bearer",
             "apn": "Authentication server",
             "cis": "https://CloudServerURI"
           }
@@ -136,7 +129,6 @@ traits:
             example: |
               {
                 "at": "0f3d9f7fe5491d54077d",
-                "att": "Bearer",
                 "apn": "Authentication server",
                 "cis": "https://CloudServerURI",
               }
