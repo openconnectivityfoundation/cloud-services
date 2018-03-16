@@ -32,8 +32,7 @@ traits:
 
 /example/CoAPCloudConfResURI?if=oic.if.baseline:
   description: |
-    CoAPCloudConf resource exposes configuration information for connecting to a
-    cloud server.
+    The CoAPCloudConf Resource exposes configuration information for connecting to an OCF Cloud.
   displayName: CoAP Cloud Configuration Resource Baseline Interface
   is: [ interface-baseline ] # valid for baseline method.
 
@@ -48,8 +47,8 @@ traits:
               {
                 "rt": ["oic.r.coapcloudconf"],
                 "at": "0f3d9f7fe5491d54077d",
-                "apn": "Authentication server",
-                "cis": "https://CloudServerURI",
+                "apn": "github",
+                "cis": "coaps+tcp://example.com:443",
                 "clec": 0
               }
   post:
@@ -61,8 +60,8 @@ traits:
         example: |
           {
             "at": "0f3d9f7fe5491d54077d",
-            "apn": "Authentication server",
-            "cis": "https://CloudServerURI"
+            "apn": "github",
+            "cis": "coaps+tcp://example.com:443"
           }
     responses:
       200:
@@ -72,25 +71,19 @@ traits:
             example: |
               {
                 "at": "0f3d9f7fe5491d54077d",
-                "apn": "Authentication server",
-                "cis": "https://CloudServerURI",
+                "apn": "github",
+                "cis": "coaps+tcp://example.com:443",
                 "clec": 0
               }
 /example/CoAPCloudConfResURI?if=oic.if.rw:
   description: |
-    CoAPCloudConf resource exposes configuration information for connecting to a
-    cloud server.
+    The CoAPCloudConf Resource exposes configuration information for connecting to an OCF Cloud.
   displayName: CoAP Cloud Configuration Resource Read Write Interface
   is: [ interface-rw ] # valid for RW method.
 
   get:
     description: |
-      Retrieve all essential information used for cloud registration that can
-      be updated by a client.
-      1. Access Token
-      2. Authentication provider name
-      3. Cloud interface server URL
-      4. Additonal configuration properties supported by device
+      Retrieve properties of CoAPCloudConf resource.
     responses:
       200:
         body:
@@ -100,8 +93,8 @@ traits:
               {
                 "rt": ["oic.r.coapcloudconf"],
                 "at": "0f3d9f7fe5491d54077d",
-                "apn": "Authentication server",
-                "cis": "https://CloudServerURI"
+                "apn": "github",
+                "cis": "coaps+tcp://example.com:443"
               }
   post:
     description: |
@@ -112,8 +105,8 @@ traits:
         example: |
           {
             "at": "0f3d9f7fe5491d54077d",
-            "apn": "Authentication server",
-            "cis": "https://CloudServerURI"
+            "apn": "github",
+            "cis": "coaps+tcp://example.com:443"
           }
     responses:
       200:
@@ -123,6 +116,6 @@ traits:
             example: |
               {
                 "at": "0f3d9f7fe5491d54077d",
-                "apn": "Authentication server",
-                "cis": "https://CloudServerURI",
+                "apn": "github",
+                "cis": "coaps+tcp://example.com:443"
               }

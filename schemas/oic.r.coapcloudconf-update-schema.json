@@ -8,26 +8,21 @@
       "properties": {
         "apn": {
           "type": "string",
-          "description": "Authentication provider's name issuing the auth code",
+          "description": "The Authorisation Provider through which an Access Token was obtained.",
           "pattern": "^.*$"
         },
         "cis": {
           "type": "string",
-          "description": "Indicates URL for CoAP native cloud interface server to be registered",
+          "description": "URL of OCF Cloud",
           "format": "uri"
         },
         "at": {
           "type": "string",
-          "description": "Indicates access token which is given in return of auth code issued by an appropriate account server",
-          "pattern": "^.*$"
-        },
-          "sid": {
-          "type": "string",
-          "description": "The Server identity of the OCF Cloud used for verifying the OCF Cloud certificate.",
+          "description": "Access Token which is returned by an Authorisation Provider or OCF Cloud.",
           "pattern": "^.*$"
         }
       },
-      "required":["cis"]
+      "required":["cis", "at"]
     }
   },
   "type": "object",
