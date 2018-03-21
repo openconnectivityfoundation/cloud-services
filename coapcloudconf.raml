@@ -11,6 +11,7 @@ documentation:
 
 schemas:
   - CoAPCloudConf: !include schemas/oic.r.coapcloudconf-schema.json
+  - CoAPCloudConfRWResponse: !include schemas/oic.r.coapcloudconf-rw-response-schema.json
   - CoAPCloudConfUpdate: !include schemas/oic.r.coapcloudconf-update-schema.json
 
 traits:
@@ -46,7 +47,6 @@ traits:
             example: |
               {
                 "rt": ["oic.r.coapcloudconf"],
-                "at": "0f3d9f7fe5491d54077d",
                 "apn": "github",
                 "cis": "coaps+tcp://example.com:443",
                 "clec": 0
@@ -70,7 +70,6 @@ traits:
             schema: CoAPCloudConf
             example: |
               {
-                "at": "0f3d9f7fe5491d54077d",
                 "apn": "github",
                 "cis": "coaps+tcp://example.com:443",
                 "clec": 0
@@ -88,11 +87,9 @@ traits:
       200:
         body:
           application/json:
-            schema: CoAPCloudConfUpdate
+            schema: CoAPCloudConfRWResponse
             example: |
               {
-                "rt": ["oic.r.coapcloudconf"],
-                "at": "0f3d9f7fe5491d54077d",
                 "apn": "github",
                 "cis": "coaps+tcp://example.com:443"
               }
@@ -112,10 +109,9 @@ traits:
       200:
         body:
           application/json:
-            schema: CoAPCloudConf
+            schema: CoAPCloudConfRWResponse
             example: |
               {
-                "at": "0f3d9f7fe5491d54077d",
                 "apn": "github",
                 "cis": "coaps+tcp://example.com:443"
               }
