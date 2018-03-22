@@ -8,8 +8,7 @@
       "properties": {
         "apn": {
           "type": "string",
-          "description": "The Authorisation Provider through which an Access Token was obtained.",
-          "pattern": "^.*$"
+          "description": "The Authorisation Provider through which an Access Token was obtained."
         },
         "cis": {
           "type": "string",
@@ -18,11 +17,20 @@
         },
         "at": {
           "type": "string",
-          "description": "Access Token which is returned by an Authorisation Provider or OCF Cloud.",
-          "pattern": "^.*$"
+          "description": "Access Token which is returned by an Authorisation Provider or OCF Cloud."
+        },
+        "sid": {
+          "allOf": [
+            {
+              "$ref": "../../core/schemas/oic.types-schema.json#/definitions/uuid"
+            },
+            {
+              "description": "The identity of the OCF Cloud"
+            }
+          ]
         }
       },
-      "required":["cis", "at"]
+      "required":["cis", "at", "sid"]
     }
   },
   "type": "object",

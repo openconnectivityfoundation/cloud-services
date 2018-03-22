@@ -8,13 +8,22 @@
       "properties": {
         "apn": {
           "type": "string",
-          "description": "The Authorisation Provider through which an Access Token was obtained.",
-          "pattern": "^.*$"
+          "description": "The Authorisation Provider through which an Access Token was obtained."
         },
         "cis": {
           "type": "string",
           "description": "URL of OCF Cloud",
           "format": "uri"
+        },
+        "sid": {
+          "allOf": [
+            {
+              "$ref": "../../core/schemas/oic.types-schema.json#/definitions/uuid"
+            },
+            {
+              "description": "The identity of the OCF Cloud"
+            }
+          ]
         },
         "clec": {
           "enum": [0, 1, 2, 3, 255],
@@ -22,7 +31,7 @@
           "readOnly": true
         }
       },
-      "required":["cis"]
+      "required":["cis", "sid"]
     }
   },
   "type": "object",
