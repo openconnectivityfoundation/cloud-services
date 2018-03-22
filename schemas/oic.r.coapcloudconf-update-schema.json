@@ -8,8 +8,7 @@
       "properties": {
         "apn": {
           "type": "string",
-          "description": "The Authorisation Provider through which an Access Token was obtained.",
-          "pattern": "^.*$"
+          "description": "The Authorisation Provider through which an Access Token was obtained."
         },
         "cis": {
           "type": "string",
@@ -18,8 +17,7 @@
         },
         "at": {
           "type": "string",
-          "description": "Access Token which is returned by an Authorisation Provider or OCF Cloud.",
-          "pattern": "^.*$"
+          "description": "Access Token which is returned by an Authorisation Provider or OCF Cloud."
         }
       },
       "required":["cis", "at"]

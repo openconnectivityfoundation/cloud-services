@@ -8,8 +8,7 @@
       "properties": {
         "apn": {
           "type": "string",
-          "description": "The Authorisation Provider through which an Access Token was obtained.",
-          "pattern": "^.*$"
+          "description": "The Authorisation Provider through which an Access Token was obtained."
         },
         "cis": {
           "type": "string",
