@@ -14,9 +14,19 @@
           "type": "string",
           "description": "URL of OCF Cloud",
           "format": "uri"
+        },
+        "sid": {
+          "allOf": [
+            {
+              "$ref": "../../core/schemas/oic.types-schema.json#/definitions/uuid"
+            },
+            {
+              "description": "The identity of the OCF Cloud"
+            }
+          ]
         }
       },
-      "required":["cis"]
+      "required":["cis", "sid"]
     }
   },
   "type": "object",

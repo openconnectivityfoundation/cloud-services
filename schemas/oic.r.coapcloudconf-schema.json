@@ -15,13 +15,23 @@
           "description": "URL of OCF Cloud",
           "format": "uri"
         },
+        "sid": {
+          "allOf": [
+            {
+              "$ref": "../../core/schemas/oic.types-schema.json#/definitions/uuid"
+            },
+            {
+              "description": "The identity of the OCF Cloud"
+            }
+          ]
+        },
         "clec": {
           "enum": [0, 1, 2, 3, 255],
           "description": "Last Error Code during Cloud Provisioning (0: No Error, 1: Failed to access OCF Cloud server, 2: No response from OCF Cloud server, 3: Failed to refresh Access Token, 4~254: Reserved, 255: Unknown error)",
           "readOnly": true
         }
       },
-      "required":["cis"]
+      "required":["cis", "sid"]
     }
   },
   "type": "object",
