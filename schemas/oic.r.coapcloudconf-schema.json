@@ -16,14 +16,8 @@
           "format": "uri"
         },
         "sid": {
-          "allOf": [
-            {
-              "$ref": "../../core/schemas/oic.types-schema.json#/definitions/uuid"
-            },
-            {
-              "description": "The identity of the OCF Cloud"
-            }
-          ]
+          "$ref": "../../core/schemas/oic.types-schema.json#/definitions/uuid",
+          "description": "The identity of the OCF Cloud"
         },
         "clec": {
           "enum": [0, 1, 2, 3, 255],
