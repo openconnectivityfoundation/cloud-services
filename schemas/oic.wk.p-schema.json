@@ -36,6 +36,12 @@
           "readOnly": true,
           "description": "Model number as designated by the manufacturer"
         },
+        "mnsel": {
+          "type": "string",
+          "maxLength": 64,
+          "readOnly": true,
+          "description": "Serial number as designated by the manufacturer"
+        },
         "mndt": {
           "allOf": [
             {
@@ -43,7 +49,7 @@
             },
             {
               "readOnly": true,
-              "description": "Manufacturing Date in ISO8601 format."
+              "description": "Manufacturing Date."
             }
           ]
         },
@@ -81,7 +87,7 @@
         "st": {
           "type": "string",
           "readOnly": true,
-          "description": "Reference time for the device in ISO8601 format.",
+          "description": "The date-time format pattern according to IETF RFC 3339.",
           "format": "date-time"
         },
         "vid": {
