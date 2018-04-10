@@ -13,16 +13,16 @@ documentation:
     content: !include DISCLAIMER.md
   - title: Atomic Measurement
     content: |
-      Atomic Measurement is a specialization of the collection pattern to insure
+      Atomic Measurement is a specialization of the collection design pattern to insure
       that the linked resources are only accessed together.
 
-      Atomic Measurement exposes properties only through the oic.if.b interface,
+      Atomic Measurement exposes properties of linked resources only through the oic.if.b interface,
       thus ensuring that all of the items are accessed "atomically" in the batch.
 
   - title: Resource Design
     content: |
       The Atomic Measurement resource is specified as three Base URIs, one
-      for each interface which is supported by the collection.
+      for each interface which is supported by the Atomic Measurement.
 
       These three URIs are defined as the same URI path, only distinguished
       by the different query parameter traits.
@@ -73,9 +73,10 @@ traits:
             schema: baseline
             example: |
               {
-                "rt": ["oic.wk.col.atomic"],
+                "rt": ["oic.wk.atomicmeasurement"],
                 "if": ["oic.if.b", "oic.if.ll", "oic.if.baseline"]
-                "rts": [ "oic.r.temperature", "oic.r.body.location.temperature", "oic.r.time.observed" ],
+                "rts": [ "oic.r.temperature", "oic.r.body.location.temperature", "oic.r.time.stamp" ],
+                "rts-m": [ "oic.r.temperature", "oic.r.body.location.temperature", "oic.r.time.stamp" ],
                 "links": [
                   {
                     "href": "temperature",
@@ -89,7 +90,7 @@ traits:
                   },
                   {
                     "href": "timestamp",
-                    "rt":   ["oic.r.time.observed"],
+                    "rt":   ["oic.r.time.stamp"],
                     "if":   ["oic.if.s", "oic.if.baseline"],
                   }
                 ]
@@ -136,7 +137,7 @@ traits:
                     "href": "timestamp",
                     "rep":
                       {
-                        "observedtime": "2007-04-05T14:30+09:00"
+                        "timestamp": "2007-04-05T14:30+09:00"
                       }
                   }
                 ]
@@ -172,7 +173,7 @@ traits:
                   },
                   {
                     "href": "timestamp",
-                    "rt":   ["oic.r.time.observed"],
+                    "rt":   ["oic.r.time.stamp"],
                     "if":   ["oic.if.s", "oic.if.baseline"],
                   }
                 ]
