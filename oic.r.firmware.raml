@@ -1,0 +1,88 @@
+#%RAML 0.8
+title: firmware update
+version: v1-20180413
+documentation:
+
+  - title: OCF Copyright
+    content: Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.
+  - title: OCF License
+    content: !include LICENSE.md
+  - title: OCF Disclaimer
+    content: !include DISCLAIMER.md
+
+schemas:
+  - firmware: !include schemas/oic.r.firmware-schema.json
+  - firmware-update: !include schemas/oic.r.firmware-update-schema.json
+
+traits:
+  - interface-all:
+      queryParameters:
+        if:
+          enum: ["oic.if.rw","oic.if.baseline"]
+  - interface-rw:
+      queryParameters:
+        if:
+          enum: ["oic.if.rw"]
+
+/nmonResURI:
+  displayName: Firmware update
+  description: |
+    Firmware update.
+  get:
+    is: [ interface-all ]
+    description: Retrieve the firmware update information
+    responses:
+      200:
+        body:
+          application/json:
+            schema: firmware
+            example: |
+              {
+                "rt":   ["oic.r.firmware"],
+                "version":  "my current version",
+                "newversion":  "my new version",
+                "packageurl":   "",
+                "scheduledupdate" : "idle",
+                "vendor" : "OCF vendor",
+                "model" : "my model number",
+                "state" : "idle",
+                "result" : "ok",
+                "scheduledupdatetime" : "",
+                "lastupdate" : "",
+                "signage" : "vendor"
+              }
+  post:
+    is: [ interface-rw ]
+    description: |
+      set scheduled update information.
+      set data of origin of firmware package.
+      note that the SVR resource /oic/sec/pstat tag tm can be used to start the firmware check or full upgrade.
+    body:
+      application/json:
+        schema: firmware-update
+        example: |
+          {
+            "packageurl" : "https://myvendorlocation/package.dat",
+            "scheduledupdate":   "check new image",
+            "scheduledupdatetime":   ""
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            schema: firmware
+            example: |
+              {
+                "rt":   ["oic.r.firmware"],
+                "version":  "my current version",
+                "newversion":  "my new version",
+                "packageurl":   "https://myvendorlocation/package.dat",
+                "scheduledupdate" : "idle",
+                "vendor" : "OCF vendor",
+                "model" : "my model number",
+                "state" : "check new image",
+                "result" : "ok",
+                "scheduledupdatetime" : "",
+                "lastupdate" : "",
+                "signage" : "vendor"
+              }
