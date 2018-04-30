@@ -21,7 +21,7 @@
         },
         "clec": {
           "enum": [0, 1, 2, 3, 255],
-          "description": "Last Error Code during Cloud Provisioning (0: No Error, 1: Failed to access OCF Cloud server, 2: No response from OCF Cloud server, 3: Failed to refresh Access Token, 4~254: Reserved, 255: Unknown error)",
+          "description": "Last Error Code during Cloud Provisioning (0: No Error, 1: Error response from the OCF Cloud, 2: Failed to connect to the OCF Cloud, 3: Failed to refresh Access Token, 4~254: Reserved, 255: Unknown error)",
           "readOnly": true
         }
       },
