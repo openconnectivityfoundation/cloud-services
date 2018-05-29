@@ -28,13 +28,13 @@
         "tx" :
         {
             "type" : "integer",
-            "description": "Amount of transmitted kilo bytes from collection start time 'time'",
+            "description": "Amount of transmitted kilo bytes from the collection",
             "readOnly" : true
         },
         "rx" :
         {
             "type" : "integer",
-            "description": "Amount of received kilo bytes from collection start time 'time'",
+            "description": "Amount of received kilo bytes from the collection",
             "readOnly" : true
         },
         "mmstx" :
