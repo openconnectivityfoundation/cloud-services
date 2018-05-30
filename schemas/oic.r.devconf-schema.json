@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "description" : "Copyright (c) 2017 Open Connectivity Foundation, Inc. All rights reserved.",
-  "id": "https://www.openconnectivity.org/ocf-apis/core-extensions/schemas/oic.r.devconf-schema.json#",
+  "id": "https://openconnectivityfoundation.github.io/core-extensions/schemas/oic.r.devconf-schema.json#",
   "definitions": {
     "oic.r.devconf": {
       "type": "object",
@@ -25,7 +25,7 @@
                 "type": "object",
                 "properties": {
                   "language": {
-                    "$ref": "../../core/schemas/oic.types-schema.json#/definitions/language-tag",
+                    "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/language-tag",
                     "readOnly": true,
                     "description": "An RFC 5646 language tag."
                   },
@@ -49,7 +49,7 @@
   },
   "type": "object",
   "allOf": [
-    { "$ref": "../../core/schemas/oic.core-schema.json#/definitions/oic.core"},
+    { "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.core-schema.json#/definitions/oic.core"},
     { "$ref": "#/definitions/oic.r.devconf" }
   ]
 }

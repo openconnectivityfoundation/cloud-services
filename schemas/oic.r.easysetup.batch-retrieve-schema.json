@@ -1,14 +1,14 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
-    "id": "https://www.openconnectivity.org/ocf-apis/core-extensions/schemas/oic.r.easysetup.batch-retrieve-schema.json#",
+    "id": "https://openconnectivityfoundation.github.io/core-extensions/schemas/oic.r.easysetup.batch-retrieve-schema.json#",
     "title": "EasySetup Batch Retrieve Format",
     "definitions": {
       "oic.r.easysetup.batch-retrieve": {
         "type": "array",
         "minItems": 1,
         "items": {
-          "$ref": "../../core/schemas/oic.collection.batch-retrieve-schema.json#/definitions/oic.wk.col-batch-retrieve"
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.collection.batch-retrieve-schema.json#/definitions/oic.wk.col-batch-retrieve"
         }
       }
     },
