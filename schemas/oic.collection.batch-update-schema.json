@@ -42,7 +42,6 @@
         }
       }
     },
-	"type": "object",
     "allOf": [
       {"$ref": "#/definitions/oic.wk.col-batch-update"}
     ]
