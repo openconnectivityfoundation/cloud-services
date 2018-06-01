@@ -1,0 +1,74 @@
+{
+  "id": "http://openconnectivity.org/iotdatamodels/schemas/oic.r.alert.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Alert",
+  "definitions": {
+    "oic.r.alert": {
+      "type": "object",
+      "allOf": [
+        {
+          "properties": {
+            "accountid": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "ID of the account",
+              "readOnly": true
+            },
+            "category": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "category into which the notification is classified",
+              "readOnly": true
+            },
+            "originatorid": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "ID of the creator of the event",
+              "readOnly": true
+            },
+            "severity": {
+              "type": "integer",
+              "range": [0, 7],
+              "description": "RFC 5424 severity of the alert",
+              "readOnly": true
+            },
+            "subject": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "language": {
+                    "allOf": [
+                      {"$ref": "oic.types-schema.json#/definitions/language-tag"},
+                      {
+                        "readOnly": true,
+                        "description": "An RFC 5646 language tag."
+                      }
+                    ]
+                  },
+                  "value": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "readOnly": true,
+                    "description": "Alert subject matter in the indicated language."
+                  }
+                }
+              },
+              "minItems": 1,
+              "readOnly": true,
+              "description": "Alert subject matter."
+            }
+          }
+        },
+        {"$ref": "oic.r.time.stamp.json#/definitions/oic.r.time.stamp"}
+      ]
+    }
+  },
+  "type": "object",
+  "allOf": [
+    {"$ref": "oic.baseResource.json#/definitions/oic.r.baseresource"},
+    {"$ref": "#/definitions/oic.r.alert"}
+  ],
+  "required": ["category", "timestamp",  "originatorid", "severity"]
+}

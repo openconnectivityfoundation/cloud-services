@@ -1,0 +1,134 @@
+#%RAML 0.8
+title: OICAlertCollection
+version: OCF2.x-
+documentation:
+  - title: (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.
+    content: |
+        Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED. IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+schemas:
+  - AlertCollection:  !include oic.r.alertcollection.json
+  - AlertCollection-ll:  !include oic.r.alertcollection-ll.json
+  - AlertCollection-b: !include oic.r.alertcollection-b.json
+
+traits:
+    - interface-all:
+        queryParameters:
+          if:
+            enum: ["oic.if.ll","oic.if.b","oic.if.baseline"]
+
+    - interface-baseline:
+        queryParameters:
+          if:
+            enum: ["oic.if.baseline"]
+
+    - interface-ll:
+        queryParameters:
+          if:
+             enum: ["oic.if.ll"]
+
+    - interface-b:
+        queryParameters:
+          if:
+            enum: ["oic.if.b"]
+
+/AlertCollectionResURI?if=oic.if.baseline:
+  description: |
+    This Resource is a Collection containing instances of Alerts (oic.r.alert).
+    This is the response using the baseline interface.
+
+  displayName: Alert Collection
+  is: [ interface-baseline ] # valid for all methods
+
+  get:
+    description: |
+      Retrieves the current alert information.
+    responses:
+      200:
+        body:
+          application/json:
+            schema: AlertCollection
+            example: |
+              {
+                "rt":    ["oic.r.alertcollection"],
+                "id":    "unique_example_id",
+                "links": [
+                  {"href": "/myAlert1ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+                  {"href": "/myAlert2ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+                  {"href": "/myAlert3ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+                  {"href": "/myAlert4ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]}
+                ]
+              }
+
+/AlertCollectionResURI?if=oic.if.ll:
+  description: |
+    This Resource is a Collection containing instances of Alerts (oic.r.alert).
+    This is the response using the Link List interface.
+
+  displayName: Alert Collection
+  is: [ interface-ll ] # valid for all methods
+
+  get:
+    description: |
+      Retrieves the current alert information
+    responses:
+      200:
+        body:
+          application/json:
+            schema: AlertCollection-ll
+            example: |
+              [
+                {"href": "/myAlert1ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+                {"href": "/myAlert2ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+                {"href": "/myAlert3ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+                {"href": "/myAlert4ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]}
+              ]
+
+/AlertCollectionResURI?if=oic.if.b:
+  description: |
+    This Resource is a Collection containing instances of Alerts (oic.r.alert).
+    This is the response using the Batch interface.
+
+  displayName: Alert Collection
+  is: [ interface-b ] # valid for all methods
+
+  get:
+    description: |
+      Retrieves the current alert information
+    responses:
+      200:
+        body:
+          application/json:
+            schema: AlertCollection-b
+            example: |
+              [
+                {
+                  "href": "/Alert1ResURI",
+                  "rep":{
+                    "rt":            ["oic.r.alert"],
+                    "id":            "unique_example_id",
+                    "accountid":     "MyAccountID",
+                    "category":      "MyCategory",
+                    "notificationtime": "2018-02-28T08:00:00Z",
+                    "originatorid": "MyOriginatorID",
+                    "severity": 3,
+                    "subject": [{"language":"en-US","value":"System error"}]
+                  }
+                },
+                {
+                  "href": "/Alert2ResURI",
+                  "rep":{
+                    "rt":            ["oic.r.alert"],
+                    "id":            "unique_example_id",
+                    "accountid":     "MyAccountID",
+                    "category":      "MyCategory",
+                    "notificationtime": "2018-02-28T08:15:00Z",
+                    "originatorid": "MyOriginatorID",
+                    "severity": 4,
+                    "subject": [{"language":"en-US","value":"Network error"}]
+                  }
+                }
+              ]
