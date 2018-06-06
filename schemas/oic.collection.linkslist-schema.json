@@ -4,6 +4,6 @@
   "id": "http://openconnectivityfoundation.github.io/core/schemas/oic.collection.linkslist-schema.json#",
   "type": "array",
   "items": {
-    "$ref": "http://openconnectivityfoundation.github.io/core/scehemas/oic.collection-schema.json#/definitions/oic.oic-link"
+    "$ref": "http://openconnectivityfoundation.github.io/core/schemas/oic.collection-schema.json#/definitions/oic.oic-link"
   }
 }
