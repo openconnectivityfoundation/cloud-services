@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "description" : "Copyright (c) 2017 Open Connectivity Foundation, Inc. All rights reserved.",
-  "id": "https://www.openconnectivity.org/ocf-apis/core-extensions/schemas/oic.r.easysetup-schema.json#",
+  "id": "https://openconnectivityfoundation.github.io/core-extensions/schemas/oic.r.easysetup-schema.json#",
   "definitions": {
     "oic.r.easysetup": {
       "type": "object",
@@ -41,9 +41,9 @@
   },
   "type": "object",
   "allOf": [
-    { "$ref": "../../core/schemas/oic.core-schema.json#/definitions/oic.core"},
-    { "$ref": "../../core/schemas/oic.collection-schema.json#/definitions/oic.collection.properties"},
-    { "$ref": "../../core/schemas/oic.collection-schema.json#/definitions/oic.collection.links.arrayoflinks"},
+    { "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.core-schema.json#/definitions/oic.core"},
+    { "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.collection-schema.json#/definitions/oic.collection.properties"},
+    { "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.collection-schema.json#/definitions/oic.collection.links.arrayoflinks"},
     { "$ref": "#/definitions/oic.r.easysetup" }
   ]
 }
