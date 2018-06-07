@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2017 Open Connectivity Foundation, Inc. All rights reserved.",
+  "id": "https://www.openconnectivity.org/ocf-apis/core-extensions/schemas/oic.r.coapcloudconf-update-schema.json#",
+  "definitions": {
+    "oic.r.coapcloudconf": {
+      "type": "object",
+      "properties": {
+        "apn": {
+          "type": "string",
+          "description": "The Authorisation Provider through which an Access Token was obtained."
+        },
+        "cis": {
+          "type": "string",
+          "description": "URL of OCF Cloud",
+          "format": "uri"
+        },
+        "at": {
+          "type": "string",
+          "description": "Access Token which is returned by an Authorisation Provider or OCF Cloud."
+        },
+        "sid": {
+          "$ref": "../../core/schemas/oic.types-schema.json#/definitions/uuid",
+          "description": "The identity of the OCF Cloud"
+        }
+      },
+      "required":["cis", "at", "sid"]
+    }
+  },
+  "type": "object",
+  "allOf": [
+    { "$ref": "../../core/schemas/oic.core-schema.json#/definitions/oic.core"},
+    { "$ref": "#/definitions/oic.r.coapcloudconf" }
+  ]
+}
