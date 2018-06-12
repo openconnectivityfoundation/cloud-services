@@ -270,7 +270,7 @@
 		      "description": "The list of allowable resource types (for Target and anchors) in links included in the collection"
         },
         "rts-m": { 
-          "$ref": "oic.core-schema.json#/definitions/oic.core/properties/rt"
+          "$ref": "oic.core-schema.json#/definitions/oic.core/properties/rt",
           "description": "The list of mandatory resources if any in links included in the collection"
         }
       }
