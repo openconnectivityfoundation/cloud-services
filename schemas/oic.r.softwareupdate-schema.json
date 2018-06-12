@@ -7,7 +7,7 @@
     "oic.r.softwareupdate": {
       "type": "object",
       "properties": {
-        "nsv" :
+        "nv" :
         {
             "type" : "string",
             "description": "The new software version, to replace the current software version",
