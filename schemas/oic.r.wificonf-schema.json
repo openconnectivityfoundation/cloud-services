@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "description" : "Copyright (c) 2017 Open Connectivity Foundation, Inc. All rights reserved.",
-  "id": "https://openconnectivityfoundation.github.io/core-extensions/schemas/oic.r.wificonf-schema.json#",
+  "id": "http://openconnectivityfoundation.github.io/core-extensions/schemas/oic.r.wificonf-schema.json#",
   "definitions": {
     "oic.r.wificonf": {
       "type": "object",
@@ -75,7 +75,7 @@
   },
   "type": "object",
   "allOf": [
-    { "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.core-schema.json#/definitions/oic.core"},
+    { "$ref": "http://openconnectivityfoundation.github.io/core/schemas/oic.core-schema.json#/definitions/oic.core"},
     { "$ref": "#/definitions/oic.r.wificonf" }
   ]
 }

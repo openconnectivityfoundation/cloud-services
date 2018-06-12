@@ -29,7 +29,7 @@ traits:
         if:
           enum: ["oic.if.rw"]
 
-/example/WiFiConfBaselineInterfaceResURI:
+/WiFiConfResURI?if=oic.if.baseline:
   description: |
     WiFiConf resource stores essential information to help an unboxing device
     to connect to an existing Wi-Fi AP.
@@ -90,7 +90,7 @@ traits:
                 "wet": "AES"
               }
 
-/example/WiFiConfRWInterfaceResURI:
+/WiFiConfResURI?if=oic.if.rw:
   description: |
     WiFiConf resource stores essential information to help an unboxing device
     to connect to an existing Wi-Fi AP.

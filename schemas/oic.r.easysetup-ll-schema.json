@@ -1,5 +1,5 @@
 {
-  "id": "https://openconnectivityfoundation.github.io/core-extensions/schemas/oic.r.easysetup-ll-schema#",
+  "id": "http://openconnectivityfoundation.github.io/core-extensions/schemas/oic.r.easysetup-ll-schema#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
   "title": "EasySetup Object Links List Schema",
@@ -7,7 +7,7 @@
     "oic.r.easysetup-ll": {
       "type": "array",
       "items": {
-        "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.collection-schema.json#/definitions/oic.oic-link"
+        "$ref": "http://openconnectivityfoundation.github.io/core/schemas/oic.collection-schema.json#/definitions/oic.oic-link"
       }
     }
   },
