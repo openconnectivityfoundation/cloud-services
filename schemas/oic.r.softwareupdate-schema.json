@@ -1,6 +1,6 @@
 {
-  "id": "http://openconnectivityfoundation.github.io/core//schemas/oic.r.softwareupdate#",
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://openconnectivityfoundation.github.io/core/schemas/oic.r.softwareupdate",
+  "$schema": "http://json-schema.org/draft-04/schema",
   "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
   "title": "software update",
   "definitions": {
@@ -9,8 +9,8 @@
       "properties": {
         "nsv" :
         {
-            "type" : "boolean",
-            "description": "The new firmware version, to replace the current firmware version",
+            "type" : "string",
+            "description": "The new software version, to replace the current software version",
             "readOnly" : false
         },
         "action" :
@@ -28,7 +28,7 @@
         "packageurl" :
         {
             "type" : "string",
-            "description": "The url to the firmware package, can be https/coaps",
+            "description": "The url to the software package, can be https/coaps",
             "readOnly" : false
         },
         "state" :
@@ -49,14 +49,14 @@
             "type" : "integer",
             "description": "result/error of the different stages of the upgrade process",
             "readOnly" : true,
-            
+
         },
-        "scheduledupdatetime" :
+        "updatetime" :
         {
             "type" : "string",
             "description": "scheduled time to do the update action, IETF RFC 3339",
             "readOnly" : false,
-            "pattern": "^([0-9]{4})-(1[0-2]|0[1-9])-(3[0-1]|2[0-9]|1[0-9]|0[1-9])$"
+            "format": "date-time"
 
         },
         "lastupdate" :
@@ -64,7 +64,7 @@
             "type" : "string",
             "description": "time of the last successfull firmware update, IETF RFC 3339",
             "readOnly" : true,
-            "pattern": "^([0-9]{4})-(1[0-2]|0[1-9])-(3[0-1]|2[0-9]|1[0-9]|0[1-9])$"
+            "format": "date-time"
         },
         "signage" :
         {
@@ -80,7 +80,7 @@
   },
   "type": "object",
   "allOf": [
-    {"$ref": "http://openconnectivityfoundation.github.io/core/oic.core-schema.json#/definitions/oic.core"},
+    {"$ref": "http://openconnectivityfoundation.github.io/core/schemas/oic.core-schema.json#/definitions/oic.core"},
     {"$ref": "#/definitions/oic.r.softwareupdate"}
   ],
   "required": ["packageurl", "state", "result"]

@@ -1,6 +1,6 @@
 {
   "id": "http://openinterconnect.org/schemas/oic.r.softwareupdate-update",
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-04/schema",
   "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
   "title": "software update, update schema",
   "definitions": {
@@ -10,7 +10,7 @@
 
         "nv" :
         {
-            "type" : "boolean",
+            "type" : "string",
             "description": "The new software version, to replace the current software version",
             "readOnly" : false
         },
@@ -37,7 +37,7 @@
             "type" : "string",
             "description": "scheduled time to do the update action, IETF RFC 3339",
             "readOnly" : false,
-            "pattern": "^([0-9]{4})-(1[0-2]|0[1-9])-(3[0-1]|2[0-9]|1[0-9]|0[1-9])$"
+            "format": "date-time"
         },
         "signage" :
         {
@@ -53,8 +53,8 @@
   },
   "type": "object",
   "allOf": [
-    {"$ref": "http://openconnectivityfoundation.github.io/core/oic.core-schema.json#/definitions/oic.core"},
-    {"$ref": "#/definitions/oic.r.firmware-update"}
+    {"$ref": "http://openconnectivityfoundation.github.io/core/schemas/oic.core-schema.json#/definitions/oic.core"},
+    {"$ref": "#/definitions/oic.r.softwareupdate-update"}
   ],
   "required": ["packageurl" ]
 }
