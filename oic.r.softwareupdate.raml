@@ -1,0 +1,83 @@
+#%RAML 0.8
+title: software update
+version: v1-20180413
+documentation:
+
+  - title: OCF Copyright
+    content: Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.
+  - title: OCF License
+    content: !include LICENSE.md
+  - title: OCF Disclaimer
+    content: !include DISCLAIMER.md
+
+schemas:
+  - software: !include schemas/oic.r.softwareupdate-schema.json
+  - software-update: !include schemas/oic.r.softwareupdate-update-schema.json
+
+traits:
+  - interface-all:
+      queryParameters:
+        if:
+          enum: ["oic.if.rw","oic.if.baseline"]
+  - interface-rw:
+      queryParameters:
+        if:
+          enum: ["oic.if.rw"]
+
+/firmwareupdateResURI:
+  displayName: software update
+  description: |
+    software update.
+  get:
+    is: [ interface-all ]
+    description: Retrieve the software update information
+    responses:
+      200:
+        body:
+          application/json:
+            schema: software
+            example: |
+              {
+                "rt":   ["oic.r.softwareupdate"],
+                "newversion":  "my new version",
+                "packageurl":   "",
+                "scheduledupdate" : "idle",
+                "state" : "idle",
+                "result" : 0,
+                "scheduledupdatetime" : "",
+                "lastupdate" : "",
+                "signage" : "vendor"
+              }
+  post:
+    is: [ interface-rw ]
+    description: |
+      set scheduled update information.
+      set data of origin of software package.
+      note that the SVR resource /oic/sec/pstat tag tm can be used to start the software check or full upgrade.
+    body:
+      application/json:
+        schema: software-update
+        example: |
+          {
+            "packageurl" : "https://myvendorlocation/package.dat",
+            "scheduledupdate":   "ic",
+            "scheduledupdatetime":   ""
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            schema: software
+            example: |
+              {
+                "rt":   ["oic.r.softwareupdate"],
+                "version":  "my current version",
+                "newversion":  "my new version",
+                "packageurl":   "https://myvendorlocation/package.dat",
+                "scheduledupdate" : "idle",
+                "state" : "check new image",
+                "result" : 0,
+                "scheduledupdatetime" : "",
+                "lastupdate" : "",
+                "signage" : "vendor"
+              }
