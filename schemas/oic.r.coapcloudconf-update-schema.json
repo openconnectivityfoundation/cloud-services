@@ -17,7 +17,8 @@
         },
         "at": {
           "type": "string",
-          "description": "Access Token which is returned by an Authorisation Provider or OCF Cloud."
+          "description": "Access Token which is returned by an Authorisation Provider or OCF Cloud.",
+          "pattern": "(?!$|\\s+).*"
         },
         "sid": {
           "$ref": "http://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/uuid",
