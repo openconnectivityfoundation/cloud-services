@@ -29,7 +29,8 @@
             },
             "severity": {
               "type": "integer",
-              "range": [0, 7],
+              "minimum": 0,
+              "maximum": 7,
               "description": "RFC 5424 severity of the alert",
               "readOnly": true
             },
@@ -67,7 +68,7 @@
   },
   "type": "object",
   "allOf": [
-    {"$ref": "oic.baseResource.json#/definitions/oic.r.baseresource"},
+    {"$ref": "oic.core-schema.json#/definitions/oic.core"},
     {"$ref": "#/definitions/oic.r.alert"}
   ],
   "required": ["category", "timestamp",  "originatorid", "severity"]
