@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "OCF Collection",
+    "title": "Link List Representation",
     "version": "1.0",
     "license": {
       "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
@@ -12,197 +12,9 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/CollectionResURI?if=oic.if.baseline" : {
+    "/AtomicMeasurementResURI?if=oic.if.ll" : {
       "get": {
-        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.baseline interface exposes a representation of\nthe links and the properties of the collection resource itself\nRetrieve on Baseline Interface\n",
-        "parameters": [
-          {"$ref": "#/parameters/interface-baseline"}
-        ],
-        "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                {
-                  "rt": ["oic.wk.col"],
-                  "id": "unique_example_id",
-                  "rts": [ "oic.r.switch.binary", "oic.r.airflow" ],
-                  "rts-m": [ "oic.r.switch.binary" ],
-                  "links": [
-                    {
-                      "href": "switch",
-                      "rt":   ["oic.r.switch.binary"],
-                      "if":   ["oic.if.a", "oic.if.baseline"],
-                      "eps": [
-                          {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
-                          {"ep": "coaps://[fe80::b1d6]:1122"},
-                          {"ep": "coap+tcp://[2001:db8:a::123]:2222", "pri": 3}
-                      ]
-                    },
-                    {
-                      "href": "airFlow",
-                      "rt":   ["oic.r.airflow"],
-                      "if":   ["oic.if.a", "oic.if.baseline"],
-                      "eps": [
-                          {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
-                          {"ep": "coaps://[fe80::b1d6]:1122"},
-                          {"ep": "coap+tcp://[2001:db8:a::123]:2222", "pri": 3}
-                      ]
-                    }
-                  ]
-                }
-                ,
-              "schema": { "$ref": "#/definitions/sbaseline" }
-            }
-        }
-      },
-      "post": {
-        "description": "Update on Baseline Interface\n",
-        "parameters": [
-          {"$ref": "#/parameters/interface-baseline"},
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": { "$ref": "#/definitions/sbaseline" }
-          }
-        ],
-        "responses": {
-            "200": {
-              "description" : "",
-              "schema": { "$ref": "#/definitions/sbaseline" }
-            }
-        }
-      }
-    },
-    "/CollectionResURI?if=oic.if.b" : {
-      "get": {
-        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.b interfacce exposes a composite representation of the\nresources pointed to by the links\nRetrieve on Batch Interface\n",
-        "parameters": [
-          {"$ref": "#/parameters/interface-b"}
-        ],
-        "responses": {
-            "200": {
-              "description" : "All targets returned OK status (HTTP 200 or CoAP 2.05 Content)",
-              "x-example":
-                [
-                  {
-                    "href": "switch",
-                    "rep":
-                      {
-                        "value": true
-                      }
-                  },
-                  {
-                    "href": "airFlow",
-                    "rep":
-                      {
-                        "direction": "floor",
-                        "speed":      3
-                      }
-                  }
-                ]
-                ,
-              "schema": { "$ref": "#/definitions/sbatch-retrieve" }
-            },
-            "404": {
-              "description" : "One or more targets did not return an OK status, return a representation containing returned properties from the targets that returned OK",
-              "x-example":
-                [
-                  {
-                    "href": "switch",
-                    "rep":
-                      {
-                        "value": true
-                      }
-                  }
-                ]
-                ,
-              "schema": { "$ref": "#/definitions/sbatch-retrieve" }
-            }
-        }
-      },
-      "post": {
-        "description": "Update on Batch Interface\n",
-        "parameters": [
-          {"$ref": "#/parameters/interface-b"},
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": { "$ref": "#/definitions/sbatch-update" },
-            "x-example":
-              [
-                {
-                  "href": "switch",
-                  "rep":
-                    {
-                      "value": true
-                    }
-                },
-                {
-                  "href": "airFlow",
-                  "rep":
-                    {
-                      "direction": "floor",
-                      "speed": 3
-                    }
-                }
-              ]
-          }
-        ],
-        "responses": {
-            "200": {
-              "description" : "all targets returned OK status (HTTP 200 or CoAP 2.04 Changed) return a representation of the current state of all targets",
-              "x-example":
-                [
-                  {
-                    "href": "switch",
-                    "rep":
-                      {
-                        "value": true
-                      }
-                  },
-                  {
-                    "href": "airFlow",
-                    "rep":
-                      {
-                        "direction": "demist",
-                        "speed": 5
-                      }
-                  }
-                ]
-                ,
-              "schema": { "$ref": "#/definitions/sbatch-retrieve" }
-            },
-            "403": {
-              "description" : "one or more targets did not return OK status; return a retrieve representation of the current state of all targets in the batch",
-              "x-example":
-                [
-                  {
-                    "href": "switch",
-                    "rep":
-                      {
-                        "value": true
-                      }
-                  },
-                  {
-                    "href": "airFlow",
-                    "rep":
-                      {
-                        "direction": "floor",
-                        "speed": 3
-                      }
-                  }
-                ]
-                ,
-              "schema": { "$ref": "#/definitions/sbatch-retrieve" }
-            }
-        }
-      }
-    },
-    "/CollectionResURI?if=oic.if.ll" : {
-      "get": {
-        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.ll interface exposes a representation of the links\nRetrieve on Link List Interface\n",
+        "description": "The oic.if.ll interface exposes a representation of the links\nRetrieve on Link List Interface\n",
         "parameters": [
           {"$ref": "#/parameters/interface-ll"}
         ],
@@ -212,28 +24,103 @@
               "x-example":
                 [
                   {
-                    "href": "switch",
-                    "rt":   ["oic.r.switch.binary"],
-                    "if":   ["oic.if.a", "oic.if.baseline"],
-                    "eps": [
-                      {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
-                      {"ep": "coaps://[fe80::b1d6]:1122"},
-                      {"ep": "coap+tcp://[2001:db8:a::123]:2222", "pri": 3}
-                    ]
+                    "href": "temperature",
+                    "rt":   ["oic.r.temperature"],
+                    "if":   ["oic.if.s", "oic.if.baseline"]
                   },
                   {
-                    "href": "airFlow",
-                    "rt":   ["oic.r.airflow"],
-                    "if":   ["oic.if.a", "oic.if.baseline"],
-                    "eps": [
-                      {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
-                      {"ep": "coaps://[fe80::b1d6]:1122"},
-                      {"ep": "coap+tcp://[2001:db8:a::123]:2222", "pri": 3}
-                    ]
+                    "href": "bodylocation",
+                    "rt":   ["oic.r.body.location.temperature"],
+                    "if":   ["oic.if.s", "oic.if.baseline"]
+                  },
+                  {
+                    "href": "timestamp",
+                    "rt":   ["oic.r.time.stamp"],
+                    "if":   ["oic.if.s", "oic.if.baseline"]
                   }
                 ]
                 ,
-              "schema": { "$ref": "#/definitions/slinks" }
+              "schema": { "$ref": "#/definitions/links" }
+            }
+        }
+      }
+    },
+    "/AtomicMeasurementResURI?if=oic.if.b" : {
+      "get": {
+        "description": "The oic.if.b interface returns data items retrieved from resources pointed to by the links.\nRetrieve the data elements of the Atomic Measurement using the OCF Batch Interface\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-b"}
+        ],
+        "responses": {
+            "200": {
+              "description" : "Normal response, no errors, all properties are returned correctly\n",
+              "x-example":
+                [
+                  {
+                    "href": "temperature",
+                    "rep":
+                      {
+                        "temperature": 38,
+                        "units": "C",
+                        "range": [25, 45]
+                      }
+                  },
+                  {
+                    "href": "bodylocation",
+                    "rep":
+                      {
+                        "bloc": "ear"
+                      }
+                  },
+                  {
+                    "href": "timestamp",
+                    "rep":
+                      {
+                        "timestamp": "2007-04-05T14:30+09:00"
+                      }
+                  }
+                ]
+                ,
+              "schema": { "$ref": "#/definitions/batch-retrieve" }
+            }
+        }
+      }
+    },
+    "/AtomicMeasurementResURI?if=oic.if.baseline" : {
+      "get": {
+        "description": "The oic.if.baseline interface exposes a representation of the links and\nthe common properties of the Atomic Measurement resource.\nRetrieve on Baseline Interface\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-baseline"}
+        ],
+        "responses": {
+            "200": {
+              "description" : "",
+              "x-example":
+                {
+                  "rt": ["oic.wk.atomicmeasurement"],
+                  "if": ["oic.if.b", "oic.if.ll", "oic.if.baseline"],
+                  "rts": [ "oic.r.temperature", "oic.r.body.location.temperature", "oic.r.time.stamp" ],
+                  "rts-m": [ "oic.r.temperature", "oic.r.body.location.temperature", "oic.r.time.stamp" ],
+                  "links": [
+                    {
+                      "href": "temperature",
+                      "rt":   ["oic.r.temperature"],
+                      "if":   ["oic.if.s", "oic.if.baseline"]
+                    },
+                    {
+                      "href": "bodylocation",
+                      "rt":   ["oic.r.body.location.temperature"],
+                      "if":   ["oic.if.s", "oic.if.baseline"]
+                    },
+                    {
+                      "href": "timestamp",
+                      "rt":   ["oic.r.time.stamp"],
+                      "if":   ["oic.if.s", "oic.if.baseline"]
+                    }
+                  ]
+                }
+                ,
+              "schema": { "$ref": "#/definitions/baseline" }
             }
         }
       }
@@ -262,26 +149,22 @@
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.ll", "oic.if.baseline", "oic.if.b"]
+      "enum" : ["oic.if.b", "oic.if.ll", "oic.if.baseline"]
     }
   },
   "definitions": {
-    "sbaseline" : {
-      "properties": {
-        "links" :
-                {
-          "description": "A set of simple or individual OIC Links.",
-          "items": {
-            "$ref": "#/definitions/oic.oic-link"
-          },
-          "type": "array"
-        }
+    "links" : {
+      "type" : 
+            "array"
 
-        }
-        ,"type" : "object"
+      ,"items" : 
+            {
+        "$ref": "#/definitions/oic.oic-link"
+      }
+
     }
     ,
-    "sbatch-retrieve" : {
+    "batch-retrieve" : {
       "title" : 
             "Collection Batch Retrieve Format (auto merged)"
 
@@ -455,43 +338,20 @@
 
     }
     ,
-    "sbatch-update" : {
-      "title" : 
-            "Collection Batch Update Format (auto merged)"
+    "baseline" : {
+      "properties": {
+        "links" :
+                {
+          "description": "A set of simple or individual OIC Links.",
+          "items": {
+            "$ref": "#/definitions/oic.oic-link"
+          },
+          "type": "array"
+        }
 
-      ,"minItems" : 
-            1
-
-      ,"items" : 
-            {
-        "$ref": "#/definitions/oic.batch-update.item"
-      }
-
-      ,"type" : 
-            "array"
-
+        }
+        ,"type" : "object"
     }
-    ,
-    "slinks" : {
-      "type" : 
-            "array"
-
-      ,"items" : 
-            {
-        "$ref": "#/definitions/oic.oic-link"
-      }
-
-    }
-    ,"oic.wk.col-batch-update" :
-        {
-      "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
-      "items": {
-        "$ref": "#/definitions/oic.batch-update.item"
-      },
-      "minItems": 1,
-      "type": "array"
-    }
-
     ,"uuid" :
         {
       "description": "Format pattern according to IETF RFC 4122.",
@@ -664,40 +524,6 @@
           "type": "array"
         }
       },
-      "type": "object"
-    }
-
-    ,"oic.batch-update.item" :
-        {
-      "additionalProperties": true,
-      "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
-      "properties": {
-        "href": {
-          "description": "URI of the target resource relative assuming the collection URI as anchor",
-          "format": "uri",
-          "maxLength": 256,
-          "type": "string"
-        },
-        "rep": {
-          "oneOf": [
-            {
-              "description": "The response payload from a single resource",
-              "type": "object"
-            },
-            {
-              "description": " The response payload from a collection (batch) resource",
-              "items": {
-                "$ref": "#/definitions/oic.oic-link"
-              },
-              "type": "array"
-            }
-          ]
-        }
-      },
-      "required": [
-        "href",
-        "rep"
-      ],
       "type": "object"
     }
 

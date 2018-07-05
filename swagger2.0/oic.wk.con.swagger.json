@@ -212,8 +212,9 @@
           "type": "array"
         }
 
-        },
-      "required": ["n"]
+        }
+        ,"type" : "object"
+      ,"required": ["n"]
     }
     ,
     "Update" : {
@@ -351,6 +352,46 @@
         }
 
         }
+        ,"anyOf" : 
+                [
+          {
+            "required": [
+              "loc"
+            ]
+          },
+          {
+            "required": [
+              "locn"
+            ]
+          },
+          {
+            "required": [
+              "c"
+            ]
+          },
+          {
+            "required": [
+              "r"
+            ]
+          },
+          {
+            "required": [
+              "ln"
+            ]
+          },
+          {
+            "required": [
+              "dl"
+            ]
+          },
+          {
+            "required": [
+              "n"
+            ]
+          }
+        ]
+
+        ,"type" : "object"
     }
   }
 }

@@ -124,12 +124,12 @@
                 {
           "allOf": [
             {
-              "description": "Format pattern as defined in ISO 8601. The format is [yyyy]-[mm]-[dd].",
+              "description": "The full-date format pattern according to IETF RFC 3339",
               "pattern": "^([0-9]{4})-(1[0-2]|0[1-9])-(3[0-1]|2[0-9]|1[0-9]|0[1-9])$",
               "type": "string"
             },
             {
-              "description": "Manufacturing Date in ISO8601 format.",
+              "description": "Manufacturing Date.",
               "readOnly": true
             }
           ]
@@ -162,7 +162,7 @@
 
         "st" :
                 {
-          "description": "Reference time for the device in ISO8601 format.",
+          "description": "The date-time format pattern according to IETF RFC 3339.",
           "format": "date-time",
           "readOnly": true,
           "type": "string"
@@ -181,6 +181,14 @@
           "description": "Manufacturer's URL",
           "format": "uri",
           "maxLength": 256,
+          "readOnly": true,
+          "type": "string"
+        },
+
+        "mnsel" :
+                {
+          "description": "Serial number as designated by the manufacturer",
+          "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
@@ -206,8 +214,9 @@
           "type": "array"
         }
 
-        },
-      "required": ["pi", "mnmn"]
+        }
+        ,"type" : "object"
+      ,"required": ["pi", "mnmn"]
     }
   }
 }
