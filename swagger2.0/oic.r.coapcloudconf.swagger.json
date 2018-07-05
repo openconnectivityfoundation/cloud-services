@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Wi-Fi Configuration Resource Baseline Interface",
-    "version": "v0.0.3-20170611",
+    "title": "CoAP Cloud Configuration Resource Read Write Interface",
+    "version": "v0.0.3-20180116",
     "license": {
       "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
       "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
@@ -12,69 +12,9 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/WiFiConfResURI?if=oic.if.baseline" : {
+    "/CoAPCloudConfResURI?if=oic.if.rw" : {
       "get": {
-        "description": "WiFiConf resource stores essential information to help an unboxing device\nto connect to an existing Wi-Fi AP.\nRetrieve properties of WiFiConf resource.\nThe information includes :\n1. Wi-Fi SSID and password\n2. Wi-Fi Security type (i.e. auth type and encription type)\n3. Wi-Fi hardware capability (i.e. supported frequencies, modes,\n  auth types and encryption types)\n",
-        "parameters": [
-          {"$ref": "#/parameters/interface-baseline"}
-        ],
-        "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                {
-                  "rt": ["oic.r.wificonf"],
-                  "swmt" : ["A", "B", "G"],
-                  "swf": ["2.4G", "5G"],
-                  "tnn": "Home_AP_SSID",
-                  "cd": "Home_AP_PWD",
-                  "wat": "WPA2_PSK",
-                  "wet": "TKIP",
-                  "swat": ["WPA_PSK", "WPA2_PSK"],
-                  "swet": ["TKIP", "AES", "TKIP_AES"]
-                }
-                ,
-              "schema": { "$ref": "#/definitions/WiFiConf" }
-            }
-        }
-      },
-      "post": {
-        "description": "Deliver Wi-Fi AP's information for an unboxing device to connect to it.\n",
-        "parameters": [
-          {"$ref": "#/parameters/interface-baseline"},
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": { "$ref": "#/definitions/WiFiConfUpdate" },
-            "x-example":
-              {
-                "tnn": "Home_AP_SSID",
-                "cd": "Home_AP_PWD",
-                "wat": "WPA2_PSK",
-                "wet": "AES"
-              }
-          }
-        ],
-        "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                {
-                  "tnn": "Home_AP_SSID",
-                  "cd": "Home_AP_PWD",
-                  "wat": "WPA2_PSK",
-                  "wet": "AES"
-                }
-                ,
-              "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
-            }
-        }
-      }
-    },
-    "/WiFiConfResURI?if=oic.if.rw" : {
-      "get": {
-        "description": "WiFiConf resource stores essential information to help an unboxing device\nto connect to an existing Wi-Fi AP.\nRetrieve properties of WiFiConf resource that can be updated by a client.\n",
+        "description": "The CoAPCloudConf Resource exposes configuration information for connecting to an OCF Cloud.\nRetrieve properties of CoAPCloudConf resource.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-rw"}
         ],
@@ -83,31 +23,31 @@
               "description" : "",
               "x-example":
                 {
-                  "tnn": "Home_AP_SSID",
-                  "cd": "Home_AP_PWD",
-                  "wat": "WPA2_PSK",
-                  "wet": "AES"
+                  "apn": "github",
+                  "cis": "coaps+tcp://example.com:443",
+                  "sid" : "987e6543-a21f-10d1-a112-421345746237",
+                  "clec": 0
                 }
                 ,
-              "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
+              "schema": { "$ref": "#/definitions/CoAPCloudConf" }
             }
         }
       },
       "post": {
-        "description": "Deliver Wi-Fi AP's information for an unboxing device to connect to it.\n",
+        "description": "Update properties of CoAPCloudConf resource.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-rw"},
           {
             "name": "body",
             "in": "body",
             "required": true,
-            "schema": { "$ref": "#/definitions/WiFiConfUpdate" },
+            "schema": { "$ref": "#/definitions/CoAPCloudConfUpdate" },
             "x-example":
               {
-                "tnn": "Home_AP_SSID",
-                "cd": "Home_AP_PWD",
-                "wat": "WPA2_PSK",
-                "wet": "AES"
+                "at": "0f3d9f7fe5491d54077d",
+                "apn": "github",
+                "cis": "coaps+tcp://example.com:443",
+                "sid" : "987e6543-a21f-10d1-a112-421345746237"
               }
           }
         ],
@@ -116,13 +56,70 @@
               "description" : "",
               "x-example":
                 {
-                  "tnn": "Home_AP_SSID",
-                  "cd": "Home_AP_PWD",
-                  "wat": "WPA2_PSK",
-                  "wet": "AES"
+                  "apn": "github",
+                  "cis": "coaps+tcp://example.com:443",
+                  "sid" : "987e6543-a21f-10d1-a112-421345746237",
+                  "clec": 0
                 }
                 ,
-              "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
+              "schema": { "$ref": "#/definitions/CoAPCloudConf" }
+            }
+        }
+      }
+    },
+    "/CoAPCloudConfResURI?if=oic.if.baseline" : {
+      "get": {
+        "description": "The CoAPCloudConf Resource exposes configuration information for connecting to an OCF Cloud.\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-baseline"}
+        ],
+        "responses": {
+            "200": {
+              "description" : "",
+              "x-example":
+                {
+                  "rt": ["oic.r.coapcloudconf"],
+                  "if" : ["oic.if.baseline", "oic.if.rw"],
+                  "apn": "github",
+                  "cis": "coaps+tcp://example.com:443",
+                  "sid" : "987e6543-a21f-10d1-a112-421345746237",
+                  "clec": 0
+                }
+                ,
+              "schema": { "$ref": "#/definitions/CoAPCloudConf" }
+            }
+        }
+      },
+      "post": {
+        "description": "Update properties of CoAPCloudConf resource.\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-baseline"},
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/CoAPCloudConfUpdate" },
+            "x-example":
+              {
+                "at": "0f3d9f7fe5491d54077d",
+                "apn": "github",
+                "cis": "coaps+tcp://example.com:443",
+                "sid" : "987e6543-a21f-10d1-a112-421345746237"
+              }
+          }
+        ],
+        "responses": {
+            "200": {
+              "description" : "",
+              "x-example":
+                {
+                  "apn": "github",
+                  "cis": "coaps+tcp://example.com:443",
+                  "sid" : "987e6543-a21f-10d1-a112-421345746237",
+                  "clec": 0
+                }
+                ,
+              "schema": { "$ref": "#/definitions/CoAPCloudConf" }
             }
         }
       }
@@ -149,7 +146,7 @@
     }
   },
   "definitions": {
-    "WiFiConf" : {
+    "CoAPCloudConf" : {
       "properties": {
         "rt" :
                 {
@@ -163,43 +160,6 @@
           "type": "array"
         },
 
-        "tnn" :
-                {
-          "description": "Indicates Target Network Name (SSID of Wi-Fi AP)",
-          "pattern": "^.*$",
-          "type": "string"
-        },
-
-        "swmt" :
-                {
-          "description": "Indicates supported Wi-Fi mode types. It can be multiple",
-          "items": {
-            "description": "Supported Wi-Fi Mode Type.",
-            "enum": [
-              "A",
-              "B",
-              "G",
-              "N",
-              "AC"
-            ],
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-
-        "wat" :
-                {
-          "description": "Indicates Wi-Fi Auth Type",
-          "enum": [
-            "None",
-            "WEP",
-            "WPA_PSK",
-            "WPA2_PSK"
-          ],
-          "type": "string"
-        },
-
         "n" :
                 {
           "description": "Friendly name of the resource",
@@ -208,72 +168,37 @@
           "type": "string"
         },
 
-        "swat" :
+        "cis" :
                 {
-          "description": "Indicates supported Wi-Fi Auth types. It can be multiple",
-          "items": {
-            "description": "Indicates Wi-Fi Auth Type",
-            "enum": [
-              "None",
-              "WEP",
-              "WPA_PSK",
-              "WPA2_PSK"
-            ],
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
+          "description": "URL of OCF Cloud",
+          "format": "uri",
+          "type": "string"
         },
 
-        "swf" :
+        "apn" :
                 {
-          "description": "Indicates Supported Wi-Fi frequencies by the Enrollee. Can be multiple. Valid values are ('2.4G', '5G')",
-          "items": {
-            "pattern": "^(2\\.4|5)G$",
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
+          "description": "The Authorisation Provider through which an Access Token was obtained.",
+          "type": "string"
         },
 
-        "swet" :
+        "sid" :
                 {
-          "description": "Indicates supported Wi-Fi Encryption types. It can be multiple",
-          "items": {
-            "description": "Indicates Wi-Fi Encryption Type",
-            "enum": [
-              "None",
-              "WEP_64",
-              "WEP_128",
-              "TKIP",
-              "AES",
-              "TKIP_AES"
-            ],
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
+          "description": "Format pattern according to IETF RFC 4122.",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+          "type": "string"
         },
 
-        "wet" :
+        "clec" :
                 {
-          "description": "Indicates Wi-Fi Encryption Type",
+          "description": "Last Error Code during Cloud Provisioning (0: No Error, 1: Error response from the OCF Cloud, 2: Failed to connect to the OCF Cloud, 3: Failed to refresh Access Token, 4~254: Reserved, 255: Unknown error)",
           "enum": [
-            "None",
-            "WEP_64",
-            "WEP_128",
-            "TKIP",
-            "AES",
-            "TKIP_AES"
+            0,
+            1,
+            2,
+            3,
+            255
           ],
-          "type": "string"
-        },
-
-        "cd" :
-                {
-          "description": "Indicates credential information of Wi-Fi AP",
-          "pattern": "^.*$",
-          "type": "string"
+          "readOnly": true
         },
 
         "id" :
@@ -309,7 +234,7 @@
         ,"type" : "object"
     }
     ,
-    "WiFiConfUpdate" : {
+    "CoAPCloudConfUpdate" : {
       "properties": {
         "rt" :
                 {
@@ -323,17 +248,6 @@
           "type": "array"
         },
 
-        "wat" :
-                {
-          "description": "Indicates Wi-Fi Auth Type",
-          "enum": [
-            "None",
-            "WEP",
-            "WPA_PSK",
-            "WPA2_PSK"
-          ]
-        },
-
         "n" :
                 {
           "description": "Friendly name of the resource",
@@ -342,30 +256,29 @@
           "type": "string"
         },
 
-        "cd" :
+        "cis" :
                 {
-          "description": "Indicates credential information of Wi-Fi AP",
-          "pattern": "^.*$",
+          "description": "URL of OCF Cloud",
+          "format": "uri",
           "type": "string"
         },
 
-        "wet" :
+        "apn" :
                 {
-          "description": "Indicates Wi-Fi Encryption Type",
-          "enum": [
-            "None",
-            "WEP_64",
-            "WEP_128",
-            "TKIP",
-            "AES",
-            "TKIP_AES"
-          ]
+          "description": "The Authorisation Provider through which an Access Token was obtained.",
+          "type": "string"
         },
 
-        "tnn" :
+        "at" :
                 {
-          "description": "Indicates Target Network Name (SSID of Wi-Fi AP)",
-          "pattern": "^.*$",
+          "description": "Access Token which is returned by an Authorisation Provider or OCF Cloud.",
+          "type": "string"
+        },
+
+        "sid" :
+                {
+          "description": "Format pattern according to IETF RFC 4122.",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
           "type": "string"
         },
 
