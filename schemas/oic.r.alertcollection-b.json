@@ -1,9 +1,0 @@
-{
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
-    "id": "http://openinterconnect.org/iotdatamodels/schemas/oic.r.alertcollection-b.json#",
-    "title": "Alert Collection Batch Retrieve Format",
-    "allOf": [
-      {"$ref": "oic.collection.batch-retrieve-schema.json#/definitions/oic.wk.col-batch-retrieve"}
-    ]
-}
