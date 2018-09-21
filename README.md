@@ -10,6 +10,7 @@ https://openconnectivity.org/specs/OCF_Core_Specification.pdf
 ## referencing files via http(s) from github
 
 github repos that has the GitHub Pages feature turned on has the following syntax:
+
 http(s)://[organisation name].github.io/[repo name]/path+filename
 
 open connectivity foundation repos with github pages feature turned on:
