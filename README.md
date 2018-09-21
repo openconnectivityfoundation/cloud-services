@@ -7,15 +7,31 @@ latest that is availabe can be found at:
 https://openconnectivity.org/specs/OCF_Core_Specification.pdf
 
 
+## referencing files via http(s) from github
+
+github repos that has the GitHub Pages feature turned on has the following syntax:
+http(s)://[organisation name].github.io/[repo name]/path+filename
+
+open connectivity foundation repos with github pages feature turned on:
+- bridging
+- certification
+- core
+- core-extensions
+- devicemodels
+- IoTDataModels
+- OCF-oneM2M
+- security
+
+
 ## referencing files with full URL
 This repo uses the github pages feature.
 e.g. all files can be accessed by using the URL:
 
 http://openconnectivityfoundation.github.io/core/
 
-and then use the path and filename to retrieve the file by means of http.
+and then use the path and filename to retrieve the file by means of http(s).
 
-The URL of the file with rt type = oic.wk.mnt is:
+The URL of the swagger file with rt type = oic.wk.mnt is:
 
 http://openconnectivityfoundation.github.io/core/swagger2.0/oic.wk.mnt.swagger.json
 
