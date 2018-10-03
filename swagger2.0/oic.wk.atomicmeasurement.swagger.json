@@ -4,7 +4,7 @@
     "title": "Link List Representation",
     "version": "1.0",
     "license": {
-      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
+      "name": "copyright 2016-2018 Open Connectivity Foundation, Inc. All rights reserved.",
       "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
     }
   },
@@ -154,25 +154,13 @@
   },
   "definitions": {
     "links" : {
-      "type" : 
-            "array"
-
-      ,"items" : 
-            {
-        "$ref": "#/definitions/oic.oic-link"
-      }
-
-    }
-    ,
+      "type" : "array",
+        "items" : { "$ref": "#/definitions/oic.oic-link" }
+    },
     "batch-retrieve" : {
-      "title" : 
-            "Collection Batch Retrieve Format (auto merged)"
-
-      ,"minItems" : 
-            1
-
-      ,"items" : 
-            {
+      "title" : "Collection Batch Retrieve Format (auto merged)",
+      "minItems" : 1,
+      "items" :  {
         "additionalProperties": true,
         "properties": {
           "href": {
@@ -331,35 +319,25 @@
           "rep"
         ],
         "type": "object"
-      }
-
-      ,"type" : 
-            "array"
-
-    }
-    ,
+      },
+      "type" : "array"
+    },
     "baseline" : {
       "properties": {
-        "links" :
-                {
+        "links" : {
           "description": "A set of simple or individual OIC Links.",
-          "items": {
-            "$ref": "#/definitions/oic.oic-link"
-          },
+          "items": { "$ref": "#/definitions/oic.oic-link" },
           "type": "array"
         }
-
-        }
-        ,"type" : "object"
-    }
-    ,"uuid" :
-        {
+        },
+        "type" : "object"
+    },
+    "uuid" : {
       "description": "Format pattern according to IETF RFC 4122.",
       "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
       "type": "string"
-    }
-
-    ,"oic.collection.links.arrayoflinks" :
+    },
+    "oic.collection.links.arrayoflinks" :
         {
       "properties": {
         "links": {
@@ -492,9 +470,8 @@
           "type": "array"
         }
       }
-    }
-
-    ,"oic.collection.properties" :
+    },
+    "oic.collection.properties" :
         {
       "description": "A collection is a set of links along with additional properties to describe the collection itself",
       "properties": {
@@ -508,9 +485,8 @@
         }
       },
       "type": "object"
-    }
-
-    ,"oic.core" :
+    },
+    "oic.core" :
         {
       "properties": {
         "rt": {
@@ -525,9 +501,8 @@
         }
       },
       "type": "object"
-    }
-
-    ,"oic.collection.links" :
+    },
+    "oic.collection.links" :
         {
       "properties": {
         "links": {
@@ -538,9 +513,8 @@
           "type": "array"
         }
       }
-    }
-
-    ,"oic.oic-link" :
+    },
+    "oic.oic-link" :
         {
       "properties": {
         "anchor": {
@@ -666,6 +640,5 @@
       ],
       "type": "object"
     }
-
   }
 }
