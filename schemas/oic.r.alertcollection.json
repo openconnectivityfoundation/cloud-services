@@ -40,5 +40,6 @@
     {"$ref": "oic.collection-schema.json#/definitions/oic.collection.properties"},
     {"$ref": "oic.collection-schema.json#/definitions/oic.collection.links.arrayoflinks"},
     {"$ref": "#/definitions/oic.r.alertcollection"}
-  ]
+  ],
+  "required": ["rt","rts"]
 }
