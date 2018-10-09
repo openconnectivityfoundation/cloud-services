@@ -31,6 +31,55 @@
           "maxLength": 256,
           "description": "This is used to override the context URI e.g. override the URI of the containing collection.",
           "format": "uri"
+      },
+      "di": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json",
+          "description": "The device ID."
+      },
+      "p": {
+          "description": "Specifies the framework policies on the Resource referenced by the target URI",
+          "type": "object",
+          "properties": {
+              "bm": {
+                  "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable",
+                  "type": "integer"
+              }
+          },
+          "required" : ["bm"]
+      },
+      "title": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "A title for the link relation. Can be used by the UI to provide a context."
+      },
+      "type": {
+          "type": "array",
+          "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting.",
+          "items" : {
+              "type": "string",
+              "maxLength": 64
+          },
+          "minItems": 1,
+          "default": "application/cbor"
+      },
+      "eps": {
+          "type": "array",
+          "description": "the Endpoint information of the target Resource",
+          "items": {
+              "type": "object",
+              "properties": {
+                  "ep": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Transport Protocol Suite + Endpoint Locator"
+                  },
+                  "pri": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "description": "The priority among multiple Endpoints"
+                  }
+              }
+          }
       }
   }
 }
