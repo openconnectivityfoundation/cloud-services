@@ -1,0 +1,39 @@
+{
+  "id": "http://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.link-schema.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Common resource properties (links)",
+  "definitions": {
+      "href": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI.",
+          "format": "uri"
+      },
+      "rel": {
+          "oneOf": [
+              {
+                  "type": "array",
+                  "items": {
+                      "type": "string",
+                      "maxLength": 64
+                  },
+              "minItems": 1,
+              "default": ["hosts"]
+              },
+              {
+                  "type": "string",
+                  "maxLength": 64,
+                  "default": "hosts"
+              }
+          ],
+          "description": "The relation of the target URI referenced by the link to the context URI"
+      },
+      "anchor": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "This is used to override the context URI e.g. override the URI of the containing collection.",
+          "format": "uri"
+      }
+  }
+}
