@@ -193,8 +193,7 @@
                         "speed": 3
                       }
                   }
-                ]
-                ,
+                ],
               "schema": { "$ref": "#/definitions/sbatch-retrieve" }
             }
         }
@@ -268,28 +267,20 @@
   "definitions": {
     "sbaseline" : {
       "properties": {
-        "links" :
-                {
-          "description": "A set of simple or individual OIC Links.",
-          "items": {
+        "links" : {
+            "description": "A set of simple or individual OIC Links.",
+            "items": {
             "$ref": "#/definitions/oic.oic-link"
-          },
-          "type": "array"
-        }
-
-        }
-        ,"type" : "object"
-    }
-    ,
+            },
+            "type": "array"
+          }
+        },
+        "type" : "object"
+    },
     "sbatch-retrieve" : {
-      "title" : 
-            "Collection Batch Retrieve Format (auto merged)"
-
-      ,"minItems" : 
-            1
-
-      ,"items" : 
-            {
+      "title" : "Collection Batch Retrieve Format (auto merged)",
+      "minItems" : 1,
+      "items" : {
         "additionalProperties": true,
         "properties": {
           "href": {
@@ -448,59 +439,31 @@
           "rep"
         ],
         "type": "object"
-      }
-
-      ,"type" : 
-            "array"
-
-    }
-    ,
-    "sbatch-update" : {
-      "title" : 
-            "Collection Batch Update Format (auto merged)"
-
-      ,"minItems" : 
-            1
-
-      ,"items" : 
-            {
-        "$ref": "#/definitions/oic.batch-update.item"
-      }
-
-      ,"type" : 
-            "array"
-
-    }
-    ,
-    "slinks" : {
-      "type" : 
-            "array"
-
-      ,"items" : 
-            {
-        "$ref": "#/definitions/oic.oic-link"
-      }
-
-    }
-    ,"oic.wk.col-batch-update" :
-        {
-      "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
-      "items": {
-        "$ref": "#/definitions/oic.batch-update.item"
       },
+      "type" : "array"
+    },
+    "sbatch-update" : {
+      "title" : "Collection Batch Update Format (auto merged)",
+      "minItems" : 1,
+      "items" :  { "$ref": "#/definitions/oic.batch-update.item" },
+      "type" :  "array"
+    },
+    "slinks" : {
+      "type" : "array",
+      "items" : { "$ref": "#/definitions/oic.oic-link" }
+    },
+    "oic.wk.col-batch-update" : {
+      "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
+      "items": { "$ref": "#/definitions/oic.batch-update.item"},
       "minItems": 1,
       "type": "array"
-    }
-
-    ,"uuid" :
-        {
+    },
+    "uuid" : {
       "description": "Format pattern according to IETF RFC 4122.",
       "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
       "type": "string"
-    }
-
-    ,"oic.collection.links.arrayoflinks" :
-        {
+    },
+    "oic.collection.links.arrayoflinks" : {
       "properties": {
         "links": {
           "description": "A set of simple or individual OIC Links.",
@@ -632,10 +595,8 @@
           "type": "array"
         }
       }
-    }
-
-    ,"oic.collection.properties" :
-        {
+    },
+    "oic.collection.properties" : {
       "description": "A collection is a set of links along with additional properties to describe the collection itself",
       "properties": {
         "rts": {
@@ -648,10 +609,8 @@
         }
       },
       "type": "object"
-    }
-
-    ,"oic.core" :
-        {
+    },
+    "oic.core" : {
       "properties": {
         "rt": {
           "description": "Resource Type of the Resource",
@@ -665,10 +624,8 @@
         }
       },
       "type": "object"
-    }
-
-    ,"oic.batch-update.item" :
-        {
+    },
+    "oic.batch-update.item" : {
       "additionalProperties": true,
       "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
       "properties": {
@@ -699,10 +656,8 @@
         "rep"
       ],
       "type": "object"
-    }
-
-    ,"oic.collection.links" :
-        {
+    },
+    "oic.collection.links" : {
       "properties": {
         "links": {
           "description": "A set of simple or individual OIC Links.",
@@ -712,10 +667,8 @@
           "type": "array"
         }
       }
-    }
-
-    ,"oic.oic-link" :
-        {
+    },
+    "oic.oic-link" : {
       "properties": {
         "anchor": {
           "description": "This is used to override the context URI e.g. override the URI of the containing collection.",
@@ -840,6 +793,5 @@
       ],
       "type": "object"
     }
-
   }
 }
