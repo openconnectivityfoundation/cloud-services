@@ -273,9 +273,29 @@
             "$ref": "#/definitions/oic.oic-link"
             },
             "type": "array"
-          }
-        },
-        "type" : "object"
+        },        
+				"n": { "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"},
+              			"id": {"$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"},
+				"rt": {	"$ref": "#/definitions/oic.core/properties/rt"},
+				"rts": { "$ref": "#/definitions/oic.core/properties/rt"},
+				"rts-m": { "$ref": "#/definitions/oic.core/properties/rt"},
+				"if": {
+					"description": "The interface set supported by this resource",
+					"items": {
+						"enum": ["oic.if.baseline",
+						"oic.if.ll",
+						"oic.if.b",
+						"oic.if.rw",
+						"oic.if.r",
+						"oic.if.a",
+						"oic.if.s"],
+						"type": "string"
+					},
+					"minItems": 1,
+					"type": "array"
+				}
+      },
+      "type" : "object"
     },
     "sbatch-retrieve" : {
       "title" : "Collection Batch Retrieve Format (auto merged)",
