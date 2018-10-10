@@ -322,16 +322,12 @@
 						"$ref": "#/definitions/oic.oic-link"
 					},
 					"type": "array"
-				},
-				"rt": {
-					"$ref": "#/definitions/oic.core/properties/rt"
-				},
-				"rts": {
-					"$ref": "#/definitions/oic.core/properties/rt"
-				},
-				"rts-m": {
-					"$ref": "#/definitions/oic.core/properties/rt"
-				},
+				},           
+				"n": { "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"},
+              			"id": {"$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"},
+				"rt": {	"$ref": "#/definitions/oic.core/properties/rt"},
+				"rts": { "$ref": "#/definitions/oic.core/properties/rt"},
+				"rts-m": { "$ref": "#/definitions/oic.core/properties/rt"},
 				"if": {
 					"description": "The interface set supported by this resource",
 					"items": {
@@ -350,148 +346,7 @@
 			},
 			"type": "object"
 		},
-		"uuid": {
-			"description": "Format pattern according to IETF RFC 4122.",
-			"pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-			"type": "string"
-		},
-		"oic.collection.links.arrayoflinks": {
-			"properties": {
-				"links": {
-					"description": "A set of simple or individual OIC Links.",
-					"items": {
-						"properties": {
-							"anchor": {
-								"description": "This is used to override the context URI e.g. override the URI of the containing collection.",
-								"format": "uri",
-								"maxLength": 256,
-								"type": "string"
-							},
-							"di": {
-								"description": "The Device ID formatted according to IETF RFC 4122.",
-								"pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-								"type": "string"
-							},
-							"eps": {
-								"description": "the Endpoint information of the target Resource",
-								"items": {
-									"properties": {
-										"ep": {
-											"description": "Transport Protocol Suite + Endpoint Locator",
-											"format": "uri",
-											"type": "string"
-										},
-										"pri": {
-											"description": "The priority among multiple Endpoints",
-											"minimum": 1,
-											"type": "integer"
-										}
-									},
-									"type": "object"
-								},
-								"type": "array"
-							},
-							"href": {
-								"description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI.",
-								"format": "uri",
-								"maxLength": 256,
-								"type": "string"
-							},
-							"if": {
-								"description": "The interface set supported by this resource",
-								"items": {
-									"enum": ["oic.if.baseline",
-									"oic.if.ll",
-									"oic.if.b",
-									"oic.if.rw",
-									"oic.if.r",
-									"oic.if.a",
-									"oic.if.s"],
-									"type": "string"
-								},
-								"minItems": 1,
-								"type": "array"
-							},
-							"ins": {
-								"description": "The instance identifier for this web link in an array of web links - used in collections",
-								"type": "integer"
-							},
-							"p": {
-								"description": "Specifies the framework policies on the Resource referenced by the target URI",
-								"properties": {
-									"bm": {
-										"description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable",
-										"type": "integer"
-									}
-								},
-								"required": ["bm"],
-								"type": "object"
-							},
-							"rel": {
-								"description": "The relation of the target URI referenced by the link to the context URI",
-								"oneOf": [{
-									"default": ["hosts"],
-									"items": {
-										"maxLength": 64,
-										"type": "string"
-									},
-									"minItems": 1,
-									"type": "array"
-								},
-								{
-									"default": "hosts",
-									"maxLength": 64,
-									"type": "string"
-								}]
-							},
-							"rt": {
-								"description": "Resource Type of the Resource",
-								"items": {
-									"maxLength": 64,
-									"type": "string"
-								},
-								"minItems": 1,
-								"type": "array"
-							},
-							"title": {
-								"description": "A title for the link relation. Can be used by the UI to provide a context.",
-								"maxLength": 64,
-								"type": "string"
-							},
-							"type": {
-								"default": "application/cbor",
-								"description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting.",
-								"items": {
-									"maxLength": 64,
-									"type": "string"
-								},
-								"minItems": 1,
-								"type": "array"
-							}
-						},
-						"required": ["href",
-						"rt",
-						"if"],
-						"type": "object"
-					},
-					"type": "array"
-				}
-			}
-		},
-		"oic.collection.properties": {
-			"description": "A collection is a set of links along with additional properties to describe the collection itself",
-			"properties": {
-				"rts": {
-					"$ref": "#/definitions/oic.core/properties/rt",
-					"description": "The list of allowable resource types (for Target and anchors) in links included in the collection"
-				},
-				"rts-m": {
-					"$ref": "#/definitions/oic.core/properties/rt",
-					"description": "The list of mandatory resources if any in links included in the collection"
-				}
-			},
-			"type": "object"
-		},
+		
 		"oic.core": {
 			"properties": {
 				"rt": {
@@ -506,17 +361,6 @@
 				}
 			},
 			"type": "object"
-		},
-		"oic.collection.links": {
-			"properties": {
-				"links": {
-					"description": "A set of simple or individual OIC Links.",
-					"items": {
-						"$ref": "#/definitions/oic.oic-link"
-					},
-					"type": "array"
-				}
-			}
 		},
 		"oic.oic-link": {
 			"properties": {
