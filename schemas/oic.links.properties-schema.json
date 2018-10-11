@@ -52,6 +52,10 @@
           "maxLength": 64,
           "description": "A title for the link relation. Can be used by the UI to provide a context."
       },
+      "ins": {
+          "type": "integer",
+          "description": "The instance identifier for this web link in an array of web links - used in collections"
+      },
       "type": {
           "type": "array",
           "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting.",
