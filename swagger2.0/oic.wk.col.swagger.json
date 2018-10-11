@@ -297,6 +297,21 @@
       },
       "type" : "object"
     },
+	  "oic.core": {
+			"properties": {
+				"rt": {
+					"description": "Resource Type of the Resource",
+					"items": {
+						"maxLength": 64,
+						"type": "string"
+					},
+					"minItems": 1,
+					"readOnly": true,
+					"type": "array"
+				}
+			},
+			"type": "object"
+		},
     "sbatch-retrieve" : {
       "title" : "Collection Batch Retrieve Format (auto merged)",
       "minItems" : 1,
