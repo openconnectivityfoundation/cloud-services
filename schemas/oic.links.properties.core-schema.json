@@ -2,7 +2,7 @@
   "id": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
-  "title": "Common resource properties (links)",
+  "title": "Definition of the properties used to define links.",
   "definitions": {
       "href": {
           "type": "string",
