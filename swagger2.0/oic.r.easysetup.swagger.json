@@ -373,25 +373,14 @@
           "if"
         ],
         "type": "object"
-      }
-
-      ,"type" : 
-            "array"
-
-      ,"title" : 
-            "EasySetup Object Links List Schema (auto merged)"
-
-    }
-    ,
+      },
+      "type" : "array",
+      "title" : "EasySetup Object Links List Schema (auto merged)"
+    },
     "sbatch" : {
-      "title" : 
-            "Collection Batch Retrieve Format (auto merged)"
-
-      ,"minItems" : 
-            1
-
-      ,"items" : 
-            {
+      "title" : "Collection Batch Retrieve Format (auto merged)",
+      "minItems" : 1,
+      "items" : {
         "additionalProperties": true,
         "properties": {
           "href": {
@@ -550,34 +539,19 @@
           "rep"
         ],
         "type": "object"
-      }
+      },
+      "type" : "array"
 
-      ,"type" : 
-            "array"
-
-    }
-    ,
+    },
     "sbatch-update" : {
-      "title" : 
-            "Collection Batch Update Format (auto merged)"
-
-      ,"minItems" : 
-            1
-
-      ,"items" : 
-            {
-        "$ref": "#/definitions/oic.batch-update.item"
-      }
-
-      ,"type" : 
-            "array"
-
-    }
-    ,
+      "title" : "Collection Batch Update Format (auto merged)",
+      "minItems" : 1,
+      "items" : { "$ref": "#/definitions/oic.batch-update.item" },
+      "type" : "array"
+    },
     "EasySetup" : {
       "properties": {
-        "rt" :
-                {
+        "rt" : {
           "items": {
             "enum": [
               "oic.r.easysetup",
@@ -589,9 +563,7 @@
           "type": "array",
           "uniqueItems": true
         },
-
-        "ps" :
-                {
+        "ps" : {
           "description": "Indicates the easy setup status of the device. (0: Need to Setup, 1: Connecting to Enroller, 2: Connected to Enroller, 3: Failed to Connect to Enroller, 4~254: Reserved, 255: EOF)",
           "enum": [
             0,
@@ -602,9 +574,7 @@
           "readOnly": true,
           "type": "integer"
         },
-
-        "lec" :
-                {
+        "lec" : {
           "description": "Indicates a failure reason (0: NO error, 1: A given SSID is not found, 2: Wi-Fi's password is wrong, 3: IP address is not allocated, 4: No internet connection, 5: Timeout, 6: Wi-Fi Auth Type is not supported by the Enrollee, 7: Wi-Fi Encryption Type is not supported by the Enrollee, 8: Wi-Fi Auth Type is wrong (failure while connecting to the Enroller), 9: Wi-Fi Encryption Type is wrong (failure while connecting to the Enroller), 10~254: Reserved, 255: Unknown error)",
           "enum": [
             0,
@@ -622,9 +592,7 @@
           "readOnly": true,
           "type": "integer"
         },
-
-        "cn" :
-                {
+        "cn" : {
           "description": "Indicates an array of connection types that trigger an attempt to connect to the Enroller to start.",
           "items": {
             "description": "Connection type to attempt. (1 : Wi-Fi, 2 : other entities / transports to be added in future (e.g. Connect to cloud / BLE))",
@@ -632,9 +600,7 @@
           },
           "type": "array"
         },
-
-        "links" :
-                {
+        "links" : {
           "description": "A set of simple or individual OIC Links.",
           "items": {
             "properties": {
@@ -763,17 +729,13 @@
           },
           "type": "array"
         },
-
-        "n" :
-                {
+        "n" :  {
           "description": "Friendly name of the resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "rts" :
-                {
+        "rts" : {
           "description": "Resource Type of the Resource",
           "items": {
             "maxLength": 64,
@@ -783,17 +745,13 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "id" :
-                {
+        "id" : {
           "description": "Instance ID of this specific resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "rts-m" :
-                {
+        "rts-m" : {
           "description": "Resource Type of the Resource",
           "items": {
             "maxLength": 64,
@@ -803,9 +761,7 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "if" :
-                {
+        "if" : {
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
@@ -824,12 +780,10 @@
           "readOnly": true,
           "type": "array"
         }
-
-        }
-        ,"type" : "object"
-    }
-    ,"oic.batch-update.item" :
-        {
+      },
+      "type" : "object"
+    },
+    "oic.batch-update.item" : {
       "additionalProperties": true,
       "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
       "properties": {
@@ -860,10 +814,8 @@
         "rep"
       ],
       "type": "object"
-    }
-
-    ,"oic.oic-link" :
-        {
+    },
+    "oic.oic-link" : {
       "properties": {
         "anchor": {
           "description": "This is used to override the context URI e.g. override the URI of the containing collection.",
@@ -992,17 +944,13 @@
         "if"
       ],
       "type": "object"
-    }
-
-    ,"uuid" :
-        {
+    },
+    "uuid" : {
       "description": "Format pattern according to IETF RFC 4122.",
       "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
       "type": "string"
-    }
-
-    ,"oic.wk.col-batch-update" :
-        {
+    },
+    "oic.wk.col-batch-update" : {
       "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
       "items": {
         "$ref": "#/definitions/oic.batch-update.item"
@@ -1010,6 +958,5 @@
       "minItems": 1,
       "type": "array"
     }
-
   }
 }
