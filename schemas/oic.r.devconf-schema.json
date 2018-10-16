@@ -46,7 +46,7 @@
     }
   },
   "type": "object",
-  "required": ["dn"]
+  "required": ["dn"],
   "allOf": [
     { "$ref": "http://openconnectivityfoundation.github.io/core/schemas/oic.core-schema.json#/definitions/oic.core"},
     { "$ref": "#/definitions/oic.r.devconf" }
