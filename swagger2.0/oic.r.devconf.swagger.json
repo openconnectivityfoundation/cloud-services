@@ -44,8 +44,7 @@
   "definitions": {
     "DevConf" : {
       "properties": {
-        "rt" :
-                {
+        "rt" : {
           "description": "Resource Type of the Resource",
           "items": {
             "maxLength": 64,
@@ -55,25 +54,19 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "n" :
-                {
+        "n" : {
           "description": "Friendly name of the resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "id" :
-                {
+        "id" : {
           "description": "Instance ID of this specific resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "if" :
-                {
+        "if" : {
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
@@ -91,10 +84,42 @@
           "minItems": 1,
           "readOnly": true,
           "type": "array"
+        },
+        "dn": {
+          "oneOf": [
+            {
+              "type": "string",
+              "description": "Indicates a pre-configured device name in language indicated by 'dl' in /oic/con;  presented by enrollee device to mediator device during easy-setup process",
+              "pattern": "^.*$",
+              "readOnly": true
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "language": {
+                    "$ref": "http://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/language-tag",
+                    "readOnly": true,
+                    "description": "An RFC 5646 language tag."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Pre-configured device name in the indicated language.",
+                    "pattern": "^.*$",
+                    "readOnly": true
+                  }
+                }
+              },
+              "minItems" : 1,
+              "readOnly": true,
+              "description": "Localized device name."
+            }
+          ]
         }
-
-        }
-        ,"type" : "object"
+      },
+      "type" : "object",
+      "required": ["dn"]
     }
   }
 }
