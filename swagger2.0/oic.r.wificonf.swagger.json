@@ -151,8 +151,7 @@
   "definitions": {
     "WiFiConf" : {
       "properties": {
-        "rt" :
-                {
+        "rt" : {
           "description": "Resource Type of the Resource",
           "items": {
             "maxLength": 64,
@@ -162,16 +161,12 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "tnn" :
-                {
+        "tnn" : {
           "description": "Indicates Target Network Name (SSID of Wi-Fi AP)",
           "pattern": "^.*$",
           "type": "string"
         },
-
-        "swmt" :
-                {
+        "swmt" : {
           "description": "Indicates supported Wi-Fi mode types. It can be multiple",
           "items": {
             "description": "Supported Wi-Fi Mode Type.",
@@ -187,9 +182,7 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "wat" :
-                {
+        "wat" : {
           "description": "Indicates Wi-Fi Auth Type",
           "enum": [
             "None",
@@ -199,17 +192,13 @@
           ],
           "type": "string"
         },
-
-        "n" :
-                {
+        "n" : {
           "description": "Friendly name of the resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "swat" :
-                {
+        "swat" : {
           "description": "Indicates supported Wi-Fi Auth types. It can be multiple",
           "items": {
             "description": "Indicates Wi-Fi Auth Type",
@@ -224,9 +213,7 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "swf" :
-                {
+        "swf" : {
           "description": "Indicates Supported Wi-Fi frequencies by the Enrollee. Can be multiple. Valid values are ('2.4G', '5G')",
           "items": {
             "pattern": "^(2\\.4|5)G$",
@@ -235,9 +222,7 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "swet" :
-                {
+        "swet" : {
           "description": "Indicates supported Wi-Fi Encryption types. It can be multiple",
           "items": {
             "description": "Indicates Wi-Fi Encryption Type",
@@ -254,9 +239,7 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "wet" :
-                {
+        "wet" : {
           "description": "Indicates Wi-Fi Encryption Type",
           "enum": [
             "None",
@@ -268,24 +251,18 @@
           ],
           "type": "string"
         },
-
-        "cd" :
-                {
+        "cd" : {
           "description": "Indicates credential information of Wi-Fi AP",
           "pattern": "^.*$",
           "type": "string"
         },
-
-        "id" :
-                {
+        "id" : {
           "description": "Instance ID of this specific resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "if" :
-                {
+        "if" : {
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
@@ -304,15 +281,13 @@
           "readOnly": true,
           "type": "array"
         }
-
-        }
-        ,"type" : "object"
-    }
-    ,
+      },
+      "type" : "object",
+      "required":["swmt", "swf", "swat", "swet", "tnn", "wat", "wet"]
+    },
     "WiFiConfUpdate" : {
       "properties": {
-        "rt" :
-                {
+        "rt" : {
           "description": "Resource Type of the Resource",
           "items": {
             "maxLength": 64,
@@ -322,9 +297,7 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "wat" :
-                {
+        "wat" : {
           "description": "Indicates Wi-Fi Auth Type",
           "enum": [
             "None",
@@ -333,24 +306,18 @@
             "WPA2_PSK"
           ]
         },
-
-        "n" :
-                {
+        "n" : {
           "description": "Friendly name of the resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "cd" :
-                {
+        "cd" : {
           "description": "Indicates credential information of Wi-Fi AP",
           "pattern": "^.*$",
           "type": "string"
         },
-
-        "wet" :
-                {
+        "wet" : {
           "description": "Indicates Wi-Fi Encryption Type",
           "enum": [
             "None",
@@ -361,24 +328,18 @@
             "TKIP_AES"
           ]
         },
-
-        "tnn" :
-                {
+        "tnn" : {
           "description": "Indicates Target Network Name (SSID of Wi-Fi AP)",
           "pattern": "^.*$",
           "type": "string"
         },
-
-        "id" :
-                {
+        "id" : {
           "description": "Instance ID of this specific resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "if" :
-                {
+        "if" : {
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
@@ -397,9 +358,9 @@
           "readOnly": true,
           "type": "array"
         }
-
-        }
-        ,"type" : "object"
+      },
+      "type" : "object",
+      "required":["tnn", "wat", "wet"]
     }
   }
 }
