@@ -148,8 +148,7 @@
   "definitions": {
     "CoAPCloudConf" : {
       "properties": {
-        "rt" :
-                {
+        "rt" : {
           "description": "Resource Type of the Resource",
           "items": {
             "maxLength": 64,
@@ -159,37 +158,27 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "n" :
-                {
+        "n" : {
           "description": "Friendly name of the resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "cis" :
-                {
+        "cis" : {
           "description": "URL of OCF Cloud",
           "format": "uri",
           "type": "string"
         },
-
-        "apn" :
-                {
+        "apn" : {
           "description": "The Authorisation Provider through which an Access Token was obtained.",
           "type": "string"
         },
-
-        "sid" :
-                {
+        "sid" : {
           "description": "Format pattern according to IETF RFC 4122.",
           "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
           "type": "string"
         },
-
-        "clec" :
-                {
+        "clec" : {
           "description": "Last Error Code during Cloud Provisioning (0: No Error, 1: Error response from the OCF Cloud, 2: Failed to connect to the OCF Cloud, 3: Failed to refresh Access Token, 4~254: Reserved, 255: Unknown error)",
           "enum": [
             0,
@@ -200,17 +189,13 @@
           ],
           "readOnly": true
         },
-
-        "id" :
-                {
+        "id" : {
           "description": "Instance ID of this specific resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "if" :
-                {
+        "if" : {
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
@@ -229,15 +214,13 @@
           "readOnly": true,
           "type": "array"
         }
-
-        }
-        ,"type" : "object"
-    }
-    ,
+      },
+      "type" : "object",
+      "required":["cis", "sid"]
+    },
     "CoAPCloudConfUpdate" : {
       "properties": {
-        "rt" :
-                {
+        "rt" :  {
           "description": "Resource Type of the Resource",
           "items": {
             "maxLength": 64,
@@ -247,51 +230,37 @@
           "readOnly": true,
           "type": "array"
         },
-
-        "n" :
-                {
+        "n" : {
           "description": "Friendly name of the resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "cis" :
-                {
+        "cis" : {
           "description": "URL of OCF Cloud",
           "format": "uri",
           "type": "string"
         },
-
-        "apn" :
-                {
+        "apn" : {
           "description": "The Authorisation Provider through which an Access Token was obtained.",
           "type": "string"
         },
-
-        "at" :
-                {
+        "at" : {
           "description": "Access Token which is returned by an Authorisation Provider or OCF Cloud.",
           "type": "string"
         },
-
-        "sid" :
-                {
+        "sid" : {
           "description": "Format pattern according to IETF RFC 4122.",
           "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
           "type": "string"
         },
-
-        "id" :
-                {
+        "id" : {
           "description": "Instance ID of this specific resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "if" :
-                {
+        "if" : {
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
@@ -310,9 +279,9 @@
           "readOnly": true,
           "type": "array"
         }
-
-        }
-        ,"type" : "object"
+      },
+      "type" : "object",
+      "required":["cis", "at", "sid"]
     }
   }
 }
