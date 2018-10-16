@@ -115,8 +115,8 @@
               "readOnly": true,
               "description": "Localized device name."
             }
-          }
-        ]
+          ]
+        }
       },
       "type" : "object",
       "required": ["dn"]
