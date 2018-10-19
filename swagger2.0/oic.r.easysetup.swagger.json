@@ -248,7 +248,7 @@
   },
   "definitions": {
     "slinks" : {
-      "items" : 
+      "items" :
             {
         "properties": {
           "anchor": {
@@ -781,7 +781,8 @@
           "type": "array"
         }
       },
-      "type" : "object"
+      "type" : "object",
+      "required": ["ps","lec","cn"]
     },
     "oic.batch-update.item" : {
       "additionalProperties": true,
