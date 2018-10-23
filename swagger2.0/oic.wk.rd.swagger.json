@@ -189,11 +189,10 @@
           "readOnly": true,
           "type": "array"
         }
-
-        }
-        ,"type" : "object"
-    }
-    ,
+      },
+      "type" : "object",
+      "required": ["sel"]
+    },
     "rdPublish" : {
       "properties": {
         "rt" :
@@ -387,10 +386,9 @@
           "readOnly": true,
           "type": "array"
         }
-
-        }
-        ,"type" : "object"
-      ,"required": ["di", "links", "ttl"]
+      },
+      "type" : "object",
+      "required": ["di", "links", "ttl"]
     }
     ,"oic.rd.publish" :
         {
