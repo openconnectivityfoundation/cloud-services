@@ -33,7 +33,7 @@
           "format": "uri"
       },
       "di": {
-          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json",
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/uuid",
           "description": "The device ID."
       },
       "p": {
