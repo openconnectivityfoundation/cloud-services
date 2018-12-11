@@ -1,0 +1,199 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "software update",
+    "version": "v1-20181210",
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
+      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/softwareupdateResURI" : {
+      "get": {
+        "description": "The resource to do scheduled update",
+        "parameters": [
+          {"$ref": "#/parameters/interface-all"}
+        ],
+        "responses": {
+            "200": {
+              "description" : "",
+              "x-example":
+                {
+                  "rt":   ["oic.r.softwareupdate"],
+                  "purl":  "https://myvendor/myexampleurl",
+                  "swupdateaction": "idle",
+                  "swupdatestate" : "idle",
+                  "result" : 0,
+                  "lastupdate" : "2015-01-09T14:30Z",
+                  "signage" : "vendor",
+                  "updatetime" : "2015-01-09T14:30Z"
+                }
+                ,
+              "schema": { "$ref": "#/definitions/swupdate" }
+            }
+        }
+      },
+      "post": {
+        "description": "Start/Stop collecting and reset the networking monitor resource\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-rw"},
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/swupdate-update" },
+            "x-example":
+              {
+                  "purl":  "https://myvendor/newversion",
+                  "swupdateaction": "upgrade",
+                  "updatetime" : "2030-01-09T14:30Z"
+                }
+          }
+        ],
+        "responses": {
+            "200": {
+              "description" : "",
+              "x-example":
+                {
+                  "rt":   ["oic.r.softwareupdate"],
+                  "purl":  "https://myvendor/myexampleurl",
+                  "swupdateaction": "upgrade",
+                  "swupdatestate" : "idle",
+                  "result" : 0,
+                  "lastupdate" : "2015-01-09T14:30Z",
+                  "signage" : "vendor",
+                  "updatetime" : "2030-01-09T14:30Z"
+                },
+              "schema": { "$ref": "#/definitions/swupdate" }
+            }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "interface-rw" : {
+      "in" : "query",
+      "name" : "if",
+      "type" : "string",
+      "enum" : ["oic.if.rw"]
+    },
+    "interface-all" : {
+      "in" : "query",
+      "name" : "if",
+      "type" : "string",
+      "enum" : ["oic.if.rw", "oic.if.baseline"]
+    }
+  },
+  "definitions": {
+    "swupdate" : {
+      "properties": {
+        "rt" : {
+          "items": {
+            "enum": [
+              "oic.r.softwareupdate"
+            ],
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "readOnly": true,
+          "uniqueItems": true
+        },
+        "if": {
+          "description": "The interface set supported by this resource",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.rw"
+            ],
+            "type": "string"
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "readOnly": true,
+          "uniqueItems": true
+        },
+        "n": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
+        },
+        "id": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
+        },
+        "purl" : {
+          "description": "Source of the software package, might be a HTTPS or CoAPs URL",
+          "maxLength": 64,
+          "type": "string",
+          "format": "uri"
+        },
+        "swupdateaction" : {
+          "description": "Scheduled action to do a software update",
+          "maxLength": 64,
+          "type": "string",
+          "enum": [
+              "idle",
+              "isac",
+              "isvv",
+              "upgrade"
+            ]
+        },
+        "swupdatestate" : {
+          "description": "State of the software update",
+          "readOnly": true,
+          "type": "string",
+          "enum": [
+              "idle",
+              "nsa",
+              "svv",
+              "sva",
+              "upgrading"
+            ]
+        },        
+        "result" : {
+          "description": "Result of the software update, list of result codes",
+          "type": "integer"
+        },
+        "lastupdate" : {
+          "description": "Time of the last software update (in RFC3339 format), Initial set on date of manufacturing",
+          "maxLength": 64,
+          "type": "string",
+          "format": "date-time"
+        },
+        "signage" : {
+          "description": "Signage method of the software package, currently the only allowed value is 'vendor'.",
+          "readOnly": true,
+          "type": "string",
+          "enum": [
+              "vendor"
+            ]
+        },    
+        "updatetime" : {
+          "description": "Scheduled time (in RFC3339 format) to do action which is specified in “swupdateaction” Property.",
+          "maxLength": 64,
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["purl", "swupdateaction", "swupdatestate", "result", "updatetime"]
+    },
+    "swupdate-update" : {
+      "properties": {
+        "purl" : {
+          "$ref": "#/definitions/swupdate/purl"
+        },
+        "swupdateaction" : {
+          "$ref": "#/definitions/swupdate/swupdateaction"
+        },
+        "updatetime" : {
+          "$ref": "#/definitions/swupdate/updatetime"
+        }
+      },
+      "required": ["purl", "swupdateaction", "updatetime"]
+    }
+  }
+}
