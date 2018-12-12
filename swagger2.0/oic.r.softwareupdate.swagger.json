@@ -173,7 +173,7 @@
             ]
         },    
         "updatetime" : {
-          "description": "Scheduled time (in RFC3339 format) to do action which is specified in “swupdateaction” Property.",
+          "description": "Scheduled time (in RFC3339 format) to do action which is specified in 'swupdateaction' Property.",
           "maxLength": 64,
           "type": "string",
           "format": "date-time"
