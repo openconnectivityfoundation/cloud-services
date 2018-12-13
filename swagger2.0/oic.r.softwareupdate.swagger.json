@@ -130,7 +130,8 @@
         "nv" : {
           "description": "New available Software version",
           "maxLength": 64,
-          "type": "string"
+          "type": "string",
+          "readOnly" : true
         },
         "purl" : {
           "description": "Source of the software package, might be a HTTPS or CoAPs URL",
