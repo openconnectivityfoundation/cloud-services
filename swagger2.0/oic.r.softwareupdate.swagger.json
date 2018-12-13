@@ -30,7 +30,7 @@
                   "swupdatestate" : "idle",
                   "swupdateresult" : 0,
                   "lastupdate" : "2015-01-09T14:30Z",
-                  "signage" : "vendor",
+                  "signed" : "vendor",
                   "updatetime" : "2015-01-09T14:30Z"
                 }
                 ,
@@ -67,7 +67,7 @@
                   "swupdatestate" : "idle",
                   "swupdateresult" : 0,
                   "lastupdate" : "2015-01-09T14:30Z",
-                  "signage" : "vendor",
+                  "signed" : "vendor",
                   "updatetime" : "2030-01-09T14:30Z"
                 },
               "schema": { "$ref": "#/definitions/swupdate" }
@@ -172,7 +172,7 @@
           "type": "string",
           "format": "date-time"
         },
-        "signage" : {
+        "signed" : {
           "description": "Signage method of the software package, currently the only allowed value is 'vendor'.",
           "readOnly": true,
           "type": "string",
