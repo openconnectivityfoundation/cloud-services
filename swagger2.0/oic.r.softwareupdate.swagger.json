@@ -23,11 +23,12 @@
               "description" : "",
               "x-example":
                 {
-                  "rt":   ["oic.r.softwareupdate"],
-                  "purl":  "https://myvendor/myexampleurl",
+                  "rt": ["oic.r.softwareupdate"],
+                  "nv" : "my version",
+                  "purl": "https://myvendor/myexampleurl",
                   "swupdateaction": "idle",
                   "swupdatestate" : "idle",
-                  "result" : 0,
+                  "swupdateresult" : 0,
                   "lastupdate" : "2015-01-09T14:30Z",
                   "signage" : "vendor",
                   "updatetime" : "2015-01-09T14:30Z"
@@ -51,7 +52,7 @@
                   "purl":  "https://myvendor/newversion",
                   "swupdateaction": "upgrade",
                   "updatetime" : "2030-01-09T14:30Z"
-                }
+              }
           }
         ],
         "responses": {
@@ -60,10 +61,11 @@
               "x-example":
                 {
                   "rt":   ["oic.r.softwareupdate"],
+                  "nv" : "my new version",
                   "purl":  "https://myvendor/myexampleurl",
                   "swupdateaction": "upgrade",
                   "swupdatestate" : "idle",
-                  "result" : 0,
+                  "swupdateresult" : 0,
                   "lastupdate" : "2015-01-09T14:30Z",
                   "signage" : "vendor",
                   "updatetime" : "2030-01-09T14:30Z"
@@ -98,8 +100,8 @@
             ],
             "type": "string"
           },
-          "maxItems": 2,
-          "minItems": 2,
+          "minItems": 1,
+          "maxItems": 1,
           "type": "array",
           "readOnly": true,
           "uniqueItems": true
@@ -124,6 +126,11 @@
         },
         "id": {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
+        },
+        "nv" : {
+          "description": "New available Software version",
+          "maxLength": 64,
+          "type": "string"
         },
         "purl" : {
           "description": "Source of the software package, might be a HTTPS or CoAPs URL",
@@ -154,7 +161,7 @@
               "upgrading"
             ]
         },        
-        "result" : {
+        "swupdateresult" : {
           "description": "Result of the software update, list of result codes",
           "type": "integer"
         },
