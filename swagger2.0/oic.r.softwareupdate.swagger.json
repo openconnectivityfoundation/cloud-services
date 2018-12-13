@@ -164,10 +164,12 @@
         },        
         "swupdateresult" : {
           "description": "Result of the software update, list of result codes",
+          "readOnly": true,
           "type": "integer"
         },
         "lastupdate" : {
           "description": "Time of the last software update (in RFC3339 format), Initial set on date of manufacturing",
+          "readOnly": true,
           "maxLength": 64,
           "type": "string",
           "format": "date-time"
@@ -187,7 +189,7 @@
           "format": "date-time"
         }
       },
-      "required": ["purl", "swupdateaction", "swupdatestate", "result", "updatetime"]
+      "required": ["purl", "swupdateaction", "swupdatestate", "swupdateresult", "updatetime"]
     },
     "swupdate-update" : {
       "properties": {
