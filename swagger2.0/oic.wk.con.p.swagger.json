@@ -158,6 +158,7 @@
         }
 
         }
+        ,"type" : "object"
     }
     ,
     "Update_Platform" : {
@@ -248,8 +249,9 @@
           "type": "array"
         }
 
-        },
-      "required": ["mnpn"]
+        }
+        ,"type" : "object"
+      ,"required": ["mnpn"]
     }
   }
 }

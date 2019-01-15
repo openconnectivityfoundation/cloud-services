@@ -130,8 +130,9 @@
           "type": "array"
         }
 
-        },
-      "required": ["mimetype", "width", "height", "media"]
+        }
+        ,"type" : "object"
+      ,"required": ["mimetype", "width", "height", "media"]
     }
   }
 }

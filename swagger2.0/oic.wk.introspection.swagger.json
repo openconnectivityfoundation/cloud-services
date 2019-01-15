@@ -149,8 +149,9 @@
           "readOnly": true,
           "type": "array"
         }
-
-        }
+      },
+      "type" : "object",
+      "required": ["urlInfo"]
     }
   }
 }

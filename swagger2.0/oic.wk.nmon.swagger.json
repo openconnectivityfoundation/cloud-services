@@ -124,7 +124,7 @@
 
         "tx" :
                 {
-          "description": "Amount of transmitted kilo bytes from collection start time 'time'",
+          "description": "Amount of transmitted kilo bytes from the collection",
           "readOnly": true,
           "type": "integer"
         },
@@ -150,7 +150,7 @@
 
         "rx" :
                 {
-          "description": "Amount of received kilo bytes from collection start time 'time'",
+          "description": "Amount of received kilo bytes from the collection",
           "readOnly": true,
           "type": "integer"
         },
@@ -206,8 +206,9 @@
           "type": "array"
         }
 
-        },
-      "required": ["reset", "col", "ianaifType"]
+        }
+        ,"type" : "object"
+      ,"required": ["reset", "col", "ianaifType"]
     }
     ,
     "nmon-update" : {
@@ -283,8 +284,9 @@
           "type": "array"
         }
 
-        },
-      "required": ["reset", "col"]
+        }
+        ,"type" : "object"
+      ,"required": ["reset", "col"]
     }
   }
 }

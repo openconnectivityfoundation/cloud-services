@@ -128,10 +128,10 @@
             "type": "string"
           },
           "di": {
-                "description": "Format pattern according to IETF RFC 4122.",
-                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-                "type": "string"
-              },
+            "description": "The Device ID formatted according to IETF RFC 4122.",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+            "type": "string"
+          },
           "eps": {
             "description": "the Endpoint information of the target Resource",
             "items": {
@@ -277,10 +277,10 @@
                   "type": "string"
                 },
                 "di": {
-                      "description": "Format pattern according to IETF RFC 4122.",
-                      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-                      "type": "string"
-                    },
+                  "description": "The Device ID formatted according to IETF RFC 4122.",
+                  "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                  "type": "string"
+                },
                 "eps": {
                   "description": "the Endpoint information of the target Resource",
                   "items": {
@@ -394,12 +394,6 @@
               "type": "object"
             },
             "type": "array"
-          },
-          "mpro": {
-            "description": "Supported messaging protocols",
-            "maxLength": 64,
-            "readOnly": true,
-            "type": "string"
           },
           "n": {
             "description": "Human friendly name",
