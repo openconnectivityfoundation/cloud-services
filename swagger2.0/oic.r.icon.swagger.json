@@ -84,10 +84,10 @@
           "type": "string"
         },
         "n": {
-          "description": "Friendly name of the resource",
-          "maxLength": 64,
-          "readOnly": true,
-          "type": "string"
+          "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
+        },
+        "id": {
+          "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "width": {
           "description": "The width in pixels",
@@ -100,12 +100,6 @@
           "minimum": 1,
           "readOnly": true,
           "type": "integer"
-        },
-        "id": {
-          "description": "Instance ID of this specific resource",
-          "maxLength": 64,
-          "readOnly": true,
-          "type": "string"
         },
         "if": {
           "description": "The interface set supported by this resource",

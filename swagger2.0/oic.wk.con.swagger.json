@@ -172,20 +172,14 @@
           ]
         },
         "n": {
-          "description": "Friendly name of the resource",
-          "maxLength": 64,
-          "readOnly": true,
-          "type": "string"
+          "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
+        },
+        "id": {
+          "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "r": {
           "description": "Region",
           "maxLength": 64,
-          "type": "string"
-        },
-        "id": {
-          "description": "Instance ID of this specific resource",
-          "maxLength": 64,
-          "readOnly": true,
           "type": "string"
         },
         "if" : {
@@ -266,7 +260,7 @@
           ]
         },
         "n": {
-          "description": "Friendly name of the resource",
+          "description": "The human friendly name to be set on the Resource, this is also reflected in the same Property in oic.wk.d",
           "maxLength": 64,
           "type": "string"
         },
