@@ -296,13 +296,13 @@
           "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
 	      "rt": {
-          "$ref": "#/definitions/oic.core/properties/rt-col"
+          "$ref": "#/definitions/oic.core.rt-col"
         },
 	      "rts": {
-          "$ref": "#/definitions/oic.core/properties/rt"
+          "$ref": "#/definitions/oic.core.rt"
         },
 	      "rts-m": {
-          "$ref": "#/definitions/oic.core/properties/rt"
+          "$ref": "#/definitions/oic.core.rt"
         },
 	      "if": {
 	        "description": "The interface set supported by this resource",
@@ -327,29 +327,24 @@
     "sbaseline-update": {
       "additionalProperties": true
     },
-	  "oic.core": {
-			"properties": {
-				"rt-col": {
-					"description": "Resource Type of the Resource",
-					"items": {
-						"enum": ["oic.wk.col"],
-						"type": "string"
-					},
-					"minItems": 1,
-					"readOnly": true,
-					"type": "array"
-				},
-        "rt": {
-					"description": "Resource Type or set of Resource Types",
-					"items": {
-						"type": "string"
-					},
-					"minItems": 1,
-					"readOnly": true,
-					"type": "array"
-				}
+	  "oic.core.rt-col": {
+      "description": "Resource Type of the Resource",
+			"items": {
+				"enum": ["oic.wk.col"],
+				"type": "string"
 			},
-			"type": "object"
+			"minItems": 1,
+			"readOnly": true,
+			"type": "array"
+		},
+    "oic.core.rt": {
+      "description": "Resource Type or set of Resource Types",
+			"items": {
+				"type": "string"
+			},
+			"minItems": 1,
+			"readOnly": true,
+			"type": "array"
 		},
     "sbatch-retrieve" : {
       "title" : "Collection Batch Retrieve Format",
@@ -450,7 +445,7 @@
           "type": "array"
         },
         "rt": {
-          "$ref": "#/definitions/oic.core/properties/rt"
+          "$ref": "#/definitions/oic.core.rt"
         },
         "anchor": {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
