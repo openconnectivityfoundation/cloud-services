@@ -111,7 +111,8 @@
               "oic.if.baseline",
               "oic.if.ll"
             ],
-            "type": "string"
+            "type": "string",
+            "readOnly": true
           }
         },
         "rts": {
