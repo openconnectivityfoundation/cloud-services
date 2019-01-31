@@ -97,31 +97,26 @@
           "readOnly": true,
           "type": "integer"
         },
-
         "reset" : {
           "description": "True: reset the collected values",
           "readOnly": false,
           "type": "boolean"
         },
-
         "mmsrx" : {
           "description": "Maximum received message size in bytes (rx) in the collection period",
           "readOnly": true,
           "type": "integer"
         },
-
         "mmstx" : {
           "description": "Maximum transmitted message size in bytes (tx) in the collection period",
           "readOnly": true,
           "type": "integer"
         },
-
         "tx" : {
           "description": "Amount of transmitted kilo bytes from the collection",
           "readOnly": true,
           "type": "integer"
         },
-
         "rt" : {
           "description": "Resource Type of the Resource",
           "items": {
@@ -134,39 +129,32 @@
           "readOnly": true,
           "type": "array"
         },
-
         "ianaifType" : {
           "description": "The type of the network connection, as defined by iana https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib",
           "readOnly": true,
           "type": "integer"
         },
-
         "rx" : {
           "description": "Amount of received kilo bytes from the collection",
           "readOnly": true,
           "type": "integer"
         },
-
         "id" : {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
-
         "amsrx" : {
           "description": "Average received message size in bytes (rx) in the collection period",
           "readOnly": true,
           "type": "integer"
         },
-
         "n" : {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
         },
-
         "col" : {
           "description": "True: Device is collecting values",
           "readOnly": false,
           "type": "boolean"
         },
-
         "if" : {
           "description": "The interface set supported by this resource",
           "items": {
@@ -184,7 +172,6 @@
       "type" : "object",
       "required": ["reset", "col", "ianaifType"]
     },
-
     "nmon-update" : {
       "properties": {
         "reset" : {
@@ -192,58 +179,13 @@
           "readOnly": false,
           "type": "boolean"
         },
-
-        "rt" : {
-          "description": "Resource Type of the Resource",
-          "items": {
-            "enum": ["oic.wk.nmon"],
-            "type": "string"
-          },
-          "minItems": 1,
-          "maxItems": 1,
-          "uniqueItems": true,
-          "readOnly": true,
-          "type": "array"
-        },
-
         "n" : {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
         },
-
-        "id" : {
-          "anyOf": [
-            {
-              "maxLength": 64,
-              "type": "string"
-            },
-            {
-              "description": "Format pattern according to IETF RFC 4122.",
-              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-              "type": "string"
-            }
-          ],
-          "description": "Instance ID of this specific resource",
-          "readOnly": true
-        },
-
         "col" : {
           "description": "True: Device is collecting values",
           "readOnly": false,
           "type": "boolean"
-        },
-
-        "if" : {
-          "description": "The interface set supported by this resource",
-          "items": {
-            "enum": [
-              "oic.if.baseline",
-              "oic.if.rw"
-            ],
-            "type": "string"
-          },
-          "minItems": 1,
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type" : "object",
