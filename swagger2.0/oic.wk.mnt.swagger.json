@@ -90,12 +90,10 @@
           "readOnly": true,
           "type": "array"
         },
-
         "fr" : {
           "description": "Factory Reset",
           "type": "boolean"
         },
-
         "err" : {
           "description": "last HTTP occurred error",
           "maximum": 599,
@@ -103,20 +101,16 @@
           "readOnly": true,
           "type": "integer"
         },
-
         "n": {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
         },
-
         "rb" : {
           "description": "Reboot Action",
           "type": "boolean"
         },
-
         "id" : {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
-
         "if" : {
           "description": "The interface set supported by this resource",
           "items": {
@@ -131,7 +125,6 @@
           "type": "array"
         }
       },
-
       "anyOf" : [
         {
           "required": [ "fr" ]
@@ -147,51 +140,17 @@
     },
     "mnt-update" : {
       "properties": {
-        "rt" : {
-          "description": "Resource Type of the Resource",
-          "items": {
-            "enum":   ["oic.wk.mnt"],
-            "type": "string"
-          },
-          "minItems": 1,
-          "maxItems": 1,
-          "uniqueItems": true,
-          "readOnly": true,
-          "type": "array"
-        },
-
         "fr" : {
           "description": "Factory Reset",
           "type": "boolean"
         },
-
         "n": {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
         },
-
         "rb" : {
           "description": "Reboot Action",
           "type": "boolean"
-        },
-
-        "id" : {
-          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
-        },
-
-        "if" : {
-          "description": "The interface set supported by this resource",
-          "items": {
-            "enum": [
-              "oic.if.baseline",
-              "oic.if.rw"
-            ],
-            "type": "string"
-          },
-          "minItems": 1,
-          "readOnly": true,
-          "type": "array"
         }
-
       },
       "anyOf" : [
         {
