@@ -288,9 +288,6 @@
             "WPA2_PSK"
           ]
         },
-        "n" : {
-          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
-        },
         "cd" : {
           "description": "Indicates credential information of Wi-Fi AP",
           "pattern": "^.*$",

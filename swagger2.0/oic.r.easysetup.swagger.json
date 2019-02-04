@@ -14,71 +14,6 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/EasySetupResURI?if=oic.if.rw" : {
-      "post": {
-        "description": "Able to update connection type to attempt to connect to the enroller to start during while posting to /EasySetupResURI\nThe below example is the case to send Easy Setup configuration\n(i.e. connection type) in a post.\n",
-        "parameters": [
-          {"$ref": "#/parameters/interface-rw"},
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": { "$ref": "#/definitions/EasySetupPost" },
-            "x-example":
-              [
-                {
-                    "cn": [1]
-                }
-              ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description" : "",
-            "x-example":
-              {
-                "rt" : ["oic.r.easysetup", "oic.wk.col"],
-                "if" : ["oic.if.ll", "oic.if.baseline", "oic.if.b"],
-                "ps" : 0,
-                "lec": 0,
-                "cn": [1],
-                "links": [
-                  {
-                    "href": "/EasySetupResURI",
-                    "rt": ["oic.r.easysetup", "oic.wk.col"],
-                    "if": ["oic.if.b"],
-                    "p":{"bm":3},
-                    "eps": [
-                      {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
-                    ],
-                    "rel":["self", "item"]
-                  },
-                  {
-                    "href": "/WiFiConfResURI",
-                    "rt":   ["oic.r.wificonf"],
-                    "if":   ["oic.if.baseline"],
-                    "p":{"bm":3},
-                    "eps": [
-                      {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
-                    ]
-                  },
-                  {
-                    "href": "/DevConfResURI",
-                    "rt":   ["oic.r.devconf"],
-                    "if":   ["oic.if.baseline"],
-                    "p":{"bm":3},
-                    "eps": [
-                      {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
-                    ]
-                  }
-                ]
-              }
-              ,
-            "schema": { "$ref": "#/definitions/EasySetup" }
-          }
-        }
-      }
-    },
     "/EasySetupResURI?if=oic.if.ll" : {
       "get": {
         "description": "Easy Setup resource stores useful information including current status of\nunboxing device and last error code which are produced in a process of\neasy setup.\nNote that, Easy Setup resource is a type of collection resource, which\ncontains links to WiFiConf, DevConf resources and may additionally contain\nlinks to other resources.\nRetrieve useful information during easy setup process :\n1. A current status in easy setup process.\n2. A last error code describing reason for failure occurred at the last\n   time.\n",
@@ -284,27 +219,84 @@
               "schema": { "$ref": "#/definitions/EasySetup" }
             }
         }
-      }
+      },
+      "post": {
+        "description": "Able to update connection type to attempt to connect to the enroller to start during while posting to /EasySetupResURI\nThe below example is the case to send Easy Setup configuration\n(i.e. connection type) in a post.\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-baseline"},
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/EasySetupUpdate" },
+            "x-example":
+             [
+               {
+                   "cn": [1]
+               }
+             ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description" : "",
+            "x-example":
+             {
+               "rt" : ["oic.r.easysetup", "oic.wk.col"],
+               "if" : ["oic.if.ll", "oic.if.baseline", "oic.if.b"],
+               "ps" : 0,
+               "lec": 0,
+               "cn": [1],
+               "links": [
+                 {
+                   "href": "/EasySetupResURI",
+                   "rt": ["oic.r.easysetup", "oic.wk.col"],
+                   "if": ["oic.if.b"],
+                   "p":{"bm":3},
+                   "eps": [
+                     {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                   ],
+                   "rel":["self", "item"]
+                 },
+                 {
+                   "href": "/WiFiConfResURI",
+                   "rt":   ["oic.r.wificonf"],
+                   "if":   ["oic.if.baseline"],
+                   "p":{"bm":3},
+                   "eps": [
+                     {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                   ]
+                 },
+                 {
+                   "href": "/DevConfResURI",
+                   "rt":   ["oic.r.devconf"],
+                   "if":   ["oic.if.baseline"],
+                   "p":{"bm":3},
+                   "eps": [
+                     {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                   ]
+                 }
+               ]
+             },
+             "schema": { "$ref": "#/definitions/EasySetup" }
+           }
+         }
+       }
+     },
     }
   },
   "parameters": {
-    "interface-ll" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.ll"]
-    },
     "interface-baseline" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.baseline"]
     },
-    "interface-all" : {
+    "interface-ll" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.baseline", "oic.if.ll", "oic.if.b", "oic.if.rw"]
+      "enum" : ["oic.if.ll"]
     },
     "interface-batch" : {
       "in" : "query",
@@ -312,13 +304,12 @@
       "type" : "string",
       "enum" : ["oic.if.b"]
     },
-    "interface-rw" : {
+    "interface-all" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.rw"]
-    }
-  },
+      "enum" : ["oic.if.baseline", "oic.if.ll", "oic.if.b"]
+    },
   "definitions": {
     "slinks" : {
       "items" :
@@ -465,7 +456,7 @@
               {
                   "$ref": "#/definitions/EasySetup"
               },
-{
+              {
                   "$ref": "https://openconnectivityfoundation.github.io/core-extensions/oic.r.wificonf.swagger.json#/definitions/WiFiConf"
               },
               {
@@ -486,7 +477,35 @@
     "sbatch-update" : {
       "title" : "Collection Batch Update Format (auto merged)",
       "minItems" : 1,
-      "items" : { "$ref": "#/definitions/oic.batch-update.item" },
+      "items" : {
+        "additionalProperties": true,
+        "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
+        "properties": {
+          "href": {
+            "description": "URI of the target resource relative assuming the collection URI as anchor",
+            "format": "uri",
+            "maxLength": 256,
+            "type": "string"
+          },
+          "rep": {
+            "description": "The response payload from a single resource",
+            "type": "object",
+            "anyOf": [
+              {
+                "$ref": "#/definitions/EasySetupUpdate"
+              },
+              {
+                "$ref": "https://openconnectivityfoundation.github.io/core-extensions/oic.r.wificonf.swagger.json#/definitions/WiFiConfUpdate"
+              }
+            ]
+          }
+        },
+        "required": [
+          "href",
+          "rep"
+        ],
+        "type": "object"
+      },
       "type" : "array"
     },
     "EasySetup" : {
@@ -709,9 +728,9 @@
       "type" : "object",
       "required": ["ps","lec","cn"]
     },
-    "EasySetupPost" : {
+    "EasySetupUpdate" : {
       "additionalProperties": true,
-      "description": "Update to \"n\" interface of EasySetupResURI via post",
+      "description": "Update to writeable values in EasySetupResURI",
       "properties": {
         "cn" : {
           "description": "Indicates an array of connection types that trigger an attempt to connect to the Enroller to start.",
@@ -724,35 +743,6 @@
       },
       "required": [
         "cn"
-      ],
-      "type": "object"
-    },
-    "oic.batch-update.item" : {
-      "additionalProperties": true,
-      "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
-      "properties": {
-        "href": {
-          "description": "URI of the target resource relative assuming the collection URI as anchor",
-          "format": "uri",
-          "maxLength": 256,
-          "type": "string"
-        },
-        "rep": {
-          "description": "The response payload from a single resource",
-          "type": "object",
-          "anyOf": [
-            {
-              "$ref": "#/definitions/EasySetupPost"
-            },
-            {
-              "$ref": "https://openconnectivityfoundation.github.io/core-extensions/oic.r.wificonf.swagger.json#/definitions/WiFiConfUpdate"
-            }
-          ]
-        }
-      },
-      "required": [
-        "href",
-        "rep"
       ],
       "type": "object"
     }
