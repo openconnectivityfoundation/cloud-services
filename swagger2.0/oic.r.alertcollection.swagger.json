@@ -49,8 +49,7 @@
                       "subject": [{"language":"en-US","value":"Network error"}]
                     }
                   }
-                ]
-                ,
+                ],
               "schema": { "$ref": "#/definitions/AlertCollection-b" }
             }
         }
@@ -68,6 +67,7 @@
               "x-example":
                 {
                   "rt":    ["oic.r.alertcollection"],
+                  "rts":   ["oic.r.alert"],
                   "id":    "unique_example_id",
                   "links": [
                     {"href": "/myAlert1ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
@@ -75,8 +75,7 @@
                     {"href": "/myAlert3ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
                     {"href": "/myAlert4ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]}
                   ]
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/AlertCollection" }
             }
         }
@@ -97,8 +96,7 @@
                   {"href": "/myAlert2ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
                   {"href": "/myAlert3ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
                   {"href": "/myAlert4ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]}
-                ]
-                ,
+                ],
               "schema": { "$ref": "#/definitions/AlertCollection-ll" }
             }
         }
@@ -133,14 +131,9 @@
   },
   "definitions": {
     "AlertCollection-b" : {
-      "title" : 
-            "Collection Batch Retrieve Format (auto merged)"
-
-      ,"minItems" : 
-            1
-
-      ,"items" : 
-            {
+      "title": "Collection Batch Retrieve Format (auto merged)",
+      "minItems": 1,
+      "items": {
         "additionalProperties": true,
         "properties": {
           "href": {
@@ -299,17 +292,12 @@
           "rep"
         ],
         "type": "object"
-      }
-
-      ,"type" : 
-            "array"
-
-    }
-    ,
+      },
+      "type": "array"
+    },
     "AlertCollection" : {
       "properties": {
-        "rt" :
-                {
+        "rt": {
           "items": {
             "enum": [
               "oic.r.alertcollection"
@@ -320,9 +308,7 @@
           "type": "array",
           "uniqueItems": true
         },
-
-        "links" :
-                {
+        "links": {
           "description": "A set of simple or individual OIC Links.",
           "items": {
             "properties": {
@@ -451,17 +437,13 @@
           },
           "type": "array"
         },
-
-        "n" :
-                {
+        "n": {
           "description": "Friendly name of the resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "rts" :
-                {
+        "rts": {
           "items": {
             "anyOf": [
               {
@@ -482,17 +464,13 @@
           "type": "array",
           "uniqueItems": true
         },
-
-        "id" :
-                {
+        "id": {
           "description": "Instance ID of this specific resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
-
-        "if" :
-                {
+        "if": {
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
@@ -511,14 +489,12 @@
           "readOnly": true,
           "type": "array"
         }
-
-        }
-        ,"type" : "object"
-    }
-    ,
+      },
+      "type" : "object",
+      "required": ["rt","rts","links"]
+    },
     "AlertCollection-ll" : {
-      "items" : 
-            {
+      "items": {
         "properties": {
           "anchor": {
             "description": "This is used to override the context URI e.g. override the URI of the containing collection.",
@@ -642,14 +618,9 @@
           "if"
         ],
         "type": "object"
-      }
-
-      ,"type" : 
-            "array"
-
-      ,"title" : 
-            "Alert Collection Link List Schema (auto merged)"
-
+      },
+      "type": "array",
+      "title": "Alert Collection Link List Schema (auto merged)"
     }
   }
 }
