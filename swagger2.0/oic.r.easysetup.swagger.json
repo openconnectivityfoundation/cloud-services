@@ -96,8 +96,7 @@
                       "dn" : "My Refrigerator"
                     }
                   }
-                ]
-                ,
+                ],
               "schema": { "$ref": "#/definitions/sbatch" }
             }
         }
@@ -283,7 +282,6 @@
          }
        }
      },
-    }
   },
   "parameters": {
     "interface-baseline" : {
@@ -309,7 +307,8 @@
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.baseline", "oic.if.ll", "oic.if.b"]
-    },
+    }
+  },
   "definitions": {
     "slinks" : {
       "items" :
