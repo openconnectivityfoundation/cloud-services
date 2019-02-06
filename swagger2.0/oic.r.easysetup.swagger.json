@@ -357,6 +357,8 @@
                 "oic.if.baseline",
                 "oic.if.ll",
                 "oic.if.b",
+                "oic.if.r",
+                "oic.if.rw"
               ],
               "type": "string"
             },
@@ -456,10 +458,10 @@
                   "$ref": "#/definitions/EasySetup"
               },
               {
-                  "$ref": "https://openconnectivityfoundation.github.io/core-extensions/oic.r.wificonf.swagger.json#/definitions/WiFiConf"
+                  "$ref": "https://openconnectivityfoundation.github.io/core-extensions/swagger2.0/oic.r.wificonf.swagger.json#/definitions/WiFiConf"
               },
               {
-                  "$ref": "https://openconnectivityfoundation.github.io/core-extensions/oic.r.devconf.swagger.json#/definitions/DevConf"
+                  "$ref": "https://openconnectivityfoundation.github.io/core-extensions/swagger2.0/oic.r.devconf.swagger.json#/definitions/DevConf"
               }
             ]
           }
@@ -494,7 +496,7 @@
                 "$ref": "#/definitions/EasySetupUpdate"
               },
               {
-                "$ref": "https://openconnectivityfoundation.github.io/core-extensions/oic.r.wificonf.swagger.json#/definitions/WiFiConfUpdate"
+                "$ref": "https://openconnectivityfoundation.github.io/core-extensions/swagger2.0/oic.r.wificonf.swagger.json#/definitions/WiFiConfUpdate"
               }
             ]
           }
