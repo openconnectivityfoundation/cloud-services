@@ -30,7 +30,7 @@
                       "id":            "unique_example_id",
                       "accountid":     "MyAccountID",
                       "category":      "MyCategory",
-                      "notificationtime": "2018-02-28T08:00:00Z",
+                      "timestamp": "2018-02-28T08:00:00Z",
                       "originatorid": "MyOriginatorID",
                       "severity": 3,
                       "subject": [{"language":"en-US","value":"System error"}]
@@ -43,7 +43,7 @@
                       "id":            "unique_example_id",
                       "accountid":     "MyAccountID",
                       "category":      "MyCategory",
-                      "notificationtime": "2018-02-28T08:15:00Z",
+                      "timestamp": "2018-02-28T08:15:00Z",
                       "originatorid": "MyOriginatorID",
                       "severity": 4,
                       "subject": [{"language":"en-US","value":"Network error"}]
