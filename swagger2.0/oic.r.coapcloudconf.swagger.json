@@ -4,7 +4,7 @@
     "title": "CoAP Cloud Configuration Resource Read Write Interface",
     "version": "v0.0.3-20180116",
     "license": {
-      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
+      "name": "copyright 2016-2019 Open Connectivity Foundation, Inc. All rights reserved.",
       "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
     }
   },
@@ -23,12 +23,12 @@
               "description" : "",
               "x-example":
                 {
+                  "rt" : ["oic.r.coapcloudconf"],
                   "apn": "github",
                   "cis": "coaps+tcp://example.com:443",
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/CoAPCloudConf" }
             }
         }
@@ -60,8 +60,7 @@
                   "cis": "coaps+tcp://example.com:443",
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/CoAPCloudConf" }
             }
         }
@@ -84,8 +83,7 @@
                   "cis": "coaps+tcp://example.com:443",
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/CoAPCloudConf" }
             }
         }
@@ -117,8 +115,7 @@
                   "cis": "coaps+tcp://example.com:443",
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/CoAPCloudConf" }
             }
         }
@@ -220,22 +217,6 @@
     },
     "CoAPCloudConfUpdate" : {
       "properties": {
-        "rt" :  {
-          "description": "Resource Type of the Resource",
-          "items": {
-            "maxLength": 64,
-            "type": "string"
-          },
-          "minItems": 1,
-          "readOnly": true,
-          "type": "array"
-        },
-        "n" : {
-          "description": "Friendly name of the resource",
-          "maxLength": 64,
-          "readOnly": true,
-          "type": "string"
-        },
         "cis" : {
           "description": "URL of OCF Cloud",
           "format": "uri",
@@ -253,31 +234,6 @@
           "description": "Format pattern according to IETF RFC 4122.",
           "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
           "type": "string"
-        },
-        "id" : {
-          "description": "Instance ID of this specific resource",
-          "maxLength": 64,
-          "readOnly": true,
-          "type": "string"
-        },
-        "if" : {
-          "description": "The interface set supported by this resource",
-          "items": {
-            "enum": [
-              "oic.if.baseline",
-              "oic.if.ll",
-              "oic.if.b",
-              "oic.if.lb",
-              "oic.if.rw",
-              "oic.if.r",
-              "oic.if.a",
-              "oic.if.s"
-            ],
-            "type": "string"
-          },
-          "minItems": 1,
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type" : "object",
