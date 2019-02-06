@@ -14,7 +14,7 @@
 	"paths": {
 		"/AtomicMeasurementResURI?if=oic.if.ll": {
 			"get": {
-				"description": "The oic.if.ll interface exposes a representation of the links\nRetrieve on Link List Interface\n",
+				"description": "The oic.if.ll OCF Interface exposes a representation of the Links\n",
 				"parameters": [{
 					"$ref": "#/parameters/interface-ll"
 				}],
@@ -48,7 +48,7 @@
 		},
 		"/AtomicMeasurementResURI?if=oic.if.b": {
 			"get": {
-				"description": "The oic.if.b interface returns data items retrieved from resources pointed to by the links.\nRetrieve the data elements of the Atomic Measurement using the OCF Batch Interface\n",
+				"description": "The oic.if.b OCF Interface returns data items retrieved from resources pointed to by the Links.\n",
 				"parameters": [{
 					"$ref": "#/parameters/interface-b"
 				}],
@@ -85,7 +85,7 @@
 		},
 		"/AtomicMeasurementResURI?if=oic.if.baseline": {
 			"get": {
-				"description": "The oic.if.baseline interface exposes a representation of the links and\nthe common properties of the Atomic Measurement resource.\nRetrieve on Baseline Interface\n",
+				"description": "The oic.if.baseline OCF Interface exposes a representation of the Links and\nthe Common Properties of the Atomic Measurement Resource.\n",
 				"parameters": [{
 					"$ref": "#/parameters/interface-baseline"
 				}],
@@ -322,7 +322,7 @@
 						"$ref": "#/definitions/oic.oic-link"
 					},
 					"type": "array"
-				},           
+				},
 				"n": { "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"},
               			"id": {"$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"},
 				"rt": {	"$ref": "#/definitions/oic.core/properties/rt"},
@@ -346,7 +346,7 @@
 			},
 			"type": "object"
 		},
-		
+
 		"oic.core": {
 			"properties": {
 				"rt": {
