@@ -153,7 +153,7 @@
         "rt" : {
           "description": "Resource Type of the Resource",
           "items": {
-            "enum": ["oic.wk.con"],
+            "enum": ["oic.r.coapcloudconf"],
             "type": "string"
           },
           "minItems": 1,
