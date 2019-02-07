@@ -607,6 +607,8 @@
                     "oic.if.baseline",
                     "oic.if.ll",
                     "oic.if.b",
+                    "oic.if.r",
+                    "oic.if.rw"
                   ],
                   "type": "string"
                 },
