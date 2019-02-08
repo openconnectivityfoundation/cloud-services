@@ -281,7 +281,7 @@
            }
          }
        }
-     },
+     }
   },
   "parameters": {
     "interface-baseline" : {
@@ -719,7 +719,7 @@
             "enum": [
               "oic.if.baseline",
               "oic.if.ll",
-              "oic.if.b",
+              "oic.if.b"
             ],
             "type": "string"
           },

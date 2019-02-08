@@ -67,7 +67,7 @@
           "items": {
             "enum": [
               "oic.if.baseline",
-              "oic.if.r",
+              "oic.if.r"
             ],
             "type": "string"
           },

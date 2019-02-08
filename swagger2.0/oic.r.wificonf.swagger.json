@@ -265,7 +265,7 @@
           "items": {
             "enum": [
               "oic.if.baseline",
-              "oic.if.rw",
+              "oic.if.rw"
             ],
             "type": "string"
           },
