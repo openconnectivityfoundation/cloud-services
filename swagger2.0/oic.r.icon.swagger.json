@@ -22,7 +22,7 @@
   "paths": {
     "/IconResURI" : {
       "get": {
-        "description": "This resource describes the attributes associated with an Icon.\nRetrieves the current icon properties.\n",
+        "description": "This Resource describes the attributes associated with an Icon.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface"

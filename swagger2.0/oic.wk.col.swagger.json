@@ -22,7 +22,7 @@
   "paths": {
     "/CollectionResURI?if=oic.if.baseline" : {
       "get": {
-        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.baseline interface exposes a representation of\nthe links and the properties of the collection resource itself\n",
+        "description": "OCF Collection Resource Type contains Properties and Links.\nThe oic.if.baseline OCF Interface exposes a representation of\nthe Links and the Properties of the collection Resource itself\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface-baseline"

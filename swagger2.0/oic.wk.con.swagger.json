@@ -22,7 +22,7 @@
   "paths": {
     "/exampleDeviceConfigurationResURI" : {
       "get": {
-        "description": "Resource that allows for Device specific information to be configured.\nRetrieves the current Device configuration settings\n",
+        "description": "Resource that allows for Device specific information to be configured.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface-all"
