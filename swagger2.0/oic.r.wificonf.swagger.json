@@ -34,8 +34,7 @@
                   "wet": "TKIP",
                   "swat": ["WPA_PSK", "WPA2_PSK"],
                   "swet": ["TKIP", "AES", "TKIP_AES"]
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/WiFiConf" }
             }
         }
@@ -67,8 +66,7 @@
                   "cd": "Home_AP_PWD",
                   "wat": "WPA2_PSK",
                   "wet": "AES"
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
             }
         }
@@ -122,8 +120,7 @@
                   "cd": "Home_AP_PWD",
                   "wat": "WPA2_PSK",
                   "wet": "AES"
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
             }
         }

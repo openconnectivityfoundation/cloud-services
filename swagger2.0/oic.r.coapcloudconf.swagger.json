@@ -25,12 +25,12 @@
               "description" : "",
               "x-example":
                 {
+                  "rt" : ["oic.r.coapcloudconf"],
                   "apn": "github",
                   "cis": "coaps+tcp://example.com:443",
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/CoAPCloudConf" }
             }
         }
@@ -62,8 +62,7 @@
                   "cis": "coaps+tcp://example.com:443",
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/CoAPCloudConf" }
             }
         }
@@ -86,8 +85,7 @@
                   "cis": "coaps+tcp://example.com:443",
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/CoAPCloudConf" }
             }
         }
@@ -119,8 +117,7 @@
                   "cis": "coaps+tcp://example.com:443",
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
-                }
-                ,
+                },
               "schema": { "$ref": "#/definitions/CoAPCloudConf" }
             }
         }
