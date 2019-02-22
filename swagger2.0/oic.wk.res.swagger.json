@@ -2,27 +2,81 @@
   "swagger": "2.0",
   "info": {
     "title": "Discoverable Resources Link List interface",
-    "version": "v1-20160622",
+    "version": "2019-02-21-16:00",
     "license": {
-      "name": "copyright 2016-2019 Open Connectivity Foundation, Inc. All rights reserved.",
-      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+      "name": "OCF Data Model License",
+      "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
+      "x-copyright": "Copyright 2016-2019 Open Connectivity Foundation, Inc. All rights reserved."
+    },
+    "termsOfService": "https://openconnectivityfoundation.github.io/core/DISCLAIMER.md"
     }
   },
-  "schemes": ["http"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
-    "/oic/res?if=oic.if.ll" : {
+    "/oic/res?if=oic.if.ll": {
       "get": {
         "description": "Link list representation of /oic/res; list of discoverable Resources\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-ll"}
+          {
+            "$ref": "#/parameters/interface-ll"
+          }
         ],
         "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                [
+          "200": {
+            "description" : "",
+            "x-example": [
+              {
+                "href": "/humidity",
+                "rt":   ["oic.r.humidity"],
+                "if":   ["oic.if.s"],
+                "p":    {"bm": 3},
+                "eps": [
+                  {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2},
+                  {"ep": "coaps://[fe80::b1d6]:1122"},
+                  {"ep": "coaps+tcp://[2001:db8:a::123]:2222", "pri": 3}
+                ]
+              },
+              {
+                "href": "/temperature",
+                "rt":   ["oic.r.temperature"],
+                "if":   ["oic.if.s"],
+                "p":    {"bm": 3},
+                "eps": [
+                  {"ep": "coaps://[[2001:db8:a::123]:2222"}
+                ]
+              }
+            ],
+            "schema": {
+              "$ref": "#/definitions/slinklist"
+            }
+          }
+        }
+      }
+    },
+    "/oic/res?if=oic.if.baseline": {
+      "get": {
+        "description": "Baseline representation of /oic/res; list of discoverable Resources\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-baseline"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "x-example": [
+              {
+                "rt": ["oic.wk.res"],
+                "if": ["oic.if.baseline", "oic.if.ll"],
+                "links": [
                   {
                     "href": "/humidity",
                     "rt":   ["oic.r.humidity"],
@@ -31,7 +85,7 @@
                     "eps": [
                       {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2},
                       {"ep": "coaps://[fe80::b1d6]:1122"},
-                      {"ep": "coaps+tcp://[2001:db8:a::123]:2222", "pri": 3}
+                      {"ep": "coap+tcp://[2001:db8:a::123]:2222", "pri": 3}
                     ]
                   },
                   {
@@ -43,116 +97,52 @@
                       {"ep": "coaps://[[2001:db8:a::123]:2222"}
                     ]
                   }
-                ],
-              "schema": { "$ref": "#/definitions/slinklist" }
+                ]
+              }
+            ],
+            "schema": {
+              "$ref": "#/definitions/sbaseline"
             }
-        }
-      }
-    },
-    "/oic/res?if=oic.if.baseline" : {
-      "get": {
-        "description": "Baseline representation of /oic/res; list of discoverable Resources\n",
-        "parameters": [
-          {"$ref": "#/parameters/interface-baseline"}
-        ],
-        "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                [
-                  {
-                  "rt": ["oic.wk.res"],
-                  "if": ["oic.if.baseline", "oic.if.ll" ],
-                  "links":
-                    [
-                      {
-                        "href": "/humidity",
-                        "rt":   ["oic.r.humidity"],
-                        "if":   ["oic.if.s"],
-                        "p":    {"bm": 3},
-                        "eps": [
-                            {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2},
-                            {"ep": "coaps://[fe80::b1d6]:1122"},
-                            {"ep": "coap+tcp://[2001:db8:a::123]:2222", "pri": 3}
-                        ]
-                      },
-                      {
-                        "href": "/temperature",
-                        "rt":   ["oic.r.temperature"],
-                        "if":   ["oic.if.s"],
-                        "p":    {"bm": 3},
-                        "eps": [
-                            {"ep": "coaps://[[2001:db8:a::123]:2222"}
-                        ]
-                      }
-                    ]
-                  }
-                ],
-              "schema": { "$ref": "#/definitions/sbaseline" }
-            }
+          }
         }
       }
     }
   },
   "parameters": {
-    "interface-ll" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.ll"]
+    "interface-ll": {
+      "in": "query",
+      "name": "if",
+      "type": "string",
+      "enum": ["oic.if.ll"]
     },
-    "interface-baseline" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.baseline"]
+    "interface-baseline": {
+      "in": "query",
+      "name": "if",
+      "type": "string",
+      "enum": ["oic.if.baseline"]
     },
-    "interface-all" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.ll", "oic.if.baseline"]
+    "interface-all": {
+      "in": "query",
+      "name": "if",
+      "type": "string",
+      "enum": ["oic.if.ll", "oic.if.baseline"]
     }
   },
   "definitions": {
-    "slinklist" : {
-      "items" : {
+    "slinklist": {
+      "items": {
         "properties": {
           "anchor": {
-            "description": "This is used to override the context URI e.g. override the URI of the containing collection.",
-            "format": "uri",
-            "maxLength": 256,
-            "type": "string"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/anchor"
           },
           "di": {
-            "description": "The Device ID formatted according to IETF RFC 4122.",
-            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-            "type": "string"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/di"
           },
           "eps": {
-            "description": "the Endpoint information of the target Resource",
-            "items": {
-              "properties": {
-                "ep": {
-                  "description": "Transport Protocol Suite + Endpoint Locator",
-                  "format": "uri",
-                  "type": "string"
-                },
-                "pri": {
-                  "description": "The priority among multiple Endpoints",
-                  "minimum": 1,
-                  "type": "integer"
-                }
-              },
-              "type": "object"
-            },
-            "type": "array"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/eps"
           },
           "href": {
-            "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI.",
-            "format": "uri",
-            "maxLength": 256,
-            "type": "string"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/href"
           },
           "if": {
             "description": "The interface set supported by this resource",
@@ -172,40 +162,19 @@
             "type": "array"
           },
           "ins": {
-            "description": "The instance identifier for this web link in an array of web links - used in collections",
-            "type": "integer"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/ins"
           },
           "p": {
-            "description": "Specifies the framework policies on the Resource referenced by the target URI",
-            "properties": {
-              "bm": {
-                "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable",
-                "type": "integer"
-              }
-            },
-            "required": [
-              "bm"
-            ],
-            "type": "object"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/p"
           },
           "rel": {
             "description": "The relation of the target URI referenced by the link to the context URI",
             "oneOf": [
               {
-                "default": [
-                  "hosts"
-                ],
-                "items": {
-                  "maxLength": 64,
-                  "type": "string"
-                },
-                "minItems": 1,
-                "type": "array"
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/rel_array"
               },
               {
-                "default": "hosts",
-                "maxLength": 64,
-                "type": "string"
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/rel_string"
               }
             ]
           },
@@ -219,20 +188,10 @@
             "type": "array"
           },
           "title": {
-            "description": "A title for the link relation. Can be used by the UI to provide a context.",
-            "maxLength": 64,
-            "type": "string"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/title"
           },
           "type": {
-            "default": "application/cbor",
-            "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting.",
-            "items": {
-              "maxLength": 64,
-              "type": "string"
-            },
-            "minItems": 1,
-            "type": "array"
-          }
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/type"
         },
         "required": [
           "href",
@@ -243,8 +202,8 @@
       },
       "type" : "array"
     },
-    "sbaseline" : {
-      "items" : {
+    "sbaseline": {
+      "items": {
         "properties": {
           "if": {
             "description": "The interface set supported by this resource",
@@ -263,40 +222,15 @@
             "items": {
               "properties": {
                 "anchor": {
-                  "description": "This is used to override the context URI e.g. override the URI of the containing collection.",
-                  "format": "uri",
-                  "maxLength": 256,
-                  "type": "string"
+                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/anchor"
                 },
                 "di": {
-                  "description": "The Device ID formatted according to IETF RFC 4122.",
-                  "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-                  "type": "string"
+                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/di"
                 },
-                "eps": {
-                  "description": "the Endpoint information of the target Resource",
-                  "items": {
-                    "properties": {
-                      "ep": {
-                        "description": "Transport Protocol Suite + Endpoint Locator",
-                        "format": "uri",
-                        "type": "string"
-                      },
-                      "pri": {
-                        "description": "The priority among multiple Endpoints",
-                        "minimum": 1,
-                        "type": "integer"
-                      }
-                    },
-                    "type": "object"
-                  },
-                  "type": "array"
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/eps"
                 },
                 "href": {
-                  "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI.",
-                  "format": "uri",
-                  "maxLength": 256,
-                  "type": "string"
+                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/href"
                 },
                 "if": {
                   "description": "The interface set supported by this resource",
@@ -316,40 +250,19 @@
                   "type": "array"
                 },
                 "ins": {
-                  "description": "The instance identifier for this web link in an array of web links - used in collections",
-                  "type": "integer"
+                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/ins"
                 },
                 "p": {
-                  "description": "Specifies the framework policies on the Resource referenced by the target URI",
-                  "properties": {
-                    "bm": {
-                      "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable",
-                      "type": "integer"
-                    }
-                  },
-                  "required": [
-                    "bm"
-                  ],
-                  "type": "object"
+                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/p"
                 },
                 "rel": {
                   "description": "The relation of the target URI referenced by the link to the context URI",
                   "oneOf": [
                     {
-                      "default": [
-                        "hosts"
-                      ],
-                      "items": {
-                        "maxLength": 64,
-                        "type": "string"
-                      },
-                      "minItems": 1,
-                      "type": "array"
+                      "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/rel_array"
                     },
                     {
-                      "default": "hosts",
-                      "maxLength": 64,
-                      "type": "string"
+                      "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/rel_string"
                     }
                   ]
                 },
@@ -363,20 +276,10 @@
                   "type": "array"
                 },
                 "title": {
-                  "description": "A title for the link relation. Can be used by the UI to provide a context.",
-                  "maxLength": 64,
-                  "type": "string"
+                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/title"
                 },
                 "type": {
-                  "default": "application/cbor",
-                  "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting.",
-                  "items": {
-                    "maxLength": 64,
-                    "type": "string"
-                  },
-                  "minItems": 1,
-                  "type": "array"
-                }
+                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#/definitions/type"
               },
               "required": [
                 "href",
@@ -388,18 +291,19 @@
             "type": "array"
           },
           "n": {
-            "description": "Human friendly name",
-            "maxLength": 64,
-            "readOnly": true,
-            "type": "string"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
+          },
+          "id": {
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
           },
           "rt": {
             "description": "Resource Type of the Resource",
             "items": {
-              "maxLength": 64,
+              "enum": ["oic.wk.res"],
               "type": "string"
             },
             "minItems": 1,
+            "maxItems": 1,
             "readOnly": true,
             "type": "array"
           }
