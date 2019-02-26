@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "CoAP Cloud Configuration Resource Read Write Interface",
-    "version": "v0.0.4-20190128",
+    "version": "20190128",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -136,12 +136,6 @@
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.baseline"]
-    },
-    "interface-all" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.baseline", "oic.if.rw"]
     }
   },
   "definitions": {
@@ -194,12 +188,12 @@
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
-              "oic.if.baseline",
-              "oic.if.rw"
+              "oic.if.rw",
+              "oic.if.baseline"
             ],
             "type": "string"
           },
-          "minItems": 1,
+          "minItems": 2,
           "uniqueItems": true,
           "readOnly": true,
           "type": "array"

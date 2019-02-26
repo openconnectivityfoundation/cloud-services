@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Device Configuration",
-    "version": "v0.0.3-20190128",
+    "version": "20190128",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -21,16 +21,14 @@
           {"$ref": "#/parameters/interface"}
         ],
         "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                {
-                  "rt": ["oic.r.devconf"],
-                  "dn" : "My Refrigerator"
-                }
-                ,
-              "schema": { "$ref": "#/definitions/DevConf" }
-            }
+          "200": {
+            "description" : "",
+            "x-example": {
+              "rt": ["oic.r.devconf"],
+              "dn" : "My Refrigerator"
+            },
+            "schema": { "$ref": "#/definitions/DevConf" }
+          }
         }
       }
     }
@@ -54,6 +52,7 @@
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         },
         "n" : {
@@ -66,13 +65,14 @@
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
-              "oic.if.baseline",
-              "oic.if.r"
+              "oic.if.r",
+              "oic.if.baseline"
             ],
             "type": "string"
           },
-          "minItems": 1,
+          "minItems": 2,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         },
         "dn": {

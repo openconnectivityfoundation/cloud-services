@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Easy Setup Collection Link List Interface",
-    "version": "v0.0.4-20190128",
+    "version": "20190128",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -53,8 +53,7 @@
                       {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
                     ]
                   }
-                ]
-                ,
+                ],
               "schema": { "$ref": "#/definitions/slinks" }
             }
         }
@@ -67,38 +66,38 @@
           {"$ref": "#/parameters/interface-batch"}
         ],
         "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                [
-                  {
-                    "href": "/EasySetupResURI",
-                    "rep":{
-                      "ps" : 0,
-                      "lec": 0,
-                      "cn": [1]
-                    }
-                  },
-                  {
-                    "href": "/WiFiConfResURI",
-                    "rep":{
-                      "swmt" : ["A", "B", "G"],
-                      "swf": ["2.4G", "5G"],
-                      "tnn": "Home_AP_SSID",
-                      "cd": "Home_AP_PWD",
-                      "wat": "WPA2_PSK",
-                      "wet": "AES"
-                    }
-                  },
-                  {
-                    "href": "/DevConfResURI",
-                    "rep":{
-                      "dn" : "My Refrigerator"
-                    }
+          "200": {
+            "description" : "",
+            "x-example":
+              [
+                {
+                  "href": "/EasySetupResURI",
+                  "rep":{
+                    "ps" : 0,
+                    "lec": 0,
+                    "cn": [1]
                   }
-                ],
-              "schema": { "$ref": "#/definitions/sbatch" }
-            }
+                },
+                {
+                  "href": "/WiFiConfResURI",
+                  "rep":{
+                    "swmt" : ["A", "B", "G"],
+                    "swf": ["2.4G", "5G"],
+                    "tnn": "Home_AP_SSID",
+                    "cd": "Home_AP_PWD",
+                    "wat": "WPA2_PSK",
+                    "wet": "AES"
+                  }
+                },
+                {
+                  "href": "/DevConfResURI",
+                  "rep":{
+                      "dn" : "My Refrigerator"
+                  }
+                }
+              ],
+            "schema": { "$ref": "#/definitions/sbatch" }
+          }
         }
       },
       "post": {
@@ -131,39 +130,38 @@
           }
         ],
         "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                [
-                  {
-                    "href": "/EasySetupResURI",
-                    "rep" : {
-                      "ps" : 0,
-                      "lec": 0,
-                      "cn": [1]
-                    }
-                  },
-                  {
-                    "href": "/WiFiConfResURI",
-                    "rep" : {
-                      "swmt" : ["A", "B", "G"],
-                      "swf": ["2.4G", "5G"],
-                      "tnn": "Home_AP_SSID",
-                      "cd": "Home_AP_PWD",
-                      "wat": "WPA2_PSK",
-                      "wet": "AES"
-                    }
-                  },
-                  {
-                    "href": "/DevConfResURI",
-                    "rep" : {
-                      "dn" : "My Refrigerator"
-                    }
+          "200": {
+            "description" : "",
+            "x-example":
+              [
+                {
+                  "href": "/EasySetupResURI",
+                  "rep" : {
+                    "ps" : 0,
+                    "lec": 0,
+                    "cn": [1]
                   }
-                ]
-                ,
-              "schema": { "$ref": "#/definitions/sbatch" }
-            }
+                },
+                {
+                  "href": "/WiFiConfResURI",
+                  "rep" : {
+                    "swmt" : ["A", "B", "G"],
+                    "swf": ["2.4G", "5G"],
+                    "tnn": "Home_AP_SSID",
+                    "cd": "Home_AP_PWD",
+                    "wat": "WPA2_PSK",
+                    "wet": "AES"
+                  }
+                },
+                {
+                  "href": "/DevConfResURI",
+                  "rep" : {
+                    "dn" : "My Refrigerator"
+                  }
+                }
+              ],
+            "schema": { "$ref": "#/definitions/sbatch" }
+          }
         }
       }
     },
@@ -174,49 +172,48 @@
           {"$ref": "#/parameters/interface-baseline"}
         ],
         "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                {
-                  "rt" : ["oic.r.easysetup", "oic.wk.col"],
-                  "if" : ["oic.if.ll", "oic.if.baseline", "oic.if.b"],
-                  "ps" : 0,
-                  "lec": 0,
-                  "cn": [1],
-                  "links": [
-                    {
-                      "href": "/EasySetupResURI",
-                      "rt": ["oic.r.easysetup", "oic.wk.col"],
-                      "if": ["oic.if.b"],
-                      "p":{"bm":3},
-                      "eps": [
-                        {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
-                      ],
-                      "rel":["self", "item"]
-                    },
-                    {
-                      "href": "/WiFiConfResURI",
-                      "rt":   ["oic.r.wificonf"],
-                      "if":   ["oic.if.baseline"],
-                      "p":{"bm":3},
-                      "eps": [
-                        {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
-                      ]
-                    },
-                    {
-                      "href": "/DevConfResURI",
-                      "rt":   ["oic.r.devconf"],
-                      "if":   ["oic.if.baseline"],
-                      "p":{"bm":3},
-                      "eps": [
-                        {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
-                      ]
-                    }
-                  ]
-                }
-                ,
-              "schema": { "$ref": "#/definitions/EasySetup" }
-            }
+          "200": {
+            "description" : "",
+            "x-example":
+              {
+                "rt" : ["oic.r.easysetup", "oic.wk.col"],
+                "if" : ["oic.if.ll", "oic.if.baseline", "oic.if.b"],
+                "ps" : 0,
+                "lec": 0,
+                "cn": [1],
+                "links": [
+                  {
+                    "href": "/EasySetupResURI",
+                    "rt": ["oic.r.easysetup", "oic.wk.col"],
+                    "if": ["oic.if.b"],
+                    "p":{"bm":3},
+                    "eps": [
+                      {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                    ],
+                    "rel":["self", "item"]
+                  },
+                  {
+                    "href": "/WiFiConfResURI",
+                    "rt":   ["oic.r.wificonf"],
+                    "if":   ["oic.if.baseline"],
+                    "p":{"bm":3},
+                    "eps": [
+                      {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                    ]
+                  },
+                  {
+                    "href": "/DevConfResURI",
+                    "rt":   ["oic.r.devconf"],
+                    "if":   ["oic.if.baseline"],
+                    "p":{"bm":3},
+                    "eps": [
+                      {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2}
+                    ]
+                  }
+                ]
+              },
+            "schema": { "$ref": "#/definitions/EasySetup" }
+          }
         }
       },
       "post": {
@@ -231,7 +228,7 @@
             "x-example":
              [
                {
-                   "cn": [1]
+                 "cn": [1]
                }
              ]
           }
@@ -301,54 +298,38 @@
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.b"]
-    },
-    "interface-all" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.baseline", "oic.if.ll", "oic.if.b"]
     }
   },
   "definitions": {
     "slinks" : {
-      "items" :
-            {
+      "items": {
         "properties": {
           "anchor": {
-            "description": "This is used to override the context URI e.g. override the URI of the containing collection.",
-            "format": "uri",
-            "maxLength": 256,
-            "type": "string"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
           },
           "di": {
-            "description": "The Device ID formatted according to IETF RFC 4122.",
-            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-            "type": "string"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
           },
           "eps": {
-            "description": "the Endpoint information of the target Resource",
-            "items": {
-              "properties": {
-                "ep": {
-                  "description": "Transport Protocol Suite + Endpoint Locator",
-                  "format": "uri",
-                  "type": "string"
-                },
-                "pri": {
-                  "description": "The priority among multiple Endpoints",
-                  "minimum": 1,
-                  "type": "integer"
-                }
-              },
-              "type": "object"
-            },
-            "type": "array"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
           },
           "href": {
-            "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI.",
-            "format": "uri",
-            "maxLength": 256,
-            "type": "string"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
+          },
+          "ins": {
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
+          },
+          "p": {
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
+          },
+          "rel": {
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
+          },
+          "title": {
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
+          },
+          "type": {
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
           },
           "if": {
             "description": "The interface set supported by this resource",
@@ -365,61 +346,8 @@
             "minItems": 1,
             "type": "array"
           },
-          "ins": {
-            "description": "The instance identifier for this web link in an array of web links - used in collections",
-            "type": "integer"
-          },
-          "p": {
-            "description": "Specifies the framework policies on the Resource referenced by the target URI",
-            "properties": {
-              "bm": {
-                "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable",
-                "type": "integer"
-              }
-            },
-            "required": [
-              "bm"
-            ],
-            "type": "object"
-          },
-          "rel": {
-            "description": "The relation of the target URI referenced by the link to the context URI",
-            "oneOf": [
-              {
-                "default": [
-                  "hosts"
-                ],
-                "items": {
-                  "maxLength": 64,
-                  "type": "string"
-                },
-                "minItems": 1,
-                "type": "array"
-              },
-              {
-                "default": "hosts",
-                "maxLength": 64,
-                "type": "string"
-              }
-            ]
-          },
           "rt": {
             "description": "Resource Type of the Resource",
-            "items": {
-              "maxLength": 64,
-              "type": "string"
-            },
-            "minItems": 1,
-            "type": "array"
-          },
-          "title": {
-            "description": "A title for the link relation. Can be used by the UI to provide a context.",
-            "maxLength": 64,
-            "type": "string"
-          },
-          "type": {
-            "default": "application/cbor",
-            "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting.",
             "items": {
               "maxLength": 64,
               "type": "string"
@@ -435,20 +363,15 @@
         ],
         "type": "object"
       },
-      "type" : "array",
-      "title" : "EasySetup Object Links List Schema (auto merged)"
+      "type" : "array"
     },
     "sbatch" : {
-      "title" : "Collection Batch Retrieve Format (auto merged)",
       "minItems" : 1,
       "items" : {
         "additionalProperties": true,
         "properties": {
           "href": {
-            "description": "URI of the target resource relative assuming the collection URI as anchor",
-            "format": "uri",
-            "maxLength": 256,
-            "type": "string"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
           },
           "rep": {
             "description": "The response payload from a single resource",
@@ -473,20 +396,15 @@
         "type": "object"
       },
       "type" : "array"
-
     },
     "sbatch-update" : {
-      "title" : "Collection Batch Update Format (auto merged)",
       "minItems" : 1,
       "items" : {
         "additionalProperties": true,
         "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
         "properties": {
           "href": {
-            "description": "URI of the target resource relative assuming the collection URI as anchor",
-            "format": "uri",
-            "maxLength": 256,
-            "type": "string"
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
           },
           "rep": {
             "description": "The response payload from a single resource",
@@ -511,6 +429,46 @@
     },
     "EasySetup" : {
       "properties": {
+        "n" :  {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
+        },
+        "rts" : {
+          "description": "Resource Type of the Resources within the Collection",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "id" : {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
+        },
+        "rts-m" : {
+          "description": "Resource Type of the mandatory Resources within the Collection",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "if" : {
+          "description": "The OCF Interfaces supported by this Resource",
+          "items": {
+            "enum": [
+              "oic.if.ll",
+              "oic.if.baseline",
+              "oic.if.b"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
         "rt" : {
           "items": {
             "enum": [
@@ -561,44 +519,35 @@
           "type": "array"
         },
         "links" : {
-          "description": "A set of simple or individual OIC Links.",
+          "description": "A set of OCF Links.",
           "items": {
             "properties": {
               "anchor": {
-                "description": "This is used to override the context URI e.g. override the URI of the containing collection.",
-                "format": "uri",
-                "maxLength": 256,
-                "type": "string"
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
               },
               "di": {
-                "description": "The Device ID formatted according to IETF RFC 4122.",
-                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-                "type": "string"
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
               },
               "eps": {
-                "description": "the Endpoint information of the target Resource",
-                "items": {
-                  "properties": {
-                    "ep": {
-                      "description": "Transport Protocol Suite + Endpoint Locator",
-                      "format": "uri",
-                      "type": "string"
-                    },
-                    "pri": {
-                      "description": "The priority among multiple Endpoints",
-                      "minimum": 1,
-                      "type": "integer"
-                    }
-                  },
-                  "type": "object"
-                },
-                "type": "array"
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
               },
               "href": {
-                "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI.",
-                "format": "uri",
-                "maxLength": 256,
-                "type": "string"
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
+              },
+              "ins": {
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
+              },
+              "p": {
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
+              },
+              "rel": {
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
+              },
+              "title": {
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
+              },
+              "type": {
+                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
               },
               "if": {
                 "description": "The interface set supported by this resource",
@@ -615,61 +564,8 @@
                 "minItems": 1,
                 "type": "array"
               },
-              "ins": {
-                "description": "The instance identifier for this web link in an array of web links - used in collections",
-                "type": "integer"
-              },
-              "p": {
-                "description": "Specifies the framework policies on the Resource referenced by the target URI",
-                "properties": {
-                  "bm": {
-                    "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable",
-                    "type": "integer"
-                  }
-                },
-                "required": [
-                  "bm"
-                ],
-                "type": "object"
-              },
-              "rel": {
-                "description": "The relation of the target URI referenced by the link to the context URI",
-                "oneOf": [
-                  {
-                    "default": [
-                      "hosts"
-                    ],
-                    "items": {
-                      "maxLength": 64,
-                      "type": "string"
-                    },
-                    "minItems": 1,
-                    "type": "array"
-                  },
-                  {
-                    "default": "hosts",
-                    "maxLength": 64,
-                    "type": "string"
-                  }
-                ]
-              },
               "rt": {
                 "description": "Resource Type of the Resource",
-                "items": {
-                  "maxLength": 64,
-                  "type": "string"
-                },
-                "minItems": 1,
-                "type": "array"
-              },
-              "title": {
-                "description": "A title for the link relation. Can be used by the UI to provide a context.",
-                "maxLength": 64,
-                "type": "string"
-              },
-              "type": {
-                "default": "application/cbor",
-                "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting.",
                 "items": {
                   "maxLength": 64,
                   "type": "string"
@@ -685,46 +581,6 @@
             ],
             "type": "object"
           },
-          "type": "array"
-        },
-        "n" :  {
-          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
-        },
-        "rts" : {
-          "description": "Resource Type of the Resource",
-          "items": {
-            "maxLength": 64,
-            "type": "string"
-          },
-          "minItems": 1,
-          "readOnly": true,
-          "type": "array"
-        },
-        "id" : {
-          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
-        },
-        "rts-m" : {
-          "description": "Resource Type of the Resource",
-          "items": {
-            "maxLength": 64,
-            "type": "string"
-          },
-          "minItems": 1,
-          "readOnly": true,
-          "type": "array"
-        },
-        "if" : {
-          "description": "The interface set supported by this resource",
-          "items": {
-            "enum": [
-              "oic.if.baseline",
-              "oic.if.ll",
-              "oic.if.b"
-            ],
-            "type": "string"
-          },
-          "minItems": 1,
-          "readOnly": true,
           "type": "array"
         }
       },

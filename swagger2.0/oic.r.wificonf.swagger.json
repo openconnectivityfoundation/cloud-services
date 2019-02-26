@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Wi-Fi Configuration Resource Baseline Interface",
-    "version": "v0.0.4-20190128",
+    "version": "20190128",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -14,64 +14,6 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/WiFiConfResURI?if=oic.if.baseline" : {
-      "get": {
-        "description": "WiFiConf resource stores essential information to help an unboxing device\nto connect to an existing Wi-Fi AP.\nRetrieve properties of WiFiConf resource.\nThe information includes :\n1. Wi-Fi SSID and password\n2. Wi-Fi Security type (i.e. auth type and encription type)\n3. Wi-Fi hardware capability (i.e. supported frequencies, modes,\n  auth types and encryption types)\n",
-        "parameters": [
-          {"$ref": "#/parameters/interface-baseline"}
-        ],
-        "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                {
-                  "rt": ["oic.r.wificonf"],
-                  "swmt" : ["A", "B", "G"],
-                  "swf": ["2.4G", "5G"],
-                  "tnn": "Home_AP_SSID",
-                  "cd": "Home_AP_PWD",
-                  "wat": "WPA2_PSK",
-                  "wet": "TKIP",
-                  "swat": ["WPA_PSK", "WPA2_PSK"],
-                  "swet": ["TKIP", "AES", "TKIP_AES"]
-                },
-              "schema": { "$ref": "#/definitions/WiFiConf" }
-            }
-        }
-      },
-      "post": {
-        "description": "Deliver Wi-Fi AP's information for an unboxing device to connect to it.\n",
-        "parameters": [
-          {"$ref": "#/parameters/interface-baseline"},
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": { "$ref": "#/definitions/WiFiConfUpdate" },
-            "x-example":
-              {
-                "tnn": "Home_AP_SSID",
-                "cd": "Home_AP_PWD",
-                "wat": "WPA2_PSK",
-                "wet": "AES"
-              }
-          }
-        ],
-        "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                {
-                  "tnn": "Home_AP_SSID",
-                  "cd": "Home_AP_PWD",
-                  "wat": "WPA2_PSK",
-                  "wet": "AES"
-                },
-              "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
-            }
-        }
-      }
-    },
     "/WiFiConfResURI?if=oic.if.rw" : {
       "get": {
         "description": "WiFiConf resource stores essential information to help an unboxing device\nto connect to an existing Wi-Fi AP.\nRetrieve properties of WiFiConf resource that can be updated by a client.\n",
@@ -79,18 +21,17 @@
           {"$ref": "#/parameters/interface-rw"}
         ],
         "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                {
-                  "tnn": "Home_AP_SSID",
-                  "cd": "Home_AP_PWD",
-                  "wat": "WPA2_PSK",
-                  "wet": "AES"
-                }
-                ,
-              "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
-            }
+          "200": {
+            "description" : "",
+            "x-example":
+              {
+                "tnn": "Home_AP_SSID",
+                "cd": "Home_AP_PWD",
+                "wat": "WPA2_PSK",
+                "wet": "AES"
+              },
+            "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
+          }
         }
       },
       "post": {
@@ -112,17 +53,75 @@
           }
         ],
         "responses": {
-            "200": {
-              "description" : "",
-              "x-example":
-                {
-                  "tnn": "Home_AP_SSID",
-                  "cd": "Home_AP_PWD",
-                  "wat": "WPA2_PSK",
-                  "wet": "AES"
-                },
-              "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
-            }
+          "200": {
+            "description" : "",
+            "x-example":
+              {
+                "tnn": "Home_AP_SSID",
+                "cd": "Home_AP_PWD",
+                "wat": "WPA2_PSK",
+                "wet": "AES"
+              },
+            "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
+          }
+        }
+      }
+    },
+    "/WiFiConfResURI?if=oic.if.baseline" : {
+      "get": {
+        "description": "WiFiConf resource stores essential information to help an unboxing device\nto connect to an existing Wi-Fi AP.\nRetrieve properties of WiFiConf resource.\nThe information includes :\n1. Wi-Fi SSID and password\n2. Wi-Fi Security type (i.e. auth type and encription type)\n3. Wi-Fi hardware capability (i.e. supported frequencies, modes,\n  auth types and encryption types)\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-baseline"}
+        ],
+        "responses": {
+          "200": {
+            "description" : "",
+            "x-example":
+              {
+                "rt": ["oic.r.wificonf"],
+                "swmt" : ["A", "B", "G"],
+                "swf": ["2.4G", "5G"],
+                "tnn": "Home_AP_SSID",
+                "cd": "Home_AP_PWD",
+                "wat": "WPA2_PSK",
+                "wet": "TKIP",
+                "swat": ["WPA_PSK", "WPA2_PSK"],
+                "swet": ["TKIP", "AES", "TKIP_AES"]
+              },
+            "schema": { "$ref": "#/definitions/WiFiConf" }
+          }
+        }
+      },
+      "post": {
+        "description": "Deliver Wi-Fi AP's information for an unboxing device to connect to it.\n",
+        "parameters": [
+          {"$ref": "#/parameters/interface-baseline"},
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/WiFiConfUpdate" },
+            "x-example":
+              {
+                "tnn": "Home_AP_SSID",
+                "cd": "Home_AP_PWD",
+                "wat": "WPA2_PSK",
+                "wet": "AES"
+              }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description" : "",
+            "x-example":
+              {
+                "tnn": "Home_AP_SSID",
+                "cd": "Home_AP_PWD",
+                "wat": "WPA2_PSK",
+                "wet": "AES"
+              },
+            "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
+          }
         }
       }
     }
@@ -139,12 +138,6 @@
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.baseline"]
-    },
-    "interface-all" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.baseline", "oic.if.rw"]
     }
   },
   "definitions": {
