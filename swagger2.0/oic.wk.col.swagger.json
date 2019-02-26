@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "OCF Collection",
-    "version": "v1.1.0-20161107",
+    "version": "2019-02-26",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -20,6 +20,46 @@
     "application/json"
   ],
   "paths": {
+    "/CollectionResURI?if=oic.if.ll" : {
+      "get": {
+        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.ll interface exposes a representation of the links\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-ll"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description" : "",
+            "x-example": [
+              {
+                "href": "/switch",
+                "rt":   ["oic.r.switch.binary"],
+                "if":   ["oic.if.a", "oic.if.baseline"],
+                "eps": [
+                  {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
+                  {"ep": "coaps://[fe80::b1d6]:1122"},
+                  {"ep": "coap+tcp://[2001:db8:a::123]:2222", "pri": 3}
+                ]
+              },
+              {
+                "href": "/airFlow",
+                "rt":   ["oic.r.airflow"],
+                "if":   ["oic.if.a", "oic.if.baseline"],
+                "eps": [
+                  {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
+                  {"ep": "coaps://[fe80::b1d6]:1122"},
+                  {"ep": "coap+tcp://[2001:db8:a::123]:2222", "pri": 3}
+                ]
+              }
+            ],
+            "schema": {
+              "$ref": "#/definitions/slinks"
+            }
+          }
+        }
+      }
+    },
     "/CollectionResURI?if=oic.if.baseline" : {
       "get": {
         "description": "OCF Collection Resource Type contains Properties and Links.\nThe oic.if.baseline OCF Interface exposes a representation of\nthe Links and the Properties of the collection Resource itself\n",
@@ -33,7 +73,6 @@
             "description" : "",
             "x-example": {
               "rt": ["oic.wk.col"],
-              "id": "unique_example_id",
               "rts": [ "oic.r.switch.binary", "oic.r.airflow" ],
               "rts-m": [ "oic.r.switch.binary" ],
               "links": [
@@ -211,46 +250,6 @@
           }
         }
       }
-    },
-    "/CollectionResURI?if=oic.if.ll" : {
-      "get": {
-        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.ll interface exposes a representation of the links\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface-ll"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description" : "",
-            "x-example": [
-              {
-                "href": "/switch",
-                "rt":   ["oic.r.switch.binary"],
-                "if":   ["oic.if.a", "oic.if.baseline"],
-                "eps": [
-                  {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
-                  {"ep": "coaps://[fe80::b1d6]:1122"},
-                  {"ep": "coap+tcp://[2001:db8:a::123]:2222", "pri": 3}
-                ]
-              },
-              {
-                "href": "/airFlow",
-                "rt":   ["oic.r.airflow"],
-                "if":   ["oic.if.a", "oic.if.baseline"],
-                "eps": [
-                  {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
-                  {"ep": "coaps://[fe80::b1d6]:1122"},
-                  {"ep": "coap+tcp://[2001:db8:a::123]:2222", "pri": 3}
-                ]
-              }
-            ],
-            "schema": {
-              "$ref": "#/definitions/slinks"
-            }
-          }
-        }
-      }
     }
   },
   "parameters": {
@@ -271,12 +270,6 @@
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.baseline"]
-    },
-    "interface-all" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.ll", "oic.if.baseline", "oic.if.b"]
     }
   },
   "definitions": {
@@ -308,14 +301,13 @@
 	        "description": "The interface set supported by this resource",
 	        "items": {
 		        "enum": [
+              "oic.if.ll",
               "oic.if.baseline",
-			        "oic.if.ll",
 			        "oic.if.b"
             ],
 						"type": "string"
 					},
-					"minItems": 1,
-          "maxItems": 3,
+					"minItems": 2,
           "uniqueItems": true,
           "readOnly": true,
 					"type": "array"
@@ -347,7 +339,6 @@
 			"type": "array"
 		},
     "sbatch-retrieve" : {
-      "title" : "Collection Batch Retrieve Format",
       "minItems" : 1,
       "items" : {
         "additionalProperties": true,

@@ -116,19 +116,13 @@
           "type": "string"
         },
         "n": {
-          "description": "Friendly name of the Resource",
-          "maxLength": 64,
-          "readOnly": true,
-          "type": "string"
+          "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
+        },
+        "id": {
+          "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "accountid": {
           "description": "ID of the account",
-          "maxLength": 64,
-          "readOnly": true,
-          "type": "string"
-        },
-        "id": {
-          "description": "Instance ID of this specific Resource",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"

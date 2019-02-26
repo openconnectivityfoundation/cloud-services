@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Icon",
-    "version": "v1.1.0-20161107",
+    "version": "2019-02-26",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -33,7 +33,6 @@
             "description": "",
             "x-example": {
               "rt": ["oic.r.icon"],
-              "id": "unique_example_id",
               "mimetype": "image/png",
               "width": 256,
               "height": 256,
@@ -105,12 +104,12 @@
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
-              "oic.if.baseline",
-              "oic.if.r"
+              "oic.if.r",
+              "oic.if.baseline"
             ],
             "type": "string"
           },
-          "minItems": 1,
+          "minItems": 2,
           "readOnly": true,
           "type": "array"
         }
