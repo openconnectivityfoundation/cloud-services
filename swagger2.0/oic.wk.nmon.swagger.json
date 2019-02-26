@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Network Monitoring",
-    "version": "v1-20180306",
+    "version": "2019-02-26",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -159,13 +159,14 @@
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
-              "oic.if.baseline",
-              "oic.if.rw"
+              "oic.if.rw",
+              "oic.if.baseline"
             ],
             "type": "string"
           },
-          "minItems": 1,
+          "minItems": 2,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         }
       },

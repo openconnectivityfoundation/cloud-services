@@ -67,6 +67,7 @@
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         },
         "ld":  {
@@ -181,12 +182,12 @@
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
-              "oic.if.baseline",
-              "oic.if.r"
+              "oic.if.r",
+              "oic.if.baseline"
             ],
             "type": "string"
           },
-          "minItems": 1,
+          "minItems": 2,
           "readOnly": true,
           "type": "array"
         }

@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "OCF Scene Member",
-    "version": "v1.1.0-20161107",
+    "version": "2019-02-26",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -77,12 +77,6 @@
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.baseline"]
-    },
-    "interface-all" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.baseline"]
     }
   },
   "definitions": {
@@ -96,6 +90,7 @@
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         },
         "SceneMappings": {
@@ -136,7 +131,7 @@
           "$ref": "#/definitions/oic.oic-link"
         },
         "if": {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.baseline"
@@ -145,6 +140,7 @@
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         }
       },
@@ -153,7 +149,7 @@
     "oic.oic-link": {
       "properties": {
         "if": {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by the target Resource",
           "items": {
             "enum": [
               "oic.if.baseline",
@@ -173,12 +169,13 @@
           "type": "array"
         },
         "rt": {
-          "description": "Resource Type of the Resource",
+          "description": "Resource Type of the target Resource",
           "items": {
             "type": "string"
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         },
         "anchor": {

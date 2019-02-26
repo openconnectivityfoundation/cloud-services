@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "OCF Scene Collection",
-    "version": "v1.1.0-20161107",
+    "version": "2019-02-26",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -20,6 +20,28 @@
     "application/json"
   ],
   "paths": {
+    "/SceneCollectionResURI?if=oic.if.ll" : {
+      "get": {
+        "description": "Collection that models a set of Scenes.\nThis resource is a generic collection resource with additional parameters.\nThe rts value shall contain oic.scenemember resource types.\nThe additional parameters are\n  lastScene, this is the scene value last set by any OCF Client\n  sceneValues, this is the list of available scenes\n  lastScene shall be listed in sceneValues.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-ll"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description" : "",
+            "x-example": [
+              {"href": "/scenemember1","rt": ["oic.wk.scenemember"],"if":["oic.if.baseline"]},
+              {"href": "/scenemember2","rt": ["oic.wk.scenemember"],"if":["oic.if.baseline"]}
+            ],
+            "schema": {
+              "$ref": "#/definitions/slinks"
+            }
+          }
+        }
+      }
+    },
     "/SceneCollectionResURI?if=oic.if.baseline" : {
       "get": {
         "description": "Collection that models a set of Scenes.\nThis resource is a generic collection resource with additional parameters.\nThe rts value shall contain oic.scenemember resource types.\nThe additional parameters are\n  lastScene, this is the scene value last set by any OCF Client\n  sceneValues, this is the list of available scenes\n  lastScene shall be listed in sceneValues.\n",
@@ -36,7 +58,6 @@
               "sceneValues": ["off","Reading","TVWatching"],
               "rt":       ["oic.wk.scenecollection"],
               "n":        "My Scenes for my living room",
-              "id":       "0685B960-736F-46F7-BEC0-9E6CBD671ADC1",
               "rts":      ["oic.wk.scenemember"],
               "links": [
                 {"href": "/scenemember1","rt": ["oic.wk.scenemember"],"if":["oic.if.baseline"]},
@@ -79,28 +100,6 @@
           }
         }
       }
-    },
-    "/SceneCollectionResURI?if=oic.if.ll" : {
-      "get": {
-        "description": "Collection that models a set of Scenes.\nThis resource is a generic collection resource with additional parameters.\nThe rts value shall contain oic.scenemember resource types.\nThe additional parameters are\n  lastScene, this is the scene value last set by any OCF Client\n  sceneValues, this is the list of available scenes\n  lastScene shall be listed in sceneValues.\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface-ll"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description" : "",
-            "x-example": [
-              {"href": "/scenemember1","rt": ["oic.wk.scenemember"],"if":["oic.if.baseline"]},
-              {"href": "/scenemember2","rt": ["oic.wk.scenemember"],"if":["oic.if.baseline"]}
-            ],
-            "schema": {
-              "$ref": "#/definitions/slinks"
-            }
-          }
-        }
-      }
     }
   },
   "parameters": {
@@ -121,12 +120,6 @@
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.ll"]
-    },
-    "interface-all" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.a", "oic.if.ll", "oic.if.baseline"]
     }
   },
   "definitions": {
@@ -140,6 +133,7 @@
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         },
         "lastScene": {
@@ -175,14 +169,15 @@
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         },
         "if" : {
           "description": "The interface set supported by this resource",
           "items": {
             "enum": [
-              "oic.if.baseline",
               "oic.if.ll",
+              "oic.if.baseline",
               "oic.if.a"
             ],
             "type": "string"
