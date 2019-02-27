@@ -4,9 +4,11 @@
     "title": "Alert Collection",
     "version": "2019-02-26",
     "license": {
-      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
-      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
-    }
+      "name": "OCF Data Model License",
+      "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
+      "x-copyright": "Copyright 2019 Open Connectivity Foundation, Inc. All rights reserved."
+    },
+    "termsOfService": "https://openconnectivityfoundation.github.io/core/DISCLAIMER.md"
   },
   "schemes": ["http"],
   "consumes": ["application/json"],
@@ -84,6 +86,7 @@
             "x-example": {
               "rt":    ["oic.r.alertcollection"],
               "rts":   ["oic.r.alert"],
+              "if":    ["oic.if.ll","oic.if.baseline","oic.if.b"],
               "links": [
                 {"href": "/myAlert1ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
                 {"href": "/myAlert2ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
@@ -120,7 +123,7 @@
   "definitions": {
     "AlertCollection-b" : {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "uniqueItems": true,
       "items": {
         "type": "object",
@@ -149,23 +152,27 @@
         },
         "rt": {
           "items": {
-            "enum": [
-              "oic.r.alertcollection"
-            ]
+            "type": "string",
+            "enum": ["oic.r.alertcollection"]
           },
+          "maxLength": 64,
           "maxItems": 1,
           "minItems": 1,
           "type": "array",
-          "uniqueItems": true
+          "uniqueItems": true,
+          "readOnly": true
         },
         "rts": {
           "items": {
             "type": "string",
             "enum": ["oic.r.alert"]
           },
+          "maxLength": 64,
           "minItems": 1,
+          "maxItems": 1,
           "type": "array",
-          "uniqueItems": true
+          "uniqueItems": true,
+          "readOnly": true
         },
         "if": {
           "description": "The OCF Interfaces supported by this Resource",
@@ -177,6 +184,7 @@
             ],
             "type": "string"
           },
+          "maxLength": 64,
           "minItems": 2,
           "readOnly": true,
           "uniqueItems": true,
@@ -185,135 +193,84 @@
         "links": {
           "description": "A set of simple or individual OCF Links.",
           "items": {
-            "properties": {
-              "anchor": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
-              },
-              "di": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
-              },
-              "eps": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
-              },
-              "href": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
-              },
-              "ins": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
-              },
-              "p": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
-              },
-              "rel": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
-              },
-              "title": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
-              },
-              "type": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
-              },
-              "if": {
-                "description": "The interface set supported by the target Resource",
-                "items": {
-                  "enum": [
-                    "oic.if.r",
-                    "oic.if.baseline"
-                  ],
-                  "type": "string"
-                },
-                "minItems": 1,
-                "uniqueItems": true,
-                "type": "array"
-              },
-              "rt": {
-                "description": "Resource Type of the target Resource",
-                "items": {
-                  "maxLength": 64,
-                  "type": "string",
-                  "enum": ["oic.r.alert"]
-                },
-                "minItems": 1,
-                "uniqueItems": true,
-                "type": "array"
-              }
-            },
-            "required": [
-              "href",
-              "rt",
-              "if"
-            ],
-            "type": "object"
+            "$ref": "#/definitions/oic.oic-link"
           },
           "type": "array"
         }
       },
       "type" : "object",
-      "required": ["rt","rts","links"]
+      "required": ["rt","rts","if","links"]
     },
     "AlertCollection-ll" : {
       "type": "array",
       "items": {
-        "properties": {
-          "anchor": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
-          },
-          "di": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
-          },
-          "eps": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
-          },
-          "href": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
-          },
-          "ins": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
-          },
-          "p": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
-          },
-          "rel": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
-          },
-          "title": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
-          },
-          "type": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
-          },
-          "if": {
-            "description": "The OCF Interfaces supported by the target Resource",
-            "items": {
-              "enum": [
-                "oic.if.r",
-                "oic.if.baseline"
-              ],
-              "type": "string"
-            },
-            "minItems": 2,
-            "uniqueItems": true,
-            "type": "array"
-          },
-          "rt": {
-            "description": "Resource Type of the target Resource",
-            "items": {
-              "maxLength": 64,
-              "type": "string",
-              "enum": ["oic.r.alert"]
-            },
-            "minItems": 1,
-            "type": "array",
-            "uniqueItems": true
-          }
-        },
-        "required": [
-          "href",
-          "rt",
-          "if"
-        ],
-        "type": "object"
+        "$ref": "#/definitions/oic.oic-link"
       }
+    },
+    "oic.oic-link": {
+      "type": "object",
+      "properties": {
+        "anchor": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
+        },
+        "di": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
+        },
+        "eps": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
+        },
+        "href": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
+        },
+        "ins": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
+        },
+        "p": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
+        },
+        "rel": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
+        },
+        "title": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
+        },
+        "type": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
+        },
+        "if": {
+          "description": "The OCF Interfaces supported by the target Resource",
+          "items": {
+            "enum": [
+              "oic.if.r",
+              "oic.if.baseline"
+            ],
+            "type": "string"
+          },
+          "minItems": 2,
+          "uniqueItems": true,
+          "type": "array",
+          "readOnly": true,
+          "maxLength": 64
+        },
+        "rt": {
+          "description": "Resource Type of the target Resource",
+          "items": {
+            "maxLength": 64,
+            "type": "string",
+            "enum": ["oic.r.alert"]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true,
+          "readOnly": true,
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "href",
+        "rt",
+        "if"
+      ]
     }
   }
 }
