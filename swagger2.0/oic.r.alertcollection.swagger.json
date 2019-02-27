@@ -153,10 +153,9 @@
         "rt": {
           "items": {
             "type": "string",
-            "enum": ["oic.r.alertcollection"]
+            "enum": ["oic.r.alertcollection"],
+            "maxLength": 64
           },
-          "maxLength": 64,
-          "maxItems": 1,
           "minItems": 1,
           "type": "array",
           "uniqueItems": true,
@@ -165,11 +164,10 @@
         "rts": {
           "items": {
             "type": "string",
-            "enum": ["oic.r.alert"]
+            "enum": ["oic.r.alert"],
+            "maxLength": 64
           },
-          "maxLength": 64,
           "minItems": 1,
-          "maxItems": 1,
           "type": "array",
           "uniqueItems": true,
           "readOnly": true
@@ -182,9 +180,9 @@
               "oic.if.b",
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
-          "maxLength": 64,
           "minItems": 2,
           "readOnly": true,
           "uniqueItems": true,
@@ -244,13 +242,13 @@
               "oic.if.r",
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 2,
           "uniqueItems": true,
           "type": "array",
-          "readOnly": true,
-          "maxLength": 64
+          "readOnly": true
         },
         "rt": {
           "description": "Resource Type of the target Resource",
@@ -262,8 +260,7 @@
           "minItems": 1,
           "type": "array",
           "uniqueItems": true,
-          "readOnly": true,
-          "maxLength": 64
+          "readOnly": true
         }
       },
       "required": [
