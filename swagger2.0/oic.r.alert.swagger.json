@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Alert",
-    "version": "2019-02-26",
+    "version": "2019-02-28",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -16,7 +16,7 @@
   "paths": {
     "/AlertResURI" : {
       "get": {
-        "description": "This Resource provides a mechanism for a Server to expose information to an\ninterested party with regard to error or other conditions that the Device is experiencing (Alerts).\ncategory is a string that contains the Device defined category for the Alert.\ntimestamp is an RFC3339 formatted time at which the Alert was generated.\noriginatorid is a string that contains the identity of the originator of the Alert.\nseverity is an integer that contains the RFC5424 defined severity of the Alert.\nsubject is an array containing human readable text in one or more languages.\naccountid is a string containing the identity of the account with which the Device is associated.\nRetrieves the current alert information.\n",
+        "description": "This Resource provides a mechanism for a Server to expose information to an\ninterested party with regard to error or other conditions that the Device is experiencing (Alerts).\ncategory is a string that contains the Device defined category for the Alert.\ntimestamp is an RFC3339 formatted time at which the Alert was generated.\noriginatorid is a string that contains the identity of the originator of the Alert.\nseverity is an integer that contains the RFC5424 defined severity of the Alert.\nsubject is an array containing human readable text in one or more languages.\naccountid is a string containing the identity of the account with which the Device is associated.\n",
         "parameters": [
           {"$ref": "#/parameters/interface"}
         ],

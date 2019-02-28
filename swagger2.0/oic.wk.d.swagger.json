@@ -63,7 +63,8 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum": ["oic.wk.d"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "readOnly": true,
@@ -104,7 +105,7 @@
               "$ref" : "http://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/uuid"
             },
             {
-              "description": "Protocol independent unique identifier for device that is immutable.",
+              "description": "Protocol independent unique identifier for the Device that is immutable.",
               "readOnly": true
             }
           ]
@@ -115,7 +116,7 @@
               "$ref" : "http://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/uuid"
             },
             {
-              "description": "Unique identifier for device",
+              "description": "Unique identifier for the Device",
               "readOnly": true
             }
           ]
@@ -161,13 +162,13 @@
           "type": "array"
         },
         "icv": {
-          "description": "The version of the OCF Server",
+          "description": "The version of the Device",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"
         },
         "dmv":  {
-          "description": "Spec versions of the Resource and Device Specifications to which this device data model is implemented",
+          "description": "Specification versions of the Resource and Device Specifications to which this device data model is implemented",
           "maxLength": 256,
           "readOnly": true,
           "type": "string"
@@ -179,15 +180,17 @@
           "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "if":  {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfacces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.r",
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 2,
+          "uniqueItems": true,
           "readOnly": true,
           "type": "array"
         }

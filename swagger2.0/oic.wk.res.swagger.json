@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Discoverable Resources Link List interface",
+    "title": "Discoverable Resources",
     "version": "2019-02-21-16:00",
     "license": {
       "name": "OCF Data Model License",
@@ -122,78 +122,84 @@
     }
   },
   "definitions": {
+    "oic.oic-link": {
+      "type": "object",
+      "properties": {
+        "anchor": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
+        },
+        "di": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
+        },
+        "eps": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
+        },
+        "href": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
+        },
+        "if": {
+          "description": "The OCF Interfaces supported by the Linked Resource",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.ll",
+              "oic.if.b",
+              "oic.if.rw",
+              "oic.if.r",
+              "oic.if.a",
+              "oic.if.s"
+            ],
+            "type": "string",
+            "maxLength": 64
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "type": "array"
+        },
+        "ins": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
+        },
+        "p": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
+        },
+        "rel": {
+          "description": "The relation of the target URI referenced by the Link to the context URI",
+          "oneOf": [
+            {
+              "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
+            },
+            {
+              "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_string"
+            }
+          ]
+        },
+        "rt": {
+          "description": "Resource Type of the Linked Resource",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "type": "array"
+        },
+        "title": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
+        },
+        "type": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
+        }
+      },
+      "required": [
+        "href",
+        "rt",
+        "if"
+      ]
+    },
     "slinklist": {
       "type" : "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "anchor": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
-          },
-          "di": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
-          },
-          "eps": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
-          },
-          "href": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
-          },
-          "if": {
-            "description": "The interface set supported by this Resource",
-            "items": {
-              "enum": [
-                "oic.if.baseline",
-                "oic.if.ll",
-                "oic.if.b",
-                "oic.if.rw",
-                "oic.if.r",
-                "oic.if.a",
-                "oic.if.s"
-              ],
-              "type": "string"
-            },
-            "minItems": 1,
-            "type": "array"
-          },
-          "ins": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
-          },
-          "p": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
-          },
-          "rel": {
-            "description": "The relation of the target URI referenced by the link to the context URI",
-            "oneOf": [
-              {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
-              },
-              {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_string"
-              }
-            ]
-          },
-          "rt": {
-            "description": "Resource Type of the Resource",
-            "items": {
-              "maxLength": 64,
-              "type": "string"
-            },
-            "minItems": 1,
-            "type": "array"
-          },
-          "title": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
-          },
-          "type": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
-          }
-        },
-        "required": [
-          "href",
-          "rt",
-          "if"
-        ]
+        "$ref": "#/definitions/oic.oic-link"
       }
     },
     "sbaseline": {
@@ -206,24 +212,26 @@
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "rt": {
-          "description": "Resource Type of the Resource",
+          "description": "Resource Type of this Resource",
           "items": {
             "enum": ["oic.wk.res"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
-          "maxItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         },
         "if": {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.ll",
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 2,
           "readOnly": true,
@@ -233,75 +241,7 @@
         "links": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "anchor": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
-              },
-              "di": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
-              },
-              "eps": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
-              },
-              "href": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
-              },
-              "if": {
-                "description": "The interface set supported by this resource",
-                "items": {
-                  "enum": [
-                    "oic.if.baseline",
-                    "oic.if.ll",
-                    "oic.if.b",
-                    "oic.if.rw",
-                    "oic.if.r",
-                    "oic.if.a",
-                    "oic.if.s"
-                  ],
-                  "type": "string"
-                },
-                "minItems": 1,
-                "type": "array"
-              },
-              "ins": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
-              },
-              "p": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
-              },
-              "rel": {
-                "description": "The relation of the target URI referenced by the link to the context URI",
-                "oneOf": [
-                  {
-                    "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
-                  },
-                  {
-                    "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_string"
-                  }
-                ]
-              },
-              "rt": {
-                "description": "Resource Type of the Resource",
-                "items": {
-                  "maxLength": 64,
-                  "type": "string"
-                },
-                "minItems": 1,
-                "type": "array"
-              },
-              "title": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
-              },
-              "type": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
-              }
-            },
-            "required": [
-              "href",
-              "rt",
-              "if"
-            ]
+            "$ref": "#/definitions/oic.oic-link"
           }
         }
       },

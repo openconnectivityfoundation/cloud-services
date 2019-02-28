@@ -86,7 +86,8 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum": ["oic.wk.scenemember"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "readOnly": true,
@@ -94,16 +95,16 @@
           "type": "array"
         },
         "SceneMappings": {
-          "description": "array of mappings per scene, can be one(1)",
+          "description": "Array of mappings per scene, can be one(1)",
           "items": {
             "properties": {
               "memberProperty": {
-                "description": "property name that will be mapped",
+                "description": "Property name that will be mapped",
                 "readOnly": true,
                 "type": "string"
               },
               "memberValue": {
-                "description": "value of the Member Property",
+                "description": "Value of the Member Property",
                 "readOnly": true,
                 "type": "string"
               },
@@ -136,7 +137,8 @@
             "enum": [
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "readOnly": true,
@@ -161,7 +163,8 @@
               "oic.if.a",
               "oic.if.s"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "uniqueItems": true,
@@ -171,7 +174,8 @@
         "rt": {
           "description": "Resource Type of the target Resource",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "readOnly": true,

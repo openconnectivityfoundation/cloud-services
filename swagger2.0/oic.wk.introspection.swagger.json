@@ -22,7 +22,7 @@
   "paths": {
     "/IntrospectionResURI": {
       "get": {
-        "description": "This Resource provides the means to get the Device introspection data specifying all the OCF Endpoints of the device.\nThe url hosted by this Resource is either a local or an external url.\n",
+        "description": "This Resource provides the means to get the Introspection Device Data (IDD) specifying all the OCF Endpoints of the Device.\nThe url hosted by this Resource is either a local or an external url.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface"
@@ -64,10 +64,10 @@
           "description": "Resource Type of the Resource",
           "items": {
               "enum": ["oic.wk.introspection"],
-              "type": "string"
+              "type": "string",
+              "maxLength": 64
           },
           "minItems": 1,
-          "maxItems": 1,
           "readOnly": true,
           "uniqueItems": true,
           "type": "array"
@@ -76,7 +76,7 @@
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
         },
         "urlInfo":  {
-          "description": "Information on the location of the introspection data.",
+          "description": "Information on the location of the Introspection Device Data (IDD).",
           "items": {
             "properties": {
               "content-type": {
@@ -89,7 +89,7 @@
                 "type": "string"
               },
               "protocol": {
-                "description": "Identifier for the protocol to be used to obtain the introspection information",
+                "description": "Identifier for the protocol to be used to obtain the Introspection Device Data",
                 "enum": [
                   "coap",
                   "coaps",
@@ -101,13 +101,13 @@
                 "type": "string"
               },
               "url": {
-                "description": "The URL of the introspection information.",
+                "description": "The URL of the Introspection Device Data.",
                 "format": "uri",
                 "type": "string"
               },
               "version": {
                 "default": 1,
-                "description": "The version of the introspection data that can be downloaded",
+                "description": "The version of the Introspection Device Data that can be downloaded",
                 "enum": [
                   1
                 ],
@@ -128,13 +128,14 @@
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "if": {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.r",
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "readOnly": true,

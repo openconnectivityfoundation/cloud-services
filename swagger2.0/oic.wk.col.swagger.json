@@ -105,7 +105,7 @@
         }
       },
       "post": {
-        "description": "Update on Baseline Interface\n",
+        "description": "Update on Baseline OCF Interface\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface-baseline"
@@ -131,7 +131,7 @@
     },
     "/CollectionResURI?if=oic.if.b" : {
       "get": {
-        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.b interfacce exposes a composite representation of the\nresources pointed to by the links\n",
+        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.b interfacce exposes a composite representation of the\nResources pointed to by the Links\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface-b"
@@ -139,7 +139,7 @@
         ],
         "responses": {
           "200": {
-            "description" : "All targets returned OK status (HTTP 200 or CoAP 2.05 Content)",
+            "description" : "All targets returned OK status",
             "x-example": [
               {
                 "href": "/switch",
@@ -160,7 +160,7 @@
             }
           },
           "404": {
-            "description" : "One or more targets did not return an OK status, return a representation containing returned properties from the targets that returned OK",
+            "description" : "One or more targets did not return an OK status, return a representation containing returned Properties from the targets that returned OK",
             "x-example": [
               {
                 "href": "/switch",
@@ -176,7 +176,7 @@
         }
       },
       "post": {
-        "description": "Update on Batch Interface\n",
+        "description": "Update on Batch OCF Interface\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface-b"
@@ -207,7 +207,7 @@
         ],
         "responses": {
           "200": {
-            "description" : "all targets returned OK status (HTTP 200 or CoAP 2.04 Changed) return a representation of the current state of all targets",
+            "description" : "All targets returned OK status, return a representation of the current state of all targets",
             "x-example": [
               {
                 "href": "/switch",
@@ -228,7 +228,7 @@
             }
           },
           "403": {
-            "description" : "one or more targets did not return OK status; return a retrieve representation of the current state of all targets in the batch",
+            "description" : "One or more targets did not return OK status; return a retrieve representation of the current state of all targets in the batch",
             "x-example": [
               {
                 "href": "/switch",
@@ -276,7 +276,7 @@
     "sbaseline" : {
       "properties": {
         "links" : {
-          "description": "A set of simple or individual OIC Links.",
+          "description": "A set of simple or individual OCF Links.",
           "items": {
             "$ref": "#/definitions/oic.oic-link"
           },
@@ -298,14 +298,15 @@
           "$ref": "#/definitions/oic.core.rt"
         },
 	      "if": {
-	        "description": "The interface set supported by this resource",
+	        "description": "The OCF Interfaces supported by this Resource",
 	        "items": {
 		        "enum": [
               "oic.if.ll",
               "oic.if.baseline",
 			        "oic.if.b"
             ],
-						"type": "string"
+						"type": "string",
+            "maxLength": 64
 					},
 					"minItems": 2,
           "uniqueItems": true,
@@ -323,18 +324,22 @@
       "description": "Resource Type of the Resource",
 			"items": {
 				"enum": ["oic.wk.col"],
-				"type": "string"
+				"type": "string",
+        "maxLength": 64
 			},
 			"minItems": 1,
+      "uniqueItems": true,
 			"readOnly": true,
 			"type": "array"
 		},
     "oic.core.rt": {
       "description": "Resource Type or set of Resource Types",
 			"items": {
-				"type": "string"
+				"type": "string",
+        "maxLength": 64
 			},
 			"minItems": 1,
+      "uniqueItems": true,
 			"readOnly": true,
 			"type": "array"
 		},
@@ -349,11 +354,11 @@
           "rep": {
             "oneOf": [
               {
-                "description": "The response payload from a single resource",
+                "description": "The response payload from a single Resource",
                 "type": "object"
               },
               {
-                "description": " The response payload from a collection (batch) resource",
+                "description": " The response payload from a Collection (batch) Resource",
                 "items": {
                   "$ref": "#/definitions/oic.oic-link"
                 },
@@ -380,7 +385,7 @@
     },
     "sbatch-update.item" : {
       "additionalProperties": true,
-      "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
+      "description": "Array of Resource representations to apply to the batch Collection, using href to indicate which Resource(s) in the batch to update. If the href Property is empty, effectively making the URI reference to the Collection itself, the representation is to be applied to all Resources in the batch",
       "properties": {
         "href": {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
@@ -388,11 +393,11 @@
         "rep": {
           "oneOf": [
             {
-              "description": "The payload for a single resource",
+              "description": "The payload for a single Resource",
               "type": "object"
             },
             {
-              "description": " The payload for a collection (batch) resource",
+              "description": " The payload for a Collection (batch) Resource",
               "items": {
                 "$ref": "#/definitions/oic.oic-link"
               },
@@ -416,7 +421,7 @@
     "oic.oic-link": {
       "properties": {
         "if": {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by the Linked target",
           "items": {
             "enum": [
               "oic.if.baseline",
@@ -427,7 +432,8 @@
               "oic.if.a",
               "oic.if.s"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "uniqueItems": true,

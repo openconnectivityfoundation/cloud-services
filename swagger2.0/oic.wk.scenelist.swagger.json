@@ -22,7 +22,7 @@
   "paths": {
     "/SceneListResURI?if=oic.if.ll": {
       "get": {
-        "description": "Toplevel Scene resource.\nThis resource is a generic collection resource.\nThe rts value shall contain oic.wk.scenecollection resource types.\n",
+        "description": "Toplevel Scene Resource.\nThis Resource is a generic Collection Resource.\nThe rts value contains oic.wk.scenecollection Resource Types.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface-ll"
@@ -44,7 +44,7 @@
     },
     "/SceneListResURI?if=oic.if.baseline": {
       "get": {
-        "description": "Toplevel Scene resource.\nThis resource is a generic collection resource.\nThe rts value shall contain oic.wk.scenecollection resource types.\n",
+        "description": "Toplevel Scene Resource.\nThis resource is a generic Collection Resource.\nThe rts value contains oic.wk.scenecollection Resource Types.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface-baseline"
@@ -86,7 +86,7 @@
     "Collection": {
       "properties": {
         "links": {
-          "description": "A set of simple or individual Links.",
+          "description": "A set of simple or individual OCF Links.",
           "items": {
             "$ref": "#/definitions/oic.oic-link"
           },
@@ -99,25 +99,29 @@
           "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "if": {
-          "description": "The interface set supported by this resource",
+          "type": "array",
+          "description": "The OCF Interfaces supported by this resource",
           "items": {
             "enum": [
               "oic.if.ll",
               "oic.if.baseline"
             ],
             "type": "string",
-            "minItems": 2,
-            "uniqueItems": true,
-            "readOnly": true
-          }
+            "maxLength": 64
+          },
+          "minItems": 2,
+          "uniqueItems": true,
+          "readOnly": true
         },
         "rts": {
-          "description": "The list of allowable resource types (for Target and anchors) in links included in the collection",
+          "description": "The list of allowable Resource Types in Links included in the Collection",
           "items": {
             "enum": ["oic.wk.scenecollection"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
+          "uniqueItems": true,
           "readOnly": true,
           "type": "array"
         },
@@ -125,7 +129,8 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum": ["oic.wk.scenelist"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "readOnly": true,
@@ -144,13 +149,14 @@
     "oic.oic-link": {
       "properties": {
         "if": {
-          "description": "The interface set supported by the target Resource",
+          "description": "The OCF Interfaces supported by the Linked Resource",
           "items": {
             "enum": [
               "oic.if.ll",
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "uniqueItems": true,
@@ -158,12 +164,14 @@
           "type": "array"
         },
         "rt": {
-          "description": "The Resource Type of the target Resource",
+          "description": "The Resource Type of the Linked Resource",
           "items": {
             "enum": ["oic.wk.scenecollection"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
+          "uniqueItems": true,
           "readOnly": true,
           "type": "array"
         },

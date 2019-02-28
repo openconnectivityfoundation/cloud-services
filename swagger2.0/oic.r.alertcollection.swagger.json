@@ -16,7 +16,7 @@
   "paths": {
     "/AlertCollectionResURI?if=oic.if.ll" : {
       "get": {
-        "description": "This Resource is a Collection containing instances of Alerts (oic.r.alert).\nThis is the response using the Link List interface.\nRetrieves the current alert information\n",
+        "description": "This Resource is a Collection containing instances of Alerts (oic.r.alert).\nThis is the response using the Link List interface.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-ll"}
         ],
@@ -36,7 +36,7 @@
     },
     "/AlertCollectionResURI?if=oic.if.b" : {
       "get": {
-        "description": "This Resource is a Collection containing instances of Alerts (oic.r.alert).\nThis is the response using the Batch interface.\nRetrieves the current alert information\n",
+        "description": "This Resource is a Collection containing instances of Alerts (oic.r.alert).\nThis is the response using the Batch interface.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-b"}
         ],
@@ -76,7 +76,7 @@
     },
     "/AlertCollectionResURI?if=oic.if.baseline" : {
       "get": {
-        "description": "This Resource is a Collection containing instances of Alerts (oic.r.alert).\nThis is the response using the baseline interface.\nRetrieves the current alert information.\n",
+        "description": "This Resource is a Collection containing instances of Alerts (oic.r.alert).\nThis is the response using the baseline interface.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-baseline"}
         ],
