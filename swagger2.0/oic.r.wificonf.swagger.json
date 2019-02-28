@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Wi-Fi Configuration Resource Baseline Interface",
+    "title": "Wi-Fi Configuration",
     "version": "20190128",
     "license": {
       "name": "OCF Data Model License",
@@ -16,7 +16,7 @@
   "paths": {
     "/WiFiConfResURI?if=oic.if.rw" : {
       "get": {
-        "description": "WiFiConf resource stores essential information to help an unboxing device\nto connect to an existing Wi-Fi AP.\nRetrieve properties of WiFiConf resource that can be updated by a client.\n",
+        "description": "WiFiConf Resource stores essential information to help an unboxing Device\nto connect to an existing Wi-Fi AP.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-rw"}
         ],
@@ -35,7 +35,7 @@
         }
       },
       "post": {
-        "description": "Deliver Wi-Fi AP's information for an unboxing device to connect to it.\n",
+        "description": "Deliver Wi-Fi AP's information for an unboxing Device to connect to it.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-rw"},
           {
@@ -69,7 +69,7 @@
     },
     "/WiFiConfResURI?if=oic.if.baseline" : {
       "get": {
-        "description": "WiFiConf resource stores essential information to help an unboxing device\nto connect to an existing Wi-Fi AP.\nRetrieve properties of WiFiConf resource.\nThe information includes :\n1. Wi-Fi SSID and password\n2. Wi-Fi Security type (i.e. auth type and encription type)\n3. Wi-Fi hardware capability (i.e. supported frequencies, modes,\n  auth types and encryption types)\n",
+        "description": "WiFiConf Resource stores essential information to help an unboxing Device\nto connect to an existing Wi-Fi AP.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-baseline"}
         ],
@@ -147,10 +147,10 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum": ["oic.r.wificonf"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
-          "maxItems": 1,
           "uniqueItems": true,
           "readOnly": true,
           "type": "array"
@@ -251,15 +251,17 @@
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "if" : {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.rw"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
+          "uniqueItems": true,
           "readOnly": true,
           "type": "array"
         }

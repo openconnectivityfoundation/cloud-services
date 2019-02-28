@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Device Configuration",
-    "version": "20190128",
+    "version": "20190228",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -16,7 +16,7 @@
   "paths": {
     "/example/DevConfResURI" : {
       "get": {
-        "description": "Device configuration resource stores a preference of device settings like\ndevice name. Vender-specfic information can be added to the resource.\nRetrieve various settings regarding to device-specific settings\n1. Device name (human-friendly name to be detected by mediator during\n   easy setup)\n",
+        "description": "Device configuration Resource stores Device settings such as \nDevice name. Vender-specfic information can be added to the Resource.\n1. Device name (human-friendly name to be detected by a Mediator during\n   easy setup)\n",
         "parameters": [
           {"$ref": "#/parameters/interface"}
         ],
@@ -38,7 +38,7 @@
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.baseline", "oic.if.r"]
+      "enum" : ["oic.if.r", "oic.if.baseline"]
     }
   },
   "definitions": {
@@ -47,6 +47,7 @@
         "rt" : {
           "description": "Resource Type of the Resource",
           "items": {
+            "enum": ["oic.r.devconf"],
             "maxLength": 64,
             "type": "string"
           },
@@ -62,13 +63,14 @@
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "if" : {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.r",
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 2,
           "readOnly": true,
@@ -79,7 +81,7 @@
           "oneOf": [
             {
               "type": "string",
-              "description": "Indicates a pre-configured device name in language indicated by 'dl' in /oic/con;  presented by enrollee device to mediator device during easy-setup process",
+              "description": "Indicates a pre-configured Device name in language indicated by 'dl' in /oic/con;  presented by an Enrollee Device to a Mediator Device during the easy-setup process",
               "pattern": "^.*$",
               "readOnly": true
             },
@@ -95,7 +97,7 @@
                   },
                   "value": {
                     "type": "string",
-                    "description": "Pre-configured device name in the indicated language.",
+                    "description": "Pre-configured Device name in the indicated language.",
                     "pattern": "^.*$",
                     "readOnly": true
                   }

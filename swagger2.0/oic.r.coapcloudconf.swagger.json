@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "CoAP Cloud Configuration Resource Read Write Interface",
+    "title": "CoAP Cloud Configuration Resource",
     "version": "20190128",
     "license": {
       "name": "OCF Data Model License",
@@ -16,7 +16,7 @@
   "paths": {
     "/CoAPCloudConfResURI?if=oic.if.rw" : {
       "get": {
-        "description": "The CoAPCloudConf Resource exposes configuration information for connecting to an OCF Cloud.\nRetrieve properties of CoAPCloudConf resource.\n",
+        "description": "The CoAPCloudConf Resource exposes configuration information for connecting to an OCF Cloud.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-rw"}
         ],
@@ -36,7 +36,7 @@
         }
       },
       "post": {
-        "description": "Update properties of CoAPCloudConf resource.\n",
+        "description": "Update properties of the CoAPCloudConf Resource.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-rw"},
           {
@@ -91,7 +91,7 @@
         }
       },
       "post": {
-        "description": "Update properties of CoAPCloudConf resource.\n",
+        "description": "Update Properties of the CoAPCloudConf Resource.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-baseline"},
           {
@@ -145,10 +145,10 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum": ["oic.r.coapcloudconf"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
-          "maxItems": 1,
           "uniqueItems": true,
           "readOnly": true,
           "type": "array"
@@ -185,13 +185,14 @@
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "if" : {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.rw",
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 2,
           "uniqueItems": true,

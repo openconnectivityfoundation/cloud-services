@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Easy Setup Collection Link List Interface",
+    "title": "Easy Setup Collection",
     "version": "20190128",
     "license": {
       "name": "OCF Data Model License",
@@ -16,7 +16,7 @@
   "paths": {
     "/EasySetupResURI?if=oic.if.ll" : {
       "get": {
-        "description": "Easy Setup resource stores useful information including current status of\nunboxing device and last error code which are produced in a process of\neasy setup.\nNote that, Easy Setup resource is a type of collection resource, which\ncontains links to WiFiConf, DevConf resources and may additionally contain\nlinks to other resources.\nRetrieve useful information during easy setup process :\n1. A current status in easy setup process.\n2. A last error code describing reason for failure occurred at the last\n   time.\n",
+        "description": "Easy Setup Resource stores useful information including current status of\nunboxing Device and last error code which are produced in the process of\neasy setup.\nNote that, Easy Setup Resource is a type of Collection Resource, which\ncontains Links to WiFiConf, DevConf Resources and may additionally contain\nLinks to other Resources.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-ll"}
         ],
@@ -61,7 +61,7 @@
     },
     "/EasySetupResURI?if=oic.if.b" : {
       "get": {
-        "description": "Easy Setup resource stores useful information including current status of\nunboxing device and last error code which are produced in a process of\neasy setup.\nNote that, Easy Setup resource is a type of collection resource, which\ncontains links to WiFiConf, DevConf resources and may additionally contain\nlinks to other resources.\nRetrieve useful information during easy setup process :\n1. A current status in easy setup process.\n2. A last error code describing reason for failure occurred at the last\n   time.\n",
+        "description": "Easy Setup Resource stores useful information including current status of\nunboxing Device and last error code which are produced in the process of\neasy setup.\nNote that, Easy Setup Resource is a type of Collection Resource, which\ncontains Links to WiFiConf, DevConf Resources and may additionally contain\nLinks to other Resources.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-batch"}
         ],
@@ -101,7 +101,7 @@
         }
       },
       "post": {
-        "description": "Able to deliver Wi-Fi, Device configuration and other configuration\ninformation in a batch by utilizing 'batch' interface.\nIf you want to deliver Wi-Fi and Device configuration information in a batch,\nyou can write all properties you want to send with a 'batch' interface.\nThe below example is the case to send Easy Setup and Wi-Fi configuration\n(i.e. connection type, target network, auth type information) in a batch.\n",
+        "description": "Able to deliver Wi-Fi, Device configuration and other configuration\ninformation in a batch by utilizing 'batch' OCF Interface.\nIf you want to deliver Wi-Fi and Device configuration information in a batch,\nyou can write all Properties you want to send with a 'batch' OCF Interface.\nThe below example is the case to send Easy Setup and Wi-Fi configuration\n(i.e. connection type, target network, auth type information) in a batch.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-batch"},
           {
@@ -167,7 +167,7 @@
     },
     "/EasySetupResURI?if=oic.if.baseline" : {
       "get": {
-        "description": "Easy Setup resource stores useful information including current status of\nunboxing device and last error code which are produced in a process of\neasy setup.\nNote that, Easy Setup resource is a type of collection resource, which\ncontains links to WiFiConf, DevConf resources and may additionally contain\nlinks to other resources.\nRetrieve useful information during easy setup process :\n  1. A current status in easy setup process.\n  2. A last error code describing reason for failure occurred at the last\n     time.\n",
+        "description": "Easy Setup Resource stores useful information including current status of\nunboxing Device and last error code which are produced in the process of\neasy setup.\nNote that, Easy Setup Resource is a type of Collection Resource, which\ncontains Links to WiFiConf, DevConf Resources and may additionally contain\nLinks to other Resources.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-baseline"}
         ],
@@ -217,7 +217,7 @@
         }
       },
       "post": {
-        "description": "Able to update connection type to attempt to connect to the enroller to start during while posting to /EasySetupResURI\nThe below example is the case to send Easy Setup configuration\n(i.e. connection type) in a post.\n",
+        "description": "Able to update connection type to attempt to connect to the Enroller to start during while posting to /EasySetupResURI\nThe below example is the case to send Easy Setup configuration\n(i.e. connection type) in a post.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-baseline"},
           {
@@ -301,69 +301,75 @@
     }
   },
   "definitions": {
-    "slinks" : {
-      "items": {
-        "properties": {
-          "anchor": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
-          },
-          "di": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
-          },
-          "eps": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
-          },
-          "href": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
-          },
-          "ins": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
-          },
-          "p": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
-          },
-          "rel": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
-          },
-          "title": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
-          },
-          "type": {
-            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
-          },
-          "if": {
-            "description": "The interface set supported by this resource",
-            "items": {
-              "enum": [
-                "oic.if.baseline",
-                "oic.if.ll",
-                "oic.if.b",
-                "oic.if.r",
-                "oic.if.rw"
-              ],
-              "type": "string"
-            },
-            "minItems": 1,
-            "type": "array"
-          },
-          "rt": {
-            "description": "Resource Type of the Resource",
-            "items": {
-              "maxLength": 64,
-              "type": "string"
-            },
-            "minItems": 1,
-            "type": "array"
-          }
+    "oic.oic-link": {
+      "type": "object",
+      "properties": {
+        "anchor": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
         },
-        "required": [
-          "href",
-          "rt",
-          "if"
-        ],
-        "type": "object"
+        "di": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
+        },
+        "eps": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
+        },
+        "href": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
+        },
+        "ins": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
+        },
+        "p": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
+        },
+        "rel": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
+        },
+        "title": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
+        },
+        "type": {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
+        },
+        "if": {
+          "description": "The OCF Interfaces supported by the target Resource",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.ll",
+              "oic.if.b",
+              "oic.if.r",
+              "oic.if.rw"
+            ],
+            "type": "string",
+            "maxLength": 64
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "type": "array"
+        },
+        "rt": {
+          "description": "Resource Type of the target Resource",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "type": "array"
+        }
       },
-      "type" : "array"
+      "required": [
+        "href",
+        "rt",
+        "if"
+      ]
+    },
+    "slinks" : {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/oic.oic-link"
+      }
     },
     "sbatch" : {
       "minItems" : 1,
@@ -374,7 +380,7 @@
             "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
           },
           "rep": {
-            "description": "The response payload from a single resource",
+            "description": "The response payload from a single Resource",
             "type": "object",
             "anyOf": [
               {
@@ -401,13 +407,13 @@
       "minItems" : 1,
       "items" : {
         "additionalProperties": true,
-        "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
+        "description": "Array of Resource representations to apply to the batch Collection, using href to indicate which resource(s) in the batch to update. If the href Property is empty, effectively making the URI reference to the Collection itself, the representation is to be applied to all Resources in the batch",
         "properties": {
           "href": {
             "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
           },
           "rep": {
-            "description": "The response payload from a single resource",
+            "description": "The response payload from a single Resource",
             "type": "object",
             "anyOf": [
               {
@@ -439,6 +445,7 @@
             "type": "string"
           },
           "minItems": 1,
+          "uniqueItems": true,
           "readOnly": true,
           "type": "array"
         },
@@ -452,6 +459,7 @@
             "type": "string"
           },
           "minItems": 1,
+          "uniqueItems": true,
           "readOnly": true,
           "type": "array"
         },
@@ -463,9 +471,11 @@
               "oic.if.baseline",
               "oic.if.b"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
+          "uniqueItems": true,
           "readOnly": true,
           "type": "array"
         },
@@ -474,15 +484,16 @@
             "enum": [
               "oic.r.easysetup",
               "oic.wk.col"
-            ]
+            ],
+            "type": "string",
+            "maxLength": 64
           },
-          "maxItems": 2,
           "minItems": 2,
           "type": "array",
           "uniqueItems": true
         },
         "ps" : {
-          "description": "Indicates the easy setup status of the device. (0: Need to Setup, 1: Connecting to Enroller, 2: Connected to Enroller, 3: Failed to Connect to Enroller, 4~254: Reserved, 255: EOF)",
+          "description": "Indicates the easy setup status of the Device. (0: Need to Setup, 1: Connecting to Enroller, 2: Connected to Enroller, 3: Failed to Connect to Enroller, 4~254: Reserved, 255: EOF)",
           "enum": [
             0,
             1,
@@ -519,69 +530,11 @@
           "type": "array"
         },
         "links" : {
+          "type": "array",
           "description": "A set of OCF Links.",
           "items": {
-            "properties": {
-              "anchor": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/anchor"
-              },
-              "di": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/di"
-              },
-              "eps": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/eps"
-              },
-              "href": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
-              },
-              "ins": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/ins"
-              },
-              "p": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
-              },
-              "rel": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/rel_array"
-              },
-              "title": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/title"
-              },
-              "type": {
-                "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/type"
-              },
-              "if": {
-                "description": "The interface set supported by this resource",
-                "items": {
-                  "enum": [
-                    "oic.if.baseline",
-                    "oic.if.ll",
-                    "oic.if.b",
-                    "oic.if.r",
-                    "oic.if.rw"
-                  ],
-                  "type": "string"
-                },
-                "minItems": 1,
-                "type": "array"
-              },
-              "rt": {
-                "description": "Resource Type of the Resource",
-                "items": {
-                  "maxLength": 64,
-                  "type": "string"
-                },
-                "minItems": 1,
-                "type": "array"
-              }
-            },
-            "required": [
-              "href",
-              "rt",
-              "if"
-            ],
-            "type": "object"
-          },
-          "type": "array"
+            "$ref": "#/definitions/oic.oic-link"
+          }
         }
       },
       "type" : "object",
