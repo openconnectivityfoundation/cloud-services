@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "OCF Scene Member",
-    "version": "v1.1.0-20161107",
+    "version": "2019-02-26",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -77,12 +77,6 @@
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.baseline"]
-    },
-    "interface-all" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.baseline"]
     }
   },
   "definitions": {
@@ -92,23 +86,25 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum": ["oic.wk.scenemember"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         },
         "SceneMappings": {
-          "description": "array of mappings per scene, can be one(1)",
+          "description": "Array of mappings per scene, can be one(1)",
           "items": {
             "properties": {
               "memberProperty": {
-                "description": "property name that will be mapped",
+                "description": "Property name that will be mapped",
                 "readOnly": true,
                 "type": "string"
               },
               "memberValue": {
-                "description": "value of the Member Property",
+                "description": "Value of the Member Property",
                 "readOnly": true,
                 "type": "string"
               },
@@ -136,15 +132,17 @@
           "$ref": "#/definitions/oic.oic-link"
         },
         "if": {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         }
       },
@@ -153,7 +151,7 @@
     "oic.oic-link": {
       "properties": {
         "if": {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by the target Resource",
           "items": {
             "enum": [
               "oic.if.baseline",
@@ -165,7 +163,8 @@
               "oic.if.a",
               "oic.if.s"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "uniqueItems": true,
@@ -173,12 +172,14 @@
           "type": "array"
         },
         "rt": {
-          "description": "Resource Type of the Resource",
+          "description": "Resource Type of the target Resource",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         },
         "anchor": {

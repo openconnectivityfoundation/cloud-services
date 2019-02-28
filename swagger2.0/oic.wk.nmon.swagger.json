@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Network Monitoring",
-    "version": "v1-20180306",
+    "version": "2019-02-26",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -16,7 +16,7 @@
   "paths": {
     "/nmonResURI" : {
       "get": {
-        "description": "The resource through which a Device can monitor network traffic.\nRetrieve the network monitor action status",
+        "description": "The Resource through which a Device can monitor network traffic.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-all"}
         ],
@@ -40,7 +40,7 @@
         }
       },
       "post": {
-        "description": "Start/Stop collecting and reset the networking monitor resource\n",
+        "description": "Start/Stop collecting and reset the networking monitor Resource\n",
         "parameters": [
           {"$ref": "#/parameters/interface-rw"},
           {
@@ -121,10 +121,10 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum": ["oic.wk.nmon"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
-          "maxItems": 1,
           "uniqueItems": true,
           "readOnly": true,
           "type": "array"
@@ -135,7 +135,7 @@
           "type": "integer"
         },
         "rx" : {
-          "description": "Amount of received kilo bytes from the collection",
+          "description": "Amount of received kilobytes from the collection",
           "readOnly": true,
           "type": "integer"
         },
@@ -156,16 +156,18 @@
           "type": "boolean"
         },
         "if" : {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
-              "oic.if.baseline",
-              "oic.if.rw"
+              "oic.if.rw",
+              "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
-          "minItems": 1,
+          "minItems": 2,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         }
       },

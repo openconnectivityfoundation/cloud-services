@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Device Configuration",
-    "version": "v1-20160622",
+    "version": "2019-02-28",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -91,7 +91,7 @@
       "type" : "string",
       "enum" : ["oic.if.rw"]
     },
-    "interface-all" : {
+    "interface-baseline" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
@@ -105,10 +105,10 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum": ["oic.wk.con"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
-          "maxItems": 1,
           "uniqueItems": true,
           "readOnly": true,
           "type": "array"
@@ -183,15 +183,17 @@
           "type": "string"
         },
         "if" : {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.rw"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
+          "uniqueItems": true,
           "readOnly": true,
           "type": "array"
         }

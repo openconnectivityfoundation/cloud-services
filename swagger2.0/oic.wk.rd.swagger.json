@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Resource directory resource",
-    "version": "v1-20160622",
+    "version": "2019-02-22",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -16,7 +16,7 @@
   "paths": {
     "/oic/rd" : {
       "get": {
-        "description": "Resource to be exposed by any Device that can act as a Resource Directory.\n1) Provides selector criteria (e.g., integer) with GET request\n2) Publish a Link in /oic/res with POST request\nGet the attributes of the Resource Directory for selection purposes.\n",
+        "description": "Resource to be exposed by any Device that can act as a Resource Directory.\n1) Provides selector criteria (e.g., integer) with GET request\n2) Publish a Link in /oic/res with POST request\n",
         "parameters": [
           {"$ref": "#/parameters/rdgetinterface"}
         ],
@@ -33,7 +33,7 @@
         }
       },
       "post": {
-        "description": "Publish the resource information for the first time in /oic/res. Updates to existing entries are not allowed.\nAppropriates parts of the information, i.e., Links of the published Resources will be discovered through /oic/res.\n1) When a Device first publishes a Link, the request payload to RD may include the Links without an \"ins\" Parameter.\n2) Upon granting the request, the RD assigns a unique instance value identifying the Link among all the Links it advertises\n   and sends back the instance value in the \"ins\" Parameter in the Link to the publishing Device.\n",
+        "description": "Publish the Resource information for the first time in /oic/res. Updates to existing entries are not allowed.\nAppropriates parts of the information, i.e., Links of the published Resources will be discovered through /oic/res.\n1) When a Device first publishes a Link, the request payload to RD may include the Links without an \"ins\" Parameter.\n2) Upon granting the request, the RD assigns a unique instance value identifying the Link among all the Links it advertises\n   and sends back the instance value in the \"ins\" Parameter in the Link to the publishing Device.\n",
         "parameters": [
           {"$ref": "#/parameters/rdpostinterface"},
           {
@@ -115,15 +115,13 @@
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.baseline"],
-      "description" : "enumdescription"
+      "enum" : ["oic.if.baseline"]
     },
     "rdpostinterface" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.baseline"],
-      "description" : "enumdescription"
+      "enum" : ["oic.if.baseline"]
     }
   },
   "definitions": {
@@ -133,10 +131,10 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum": ["oic.wk.rd"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
-          "maxItems": 1,
           "uniqueItems": true,
           "readOnly": true,
           "type": "array"
@@ -145,7 +143,7 @@
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
         },
         "sel" : {
-          "description": "A bias factor calculated by the Resource directory",
+          "description": "A bias factor calculated by the Resource Directory",
           "maximum": 100,
           "minimum": 0,
           "readOnly": true,
@@ -155,16 +153,17 @@
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "if" : {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
-          "maxItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         }
       },
@@ -208,9 +207,11 @@
                     "oic.if.a",
                     "oic.if.s"
                   ],
-                  "type": "string"
+                  "type": "string",
+                  "maxLength": 64
                 },
                 "minItems": 1,
+                "uniqueItems": true,
                 "type": "array"
               },
               "ins": {
@@ -220,7 +221,7 @@
                 "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/p"
               },
               "rel": {
-                "description": "The relation of the target URI referenced by the link to the context URI",
+                "description": "The relation of the target URI referenced by the Link to the context URI",
                 "oneOf": [
                   {
                     "default": [

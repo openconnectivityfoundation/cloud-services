@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Maintenance",
-    "version": "v1-20180313",
+    "version": "2019-02-28",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -16,9 +16,9 @@
   "paths": {
     "/oic/mnt" : {
       "get": {
-        "description": "The resource through which a Device is maintained and can be used for diagnostic purposes.\nfr (Factory Reset) is a boolean.\n  The value 0 means No action (Default), the value 1 means Start Factory Reset\nAfter factory reset, this value shall be changed back to the default value\nrb (Reboot) is a boolean.\n  The value 0 means No action (Default), the value 1 means Start Reboot\nAfter Reboot, this value shall be changed back to the default value\nRetrieve the maintenance action status",
+        "description": "The Resource through which a Device is maintained and can be used for diagnostic purposes.\nfr (Factory Reset) is a boolean.\n  The value 0 means No action (Default), the value 1 means Start Factory Reset\nAfter factory reset, this value shall be changed back to the default value\nrb (Reboot) is a boolean.\n  The value 0 means No action (Default), the value 1 means Start Reboot\nAfter Reboot, this value shall be changed back to the default value\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-all"}
+          {"$ref": "#/parameters/interface-rw"}
         ],
         "responses": {
             "200": {
@@ -67,12 +67,6 @@
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.rw", "oic.if.baseline"]
-    },
-    "interface-all" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.rw", "oic.if.baseline"]
     }
   },
   "definitions": {
@@ -82,10 +76,10 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum":   ["oic.wk.mnt"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
-          "maxItems": 1,
           "uniqueItems": true,
           "readOnly": true,
           "type": "array"
@@ -95,7 +89,7 @@
           "type": "boolean"
         },
         "err" : {
-          "description": "last HTTP occurred error",
+          "description": "Last HTTP occurred error",
           "maximum": 599,
           "minimum": 399,
           "readOnly": true,
@@ -112,16 +106,18 @@
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "if" : {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
-              "oic.if.baseline",
-              "oic.if.rw"
+              "oic.if.rw",
+              "oic.if.baseline"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
-          "minItems": 1,
+          "minItems": 2,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         }
       },

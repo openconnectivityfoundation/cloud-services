@@ -22,7 +22,7 @@
   "paths": {
     "/examplePlatformConfigurationResURI": {
       "get": {
-        "description": "Resource that allows for platform specific information to be configured.\n",
+        "description": "Resource that allows for Platform specific information to be configured.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface-all"
@@ -40,7 +40,7 @@
         }
       },
       "post": {
-        "description": "Update the information about the platform\n",
+        "description": "Update the information about the Platform\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface-rw"
@@ -90,10 +90,10 @@
           "description": "Resource Type of the Resource",
           "items": {
             "enum": ["oic.wk.con.p"],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
-          "maxItems": 1,
           "uniqueItems": true,
           "readOnly": true,
           "type": "array"
@@ -126,21 +126,22 @@
           "minItems": 1,
           "type": "array"
         },
-
         "id": {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
         },
         "if": {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.rw"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "readOnly": true,
+          "uniqueItems": true,
           "type": "array"
         }
       },

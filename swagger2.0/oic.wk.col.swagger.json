@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "OCF Collection",
-    "version": "v1.1.0-20161107",
+    "version": "2019-02-26",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -20,198 +20,6 @@
     "application/json"
   ],
   "paths": {
-    "/CollectionResURI?if=oic.if.baseline" : {
-      "get": {
-        "description": "OCF Collection Resource Type contains Properties and Links.\nThe oic.if.baseline OCF Interface exposes a representation of\nthe Links and the Properties of the collection Resource itself\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface-baseline"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description" : "",
-            "x-example": {
-              "rt": ["oic.wk.col"],
-              "id": "unique_example_id",
-              "rts": [ "oic.r.switch.binary", "oic.r.airflow" ],
-              "rts-m": [ "oic.r.switch.binary" ],
-              "links": [
-                {
-                  "href": "/switch",
-                  "rt":   ["oic.r.switch.binary"],
-                  "if":   ["oic.if.a", "oic.if.baseline"],
-                  "eps": [
-                      {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
-                      {"ep": "coaps://[fe80::b1d6]:1122"},
-                      {"ep": "coaps+tcp://[2001:db8:a::123]:2222", "pri": 3}
-                  ]
-                },
-                {
-                  "href": "/airFlow",
-                  "rt":   ["oic.r.airflow"],
-                  "if":   ["oic.if.a", "oic.if.baseline"],
-                  "eps": [
-                      {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
-                      {"ep": "coaps://[fe80::b1d6]:1122"},
-                      {"ep": "coaps+tcp://[2001:db8:a::123]:2222", "pri": 3}
-                  ]
-                }
-              ]
-            },
-            "schema": {
-              "$ref": "#/definitions/sbaseline"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Update on Baseline Interface\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface-baseline"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/sbaseline-update"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description" : "",
-            "schema": {
-              "$ref": "#/definitions/sbaseline"
-            }
-          }
-        }
-      }
-    },
-    "/CollectionResURI?if=oic.if.b" : {
-      "get": {
-        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.b interfacce exposes a composite representation of the\nresources pointed to by the links\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface-b"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description" : "All targets returned OK status (HTTP 200 or CoAP 2.05 Content)",
-            "x-example": [
-              {
-                "href": "/switch",
-                "rep": {
-                  "value": true
-                }
-              },
-              {
-                "href": "/airFlow",
-                "rep": {
-                  "direction": "floor",
-                  "speed":     3
-                }
-              }
-            ],
-            "schema": {
-              "$ref": "#/definitions/sbatch-retrieve"
-            }
-          },
-          "404": {
-            "description" : "One or more targets did not return an OK status, return a representation containing returned properties from the targets that returned OK",
-            "x-example": [
-              {
-                "href": "/switch",
-                "rep": {
-                  "value": true
-                }
-              }
-            ],
-            "schema": {
-              "$ref": "#/definitions/sbatch-retrieve"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Update on Batch Interface\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface-b"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/sbatch-update"
-            },
-            "x-example": [
-              {
-                "href": "/switch",
-                "rep": {
-                  "value": true
-                }
-              },
-              {
-                "href": "/airFlow",
-                "rep": {
-                  "direction": "floor",
-                  "speed": 3
-                }
-              }
-            ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description" : "all targets returned OK status (HTTP 200 or CoAP 2.04 Changed) return a representation of the current state of all targets",
-            "x-example": [
-              {
-                "href": "/switch",
-                "rep": {
-                  "value": true
-                }
-              },
-              {
-                "href": "/airFlow",
-                "rep": {
-                  "direction": "demist",
-                  "speed": 5
-                }
-              }
-            ],
-            "schema": {
-              "$ref": "#/definitions/sbatch-retrieve"
-            }
-          },
-          "403": {
-            "description" : "one or more targets did not return OK status; return a retrieve representation of the current state of all targets in the batch",
-            "x-example": [
-              {
-                "href": "/switch",
-                "rep": {
-                  "value": true
-                }
-              },
-              {
-                "href": "/airFlow",
-                "rep": {
-                  "direction": "floor",
-                  "speed": 3
-                }
-              }
-            ],
-            "schema": {
-              "$ref": "#/definitions/sbatch-retrieve"
-            }
-          }
-        }
-      }
-    },
     "/CollectionResURI?if=oic.if.ll" : {
       "get": {
         "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.ll interface exposes a representation of the links\n",
@@ -251,6 +59,197 @@
           }
         }
       }
+    },
+    "/CollectionResURI?if=oic.if.baseline" : {
+      "get": {
+        "description": "OCF Collection Resource Type contains Properties and Links.\nThe oic.if.baseline OCF Interface exposes a representation of\nthe Links and the Properties of the collection Resource itself\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-baseline"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description" : "",
+            "x-example": {
+              "rt": ["oic.wk.col"],
+              "rts": [ "oic.r.switch.binary", "oic.r.airflow" ],
+              "rts-m": [ "oic.r.switch.binary" ],
+              "links": [
+                {
+                  "href": "/switch",
+                  "rt":   ["oic.r.switch.binary"],
+                  "if":   ["oic.if.a", "oic.if.baseline"],
+                  "eps": [
+                      {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
+                      {"ep": "coaps://[fe80::b1d6]:1122"},
+                      {"ep": "coaps+tcp://[2001:db8:a::123]:2222", "pri": 3}
+                  ]
+                },
+                {
+                  "href": "/airFlow",
+                  "rt":   ["oic.r.airflow"],
+                  "if":   ["oic.if.a", "oic.if.baseline"],
+                  "eps": [
+                      {"ep": "coap://[fe80::b1d6]:1111", "pri": 2},
+                      {"ep": "coaps://[fe80::b1d6]:1122"},
+                      {"ep": "coaps+tcp://[2001:db8:a::123]:2222", "pri": 3}
+                  ]
+                }
+              ]
+            },
+            "schema": {
+              "$ref": "#/definitions/sbaseline"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Update on Baseline OCF Interface\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-baseline"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sbaseline-update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description" : "",
+            "schema": {
+              "$ref": "#/definitions/sbaseline"
+            }
+          }
+        }
+      }
+    },
+    "/CollectionResURI?if=oic.if.b" : {
+      "get": {
+        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.b interfacce exposes a composite representation of the\nResources pointed to by the Links\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-b"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description" : "All targets returned OK status",
+            "x-example": [
+              {
+                "href": "/switch",
+                "rep": {
+                  "value": true
+                }
+              },
+              {
+                "href": "/airFlow",
+                "rep": {
+                  "direction": "floor",
+                  "speed":     3
+                }
+              }
+            ],
+            "schema": {
+              "$ref": "#/definitions/sbatch-retrieve"
+            }
+          },
+          "404": {
+            "description" : "One or more targets did not return an OK status, return a representation containing returned Properties from the targets that returned OK",
+            "x-example": [
+              {
+                "href": "/switch",
+                "rep": {
+                  "value": true
+                }
+              }
+            ],
+            "schema": {
+              "$ref": "#/definitions/sbatch-retrieve"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Update on Batch OCF Interface\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-b"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sbatch-update"
+            },
+            "x-example": [
+              {
+                "href": "/switch",
+                "rep": {
+                  "value": true
+                }
+              },
+              {
+                "href": "/airFlow",
+                "rep": {
+                  "direction": "floor",
+                  "speed": 3
+                }
+              }
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description" : "All targets returned OK status, return a representation of the current state of all targets",
+            "x-example": [
+              {
+                "href": "/switch",
+                "rep": {
+                  "value": true
+                }
+              },
+              {
+                "href": "/airFlow",
+                "rep": {
+                  "direction": "demist",
+                  "speed": 5
+                }
+              }
+            ],
+            "schema": {
+              "$ref": "#/definitions/sbatch-retrieve"
+            }
+          },
+          "403": {
+            "description" : "One or more targets did not return OK status; return a retrieve representation of the current state of all targets in the batch",
+            "x-example": [
+              {
+                "href": "/switch",
+                "rep": {
+                  "value": true
+                }
+              },
+              {
+                "href": "/airFlow",
+                "rep": {
+                  "direction": "floor",
+                  "speed": 3
+                }
+              }
+            ],
+            "schema": {
+              "$ref": "#/definitions/sbatch-retrieve"
+            }
+          }
+        }
+      }
     }
   },
   "parameters": {
@@ -271,19 +270,13 @@
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.baseline"]
-    },
-    "interface-all" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.ll", "oic.if.baseline", "oic.if.b"]
     }
   },
   "definitions": {
     "sbaseline" : {
       "properties": {
         "links" : {
-          "description": "A set of simple or individual OIC Links.",
+          "description": "A set of simple or individual OCF Links.",
           "items": {
             "$ref": "#/definitions/oic.oic-link"
           },
@@ -305,17 +298,17 @@
           "$ref": "#/definitions/oic.core.rt"
         },
 	      "if": {
-	        "description": "The interface set supported by this resource",
+	        "description": "The OCF Interfaces supported by this Resource",
 	        "items": {
 		        "enum": [
+              "oic.if.ll",
               "oic.if.baseline",
-			        "oic.if.ll",
 			        "oic.if.b"
             ],
-						"type": "string"
+						"type": "string",
+            "maxLength": 64
 					},
-					"minItems": 1,
-          "maxItems": 3,
+					"minItems": 2,
           "uniqueItems": true,
           "readOnly": true,
 					"type": "array"
@@ -331,23 +324,26 @@
       "description": "Resource Type of the Resource",
 			"items": {
 				"enum": ["oic.wk.col"],
-				"type": "string"
+				"type": "string",
+        "maxLength": 64
 			},
 			"minItems": 1,
+      "uniqueItems": true,
 			"readOnly": true,
 			"type": "array"
 		},
     "oic.core.rt": {
       "description": "Resource Type or set of Resource Types",
 			"items": {
-				"type": "string"
+				"type": "string",
+        "maxLength": 64
 			},
 			"minItems": 1,
+      "uniqueItems": true,
 			"readOnly": true,
 			"type": "array"
 		},
     "sbatch-retrieve" : {
-      "title" : "Collection Batch Retrieve Format",
       "minItems" : 1,
       "items" : {
         "additionalProperties": true,
@@ -358,11 +354,11 @@
           "rep": {
             "oneOf": [
               {
-                "description": "The response payload from a single resource",
+                "description": "The response payload from a single Resource",
                 "type": "object"
               },
               {
-                "description": " The response payload from a collection (batch) resource",
+                "description": " The response payload from a Collection (batch) Resource",
                 "items": {
                   "$ref": "#/definitions/oic.oic-link"
                 },
@@ -389,7 +385,7 @@
     },
     "sbatch-update.item" : {
       "additionalProperties": true,
-      "description": "array of resource representations to apply to the batch collection, using href to indicate which resource(s) in the batch to update. If the href property is empty, effectively making the URI reference to the collection itself, the representation is to be applied to all resources in the batch",
+      "description": "Array of Resource representations to apply to the batch Collection, using href to indicate which Resource(s) in the batch to update. If the href Property is empty, effectively making the URI reference to the Collection itself, the representation is to be applied to all Resources in the batch",
       "properties": {
         "href": {
           "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties.core-schema.json#/definitions/href"
@@ -397,11 +393,11 @@
         "rep": {
           "oneOf": [
             {
-              "description": "The payload for a single resource",
+              "description": "The payload for a single Resource",
               "type": "object"
             },
             {
-              "description": " The payload for a collection (batch) resource",
+              "description": " The payload for a Collection (batch) Resource",
               "items": {
                 "$ref": "#/definitions/oic.oic-link"
               },
@@ -425,7 +421,7 @@
     "oic.oic-link": {
       "properties": {
         "if": {
-          "description": "The interface set supported by this resource",
+          "description": "The OCF Interfaces supported by the Linked target",
           "items": {
             "enum": [
               "oic.if.baseline",
@@ -436,7 +432,8 @@
               "oic.if.a",
               "oic.if.s"
             ],
-            "type": "string"
+            "type": "string",
+            "maxLength": 64
           },
           "minItems": 1,
           "uniqueItems": true,
