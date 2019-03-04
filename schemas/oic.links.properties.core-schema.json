@@ -1,7 +1,7 @@
 {
   "id": "https://openconnectivityfoundation.github.io/core/schemas/oic.links.properties-schema.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
+  "description" : "Copyright (c) 2018-2019 Open Connectivity Foundation, Inc. All rights reserved.",
   "title": "Definition of the properties used to define links.",
   "definitions": {
       "href": {
@@ -29,7 +29,7 @@
       "anchor": {
           "type": "string",
           "maxLength": 256,
-          "description": "This is used to override the context URI e.g. override the URI of the containing collection.",
+          "description": "This is used to override the context URI e.g. override the URI of the containing Collection.",
           "format": "uri"
       },
       "di": {
@@ -54,11 +54,11 @@
       },
       "ins": {
           "type": "integer",
-          "description": "The instance identifier for this web link in an array of web links - used in collections"
+          "description": "The instance identifier for this web link in an array of web links - used in Collections"
       },
       "type": {
           "type": "array",
-          "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting.",
+          "description": "A hint at the representation of the Resource referenced by the target URI. This represents the media types that are used for both accepting and emitting.",
           "items" : {
               "type": "string",
               "maxLength": 64
@@ -68,19 +68,19 @@
       },
       "eps": {
           "type": "array",
-          "description": "the Endpoint information of the target Resource",
+          "description": "the OCF Endpoint information of the target Resource",
           "items": {
               "type": "object",
               "properties": {
                   "ep": {
                       "type": "string",
                       "format": "uri",
-                      "description": "Transport Protocol Suite + Endpoint Locator"
+                      "description": "Transport Protocol Suite + OCF Endpoint Locator"
                   },
                   "pri": {
                       "type": "integer",
                       "minimum": 1,
-                      "description": "The priority among multiple Endpoints"
+                      "description": "The priority among multiple OCF Endpoints"
                   }
               }
           }

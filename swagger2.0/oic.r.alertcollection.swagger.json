@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Alert Collection",
-    "version": "2019-02-26",
+    "version": "2019-03-04",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -16,9 +16,9 @@
   "paths": {
     "/AlertCollectionResURI?if=oic.if.ll" : {
       "get": {
-        "description": "This Resource is a Collection containing instances of Alerts (oic.r.alert).\nThis is the response using the Link List interface.\n",
+        "description": "This Resource is a Collection containing instances of Alerts (oic.r.alert).\nThis is the response using the links list OCF Interface.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-ll"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
           "200": {
@@ -38,7 +38,7 @@
       "get": {
         "description": "This Resource is a Collection containing instances of Alerts (oic.r.alert).\nThis is the response using the Batch interface.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-b"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
           "200": {
@@ -78,7 +78,7 @@
       "get": {
         "description": "This Resource is a Collection containing instances of Alerts (oic.r.alert).\nThis is the response using the baseline interface.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-baseline"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
           "200": {
@@ -101,23 +101,11 @@
     }
   },
   "parameters": {
-    "interface-ll" : {
+    "interface-all" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.ll"]
-    },
-    "interface-b" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.b"]
-    },
-    "interface-baseline" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.baseline"]
+      "enum" : ["oic.if.ll", "oic.if.b", "oic.if.baseline"]
     }
   },
   "definitions": {
@@ -189,7 +177,7 @@
           "type": "array"
         },
         "links": {
-          "description": "A set of simple or individual OCF Links.",
+          "description": "A set of simple or individual Links.",
           "items": {
             "$ref": "#/definitions/oic.oic-link"
           },

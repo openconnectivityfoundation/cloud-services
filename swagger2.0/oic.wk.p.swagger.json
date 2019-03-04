@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Platform",
-    "version": "2019-02-26",
+    "version": "2019-03-04",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -76,7 +76,7 @@
           "type": "string"
         },
         "mnmn" : {
-          "description": "Manufacturer Name",
+          "description": "Manufacturer name",
           "maxLength": 64,
           "readOnly": true,
           "type": "string"

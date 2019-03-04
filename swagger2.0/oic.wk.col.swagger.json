@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "OCF Collection",
-    "version": "2019-02-26",
+    "title": "Collection",
+    "version": "2019-03-04",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -22,10 +22,10 @@
   "paths": {
     "/CollectionResURI?if=oic.if.ll" : {
       "get": {
-        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.ll interface exposes a representation of the links\n",
+        "description": "Collection Resource Type contains Properties and Links.\nThe oic.if.ll OCF Interface exposes a representation of the Links\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface-ll"
+            "$ref": "#/parameters/interface-all"
           }
         ],
         "responses": {
@@ -62,10 +62,10 @@
     },
     "/CollectionResURI?if=oic.if.baseline" : {
       "get": {
-        "description": "OCF Collection Resource Type contains Properties and Links.\nThe oic.if.baseline OCF Interface exposes a representation of\nthe Links and the Properties of the collection Resource itself\n",
+        "description": "Collection Resource Type contains Properties and Links.\nThe oic.if.baseline OCF Interface exposes a representation of\nthe Links and the Properties of the Collection Resource itself\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface-baseline"
+            "$ref": "#/parameters/interface-all"
           }
         ],
         "responses": {
@@ -108,7 +108,7 @@
         "description": "Update on Baseline OCF Interface\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface-baseline"
+            "$ref": "#/parameters/interface-update"
           },
           {
             "name": "body",
@@ -131,10 +131,10 @@
     },
     "/CollectionResURI?if=oic.if.b" : {
       "get": {
-        "description": "OCF Collection Resource Type contains properties and links.\nThe oic.if.b interfacce exposes a composite representation of the\nResources pointed to by the Links\n",
+        "description": "Collection Resource Type contains Properties and Links.\nThe oic.if.b OCF Interfacce exposes a composite representation of the\nResources pointed to by the Links\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface-b"
+            "$ref": "#/parameters/interface-all"
           }
         ],
         "responses": {
@@ -179,7 +179,7 @@
         "description": "Update on Batch OCF Interface\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface-b"
+            "$ref": "#/parameters/interface-update"
           },
           {
             "name": "body",
@@ -253,30 +253,24 @@
     }
   },
   "parameters": {
-    "interface-ll" : {
+    "interface-all" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.ll"]
+      "enum" : ["oic.if.ll", "oic.if.b", "oic.if.baseline"]
     },
-    "interface-b" : {
+    "interface-update" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.b"]
-    },
-    "interface-baseline" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.baseline"]
+      "enum" : ["oic.if.b", "oic.if.baseline"]
     }
   },
   "definitions": {
     "sbaseline" : {
       "properties": {
         "links" : {
-          "description": "A set of simple or individual OCF Links.",
+          "description": "A set of simple or individual Links.",
           "items": {
             "$ref": "#/definitions/oic.oic-link"
           },

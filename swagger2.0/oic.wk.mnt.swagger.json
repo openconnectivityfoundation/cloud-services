@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Maintenance",
-    "version": "2019-02-28",
+    "version": "2019-03-04",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -18,7 +18,7 @@
       "get": {
         "description": "The Resource through which a Device is maintained and can be used for diagnostic purposes.\nfr (Factory Reset) is a boolean.\n  The value 0 means No action (Default), the value 1 means Start Factory Reset\nAfter factory reset, this value shall be changed back to the default value\nrb (Reboot) is a boolean.\n  The value 0 means No action (Default), the value 1 means Start Reboot\nAfter Reboot, this value shall be changed back to the default value\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-rw"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
             "200": {
@@ -62,11 +62,17 @@
     }
   },
   "parameters": {
-    "interface-rw" : {
+    "interface-all" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.rw", "oic.if.baseline"]
+    },
+    "interface-rw" : {
+      "in" : "query",
+      "name" : "if",
+      "type" : "string",
+      "enum" : ["oic.if.rw"]
     }
   },
   "definitions": {

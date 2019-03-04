@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Platform Configuration",
-    "version": "2019-02-21-16:00",
+    "version": "2019-03-04",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
