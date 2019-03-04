@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Discoverable Resources",
-    "version": "2019-02-21-16:00",
+    "version": "2019-03-04",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -22,10 +22,10 @@
   "paths": {
     "/oic/res?if=oic.if.ll": {
       "get": {
-        "description": "Link list representation of /oic/res; list of discoverable Resources\n",
+        "description": "Links list representation of /oic/res; list of discoverable Resources\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface-ll"
+            "$ref": "#/parameters/interface-all"
           }
         ],
         "responses": {
@@ -65,7 +65,7 @@
         "description": "Baseline representation of /oic/res; list of discoverable Resources\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface-baseline"
+            "$ref": "#/parameters/interface-all"
           }
         ],
         "responses": {
@@ -108,17 +108,11 @@
     }
   },
   "parameters": {
-    "interface-ll": {
+    "interface-all": {
       "in": "query",
       "name": "if",
       "type": "string",
-      "enum": ["oic.if.ll"]
-    },
-    "interface-baseline": {
-      "in": "query",
-      "name": "if",
-      "type": "string",
-      "enum": ["oic.if.baseline"]
+      "enum": ["oic.if.ll", "oic.if.baseline"]
     }
   },
   "definitions": {

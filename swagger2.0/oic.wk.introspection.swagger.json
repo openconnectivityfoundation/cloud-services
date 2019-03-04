@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Introspection Resource",
-    "version": "2019-02-21-16:00",
+    "version": "2019-03-04",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -81,7 +81,7 @@
             "properties": {
               "content-type": {
                 "default": "application/cbor",
-                "description": "content-type of the introspection data",
+                "description": "content-type of the Introspection Device Data",
                 "enum": [
                   "application/json",
                   "application/cbor"

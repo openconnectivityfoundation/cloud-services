@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "OCF Scene Member",
-    "version": "2019-02-26",
+    "title": "Scene Member",
+    "version": "2019-03-04",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -22,7 +22,7 @@
   "paths": {
     "/SceneMemberResURI" : {
       "get": {
-        "description": "Single Link that models a scene member.\n",
+        "description": "Single Link that models a Scene Member.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface-baseline"
@@ -95,7 +95,7 @@
           "type": "array"
         },
         "SceneMappings": {
-          "description": "Array of mappings per scene, can be one(1)",
+          "description": "Array of mappings per Scene, can be one(1)",
           "items": {
             "properties": {
               "memberProperty": {
@@ -109,7 +109,7 @@
                 "type": "string"
               },
               "scene": {
-                "description": "Specifies a scene value that will be acted upon",
+                "description": "Specifies a Scene Value that will be acted upon",
                 "type": "string"
               }
             },

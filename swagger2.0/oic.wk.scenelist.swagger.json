@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "OCF Scene List",
-    "version": "2019-02-26",
+    "title": "Scene List",
+    "version": "2019-03-04",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -25,7 +25,7 @@
         "description": "Toplevel Scene Resource.\nThis Resource is a generic Collection Resource.\nThe rts value contains oic.wk.scenecollection Resource Types.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface-ll"
+            "$ref": "#/parameters/interface-all"
           }
         ],
         "responses": {
@@ -44,10 +44,10 @@
     },
     "/SceneListResURI?if=oic.if.baseline": {
       "get": {
-        "description": "Toplevel Scene Resource.\nThis resource is a generic Collection Resource.\nThe rts value contains oic.wk.scenecollection Resource Types.\n",
+        "description": "Toplevel Scene Resource.\nThis Resource is a generic Collection Resource.\nThe rts value contains oic.wk.scenecollection Resource Types.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface-baseline"
+            "$ref": "#/parameters/interface-all"
           }
         ],
         "responses": {
@@ -69,17 +69,11 @@
     }
   },
   "parameters": {
-    "interface-baseline" : {
+    "interface-all" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.baseline"]
-    },
-    "interface-ll" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.ll"]
+      "enum" : ["oic.if.ll", "oic.if.baseline"]
     }
   },
   "definitions": {
@@ -100,7 +94,7 @@
         },
         "if": {
           "type": "array",
-          "description": "The OCF Interfaces supported by this resource",
+          "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
               "oic.if.ll",
