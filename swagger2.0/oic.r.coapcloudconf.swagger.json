@@ -18,7 +18,7 @@
       "get": {
         "description": "The CoAPCloudConf Resource exposes configuration information for connecting to an OCF Cloud.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-rw"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
             "200": {
@@ -38,7 +38,7 @@
       "post": {
         "description": "Update properties of the CoAPCloudConf Resource.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-rw"},
+          {"$ref": "#/parameters/interface-all"},
           {
             "name": "body",
             "in": "body",
@@ -72,7 +72,7 @@
       "get": {
         "description": "The CoAPCloudConf Resource exposes configuration information for connecting to an OCF Cloud.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-baseline"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
             "200": {
@@ -80,7 +80,7 @@
               "x-example":
                 {
                   "rt": ["oic.r.coapcloudconf"],
-                  "if" : ["oic.if.baseline", "oic.if.rw"],
+                  "if" : ["oic.if.rw","oic.if.baseline"],
                   "apn": "github",
                   "cis": "coaps+tcp://example.com:443",
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
@@ -93,7 +93,7 @@
       "post": {
         "description": "Update Properties of the CoAPCloudConf Resource.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-baseline"},
+          {"$ref": "#/parameters/interface-all"},
           {
             "name": "body",
             "in": "body",
@@ -125,17 +125,11 @@
     }
   },
   "parameters": {
-    "interface-rw" : {
+    "interface-all" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.rw"]
-    },
-    "interface-baseline" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.baseline"]
+      "enum" : ["oic.if.rw","oic.if.baseline"]
     }
   },
   "definitions": {

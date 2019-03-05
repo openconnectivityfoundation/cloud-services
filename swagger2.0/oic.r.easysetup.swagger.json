@@ -18,7 +18,7 @@
       "get": {
         "description": "Easy Setup Resource stores useful information including current status of\nunboxing Device and last error code which are produced in the process of\neasy setup.\nNote that, Easy Setup Resource is a type of Collection Resource, which\ncontains Links to WiFiConf, DevConf Resources and may additionally contain\nLinks to other Resources.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-ll"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
             "200": {
@@ -63,7 +63,7 @@
       "get": {
         "description": "Easy Setup Resource stores useful information including current status of\nunboxing Device and last error code which are produced in the process of\neasy setup.\nNote that, Easy Setup Resource is a type of Collection Resource, which\ncontains Links to WiFiConf, DevConf Resources and may additionally contain\nLinks to other Resources.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-batch"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
           "200": {
@@ -169,7 +169,7 @@
       "get": {
         "description": "Easy Setup Resource stores useful information including current status of\nunboxing Device and last error code which are produced in the process of\neasy setup.\nNote that, Easy Setup Resource is a type of Collection Resource, which\ncontains Links to WiFiConf, DevConf Resources and may additionally contain\nLinks to other Resources.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-baseline"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
           "200": {
@@ -287,11 +287,11 @@
       "type" : "string",
       "enum" : ["oic.if.baseline"]
     },
-    "interface-ll" : {
+    "interface-all" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.ll"]
+      "enum" : ["oic.if.ll","oic.if.b","oic.if.baseline"]
     },
     "interface-batch" : {
       "in" : "query",
