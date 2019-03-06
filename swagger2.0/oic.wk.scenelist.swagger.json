@@ -54,9 +54,10 @@
           "200": {
             "description" : "",
             "x-example": {
-              "rt":       ["oic.wk.scenelist"],
-              "n":        "list of scene collections",
-              "rts":      ["oic.wk.scenecollection"],
+              "rt":  ["oic.wk.scenelist"],
+              "if":  ["oic.if.ll", "oic.if.baseline"],
+              "n":   "list of scene collections",
+              "rts": ["oic.wk.scenecollection"],
               "links": [
                 {"href": "/scenecollection1","rt": ["oic.wk.scenecollection"],"if":["oic.if.ll", "oic.if.baseline"]},
                 {"href": "/scenecollection2","rt": ["oic.wk.scenecollection"],"if":["oic.if.ll", "oic.if.baseline"]}
@@ -132,7 +133,12 @@
           "type": "array"
         }
       },
-      "type": "object"
+      "type": "object",
+      "required": [
+        "rt",
+        "if",
+        "links"
+      ]
     },
     "slinks" : {
       "type" : "array",

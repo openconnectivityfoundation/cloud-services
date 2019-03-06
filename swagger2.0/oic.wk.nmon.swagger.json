@@ -165,7 +165,7 @@
             "type": "string",
             "maxLength": 64
           },
-          "minItems": 2,
+          "minItems": 1,
           "readOnly": true,
           "uniqueItems": true,
           "type": "array"

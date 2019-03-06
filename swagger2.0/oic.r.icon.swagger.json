@@ -111,6 +111,7 @@
             "type": "string"
           },
           "minItems": 2,
+          "uniqueItems": true,
           "readOnly": true,
           "type": "array"
         }

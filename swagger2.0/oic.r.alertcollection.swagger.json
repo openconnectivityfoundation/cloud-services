@@ -86,7 +86,7 @@
             "x-example": {
               "rt":    ["oic.r.alertcollection"],
               "rts":   ["oic.r.alert"],
-              "if":    ["oic.if.ll","oic.if.baseline","oic.if.b"],
+              "if":    ["oic.if.ll", "oic.if.b", "oic.if.baseline"],
               "links": [
                 {"href": "/myAlert1ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
                 {"href": "/myAlert2ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
@@ -171,7 +171,7 @@
             "type": "string",
             "maxLength": 64
           },
-          "minItems": 2,
+          "minItems": 3,
           "readOnly": true,
           "uniqueItems": true,
           "type": "array"
