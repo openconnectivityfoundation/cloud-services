@@ -35,7 +35,7 @@
               {
                 "href": "/humidity",
                 "rt":   ["oic.r.humidity"],
-                "if":   ["oic.if.s"],
+                "if":   ["oic.if.s", "oic.if.baseline"],
                 "p":    {"bm": 3},
                 "eps": [
                   {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2},
@@ -46,7 +46,7 @@
               {
                 "href": "/temperature",
                 "rt":   ["oic.r.temperature"],
-                "if":   ["oic.if.s"],
+                "if":   ["oic.if.s", "oic.if.baseline"],
                 "p":    {"bm": 3},
                 "eps": [
                   {"ep": "coaps://[[2001:db8:a::123]:2222"}
@@ -74,12 +74,12 @@
             "x-example": [
               {
                 "rt": ["oic.wk.res"],
-                "if": ["oic.if.baseline", "oic.if.ll"],
+                "if": ["oic.if.ll", "oic.if.baseline"],
                 "links": [
                   {
                     "href": "/humidity",
                     "rt":   ["oic.r.humidity"],
-                    "if":   ["oic.if.s"],
+                    "if":   ["oic.if.s", "oic.if.baseline"],
                     "p":    {"bm": 3},
                     "eps": [
                       {"ep": "coaps://[fe80::b1d6]:1111", "pri": 2},
@@ -90,7 +90,7 @@
                   {
                     "href": "/temperature",
                     "rt":   ["oic.r.temperature"],
-                    "if":   ["oic.if.s"],
+                    "if":   ["oic.if.s", "oic.if.baseline"],
                     "p":    {"bm": 3},
                     "eps": [
                       {"ep": "coaps://[[2001:db8:a::123]:2222"}

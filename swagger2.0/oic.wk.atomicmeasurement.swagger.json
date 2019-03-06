@@ -26,17 +26,17 @@
 					"200": {
 						"description": "",
 						"x-example": [{
-							"href": "temperature",
+							"href": "/temperature",
 							"rt": ["oic.r.temperature"],
 							"if": ["oic.if.s", "oic.if.baseline"]
 						},
 						{
-							"href": "bodylocation",
+							"href": "/bodylocation",
 							"rt": ["oic.r.body.location.temperature"],
 							"if": ["oic.if.s", "oic.if.baseline"]
 						},
 						{
-							"href": "timestamp",
+							"href": "/timestamp",
 							"rt": ["oic.r.time.stamp"],
 							"if": ["oic.if.s", "oic.if.baseline"]
 						}],
@@ -59,7 +59,7 @@
 					"200": {
 						"description": "Normal response, no errors, all Properties are returned correctly\n",
 						"x-example": [{
-							"href": "temperature",
+							"href": "/temperature",
 							"rep": {
 								"temperature": 38,
 								"units": "C",
@@ -67,13 +67,13 @@
 							}
 						},
 						{
-							"href": "bodylocation",
+							"href": "/bodylocation",
 							"rep": {
 								"bloc": "ear"
 							}
 						},
 						{
-							"href": "timestamp",
+							"href": "/timestamp",
 							"rep": {
 								"timestamp": "2007-04-05T14:30+09:00"
 							}
@@ -102,17 +102,17 @@
 							"rts": ["oic.r.temperature", "oic.r.body.location.temperature",	"oic.r.time.stamp"],
 							"rts-m": ["oic.r.temperature", "oic.r.body.location.temperature",	"oic.r.time.stamp"],
 							"links": [{
-								"href": "temperature",
+								"href": "/temperature",
 								"rt": ["oic.r.temperature"],
 								"if": ["oic.if.s", "oic.if.baseline"]
 							},
 							{
-								"href": "bodylocation",
+								"href": "/bodylocation",
 								"rt": ["oic.r.body.location.temperature"],
 								"if": ["oic.if.s", "oic.if.baseline"]
 							},
 							{
-								"href": "timestamp",
+								"href": "/timestamp",
 								"rt": ["oic.r.time.stamp"],
 								"if": ["oic.if.s", "oic.if.baseline"]
 							}]
@@ -184,6 +184,7 @@
 											"type": "string"
 										},
 										"minItems": 1,
+										"uniqueItems": true,
 										"type": "array"
 									},
 									"ins": {
@@ -276,7 +277,12 @@
           "type": "array"
 				}
 			},
-			"type": "object"
+			"type": "object",
+			"required": [
+        "rt",
+        "if",
+        "links"
+      ]
 		},
 
 		"oic.core": {
@@ -289,6 +295,7 @@
 					},
 					"minItems": 1,
 					"readOnly": true,
+					"uniqueItems": true,
 					"type": "array"
 				}
 			},
@@ -322,6 +329,7 @@
 						"type": "string"
 					},
 					"minItems": 1,
+					"uniqueItems": true,
 					"type": "array"
 				},
 				"ins": {
@@ -348,6 +356,7 @@
 						"type": "string"
 					},
 					"minItems": 1,
+					"uniqueItems": true,
 					"type": "array"
 				},
 				"title": {

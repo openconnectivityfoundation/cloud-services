@@ -133,8 +133,8 @@
           "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
-              "oic.if.baseline",
-              "oic.if.rw"
+              "oic.if.rw",
+              "oic.if.baseline"
             ],
             "type": "string",
             "maxLength": 64

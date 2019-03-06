@@ -35,6 +35,7 @@
               "rt": ["oic.wk.scenemember"],
               "id": "0685B960-FFFF-46F7-BEC0-9E6234671ADC1",
               "n": "my binary switch (for light bulb) mappings",
+              "if": ["oic.if.baseline"],
               "link": {
                 "href": "binarySwitch",
                 "rt":   ["oic.r.switch.binary"],
@@ -146,7 +147,12 @@
           "type": "array"
         }
       },
-      "type" : "object"
+      "type" : "object",
+      "required": [
+        "rt",
+        "if",
+        "SceneMappings"
+      ]
     },
     "oic.oic-link": {
       "properties": {

@@ -73,6 +73,7 @@
             "description" : "",
             "x-example": {
               "rt": ["oic.wk.col"],
+              "if": ["oic.if.11", "oic.if.b", "oic.if.baseline"],
               "rts": [ "oic.r.switch.binary", "oic.r.airflow" ],
               "rts-m": [ "oic.r.switch.binary" ],
               "links": [
@@ -309,7 +310,12 @@
 				}
       },
       "additionalProperties": true,
-      "type" : "object"
+      "type" : "object",
+      "required": [
+        "rt",
+        "if",
+        "links"
+      ]
     },
     "sbaseline-update": {
       "additionalProperties": true

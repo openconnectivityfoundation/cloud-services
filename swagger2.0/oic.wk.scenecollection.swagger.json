@@ -107,7 +107,7 @@
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.a","oic.if.baseline"]
+      "enum" : ["oic.if.a"]
     },
     "interface-all" : {
       "in" : "query",
