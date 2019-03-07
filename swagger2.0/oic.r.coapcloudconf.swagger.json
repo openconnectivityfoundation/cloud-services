@@ -2,11 +2,11 @@
   "swagger": "2.0",
   "info": {
     "title": "CoAP Cloud Configuration Resource",
-    "version": "20190128",
+    "version": "20190306",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
-      "x-copyright": "Copyright 2016-2019 Open Connectivity Foundation, Inc. All rights reserved."
+      "x-copyright": "Copyright 2018-2019 Open Connectivity Foundation, Inc. All rights reserved."
     },
     "termsOfService": "https://openconnectivityfoundation.github.io/core/DISCLAIMER.md"
   },
@@ -160,9 +160,7 @@
           "type": "string"
         },
         "sid" : {
-          "description": "Format pattern according to IETF RFC 4122.",
-          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-          "type": "string"
+          "$ref": "http://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/uuid",
         },
         "clec" : {
           "description": "Last Error Code during Cloud Provisioning (0: No Error, 1: Error response from the OCF Cloud, 2: Failed to connect to the OCF Cloud, 3: Failed to refresh Access Token, 4~254: Reserved, 255: Unknown error)",
@@ -213,9 +211,7 @@
           "type": "string"
         },
         "sid" : {
-          "description": "Format pattern according to IETF RFC 4122.",
-          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-          "type": "string"
+          "$ref": "http://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/language-tag",
         }
       },
       "type" : "object",

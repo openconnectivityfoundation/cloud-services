@@ -2,11 +2,11 @@
   "swagger": "2.0",
   "info": {
     "title": "Wi-Fi Configuration",
-    "version": "20190128",
+    "version": "20190306",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
-      "x-copyright": "Copyright 2016-2019 Open Connectivity Foundation, Inc. All rights reserved."
+      "x-copyright": "Copyright 2018-2019 Open Connectivity Foundation, Inc. All rights reserved."
     },
     "termsOfService": "https://openconnectivityfoundation.github.io/core/DISCLAIMER.md"
   },
@@ -18,7 +18,7 @@
       "get": {
         "description": "WiFiConf Resource stores essential information to help an unboxing Device\nto connect to an existing Wi-Fi AP.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-rw"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
           "200": {
@@ -30,14 +30,14 @@
                 "wat": "WPA2_PSK",
                 "wet": "AES"
               },
-            "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
+            "schema": { "$ref": "#/definitions/WiFiConf" }
           }
         }
       },
       "post": {
         "description": "Deliver Wi-Fi AP's information for an unboxing Device to connect to it.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-rw"},
+          {"$ref": "#/parameters/interface-all"},
           {
             "name": "body",
             "in": "body",
@@ -62,7 +62,7 @@
                 "wat": "WPA2_PSK",
                 "wet": "AES"
               },
-            "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
+            "schema": { "$ref": "#/definitions/WiFiConf" }
           }
         }
       }
@@ -71,7 +71,7 @@
       "get": {
         "description": "WiFiConf Resource stores essential information to help an unboxing Device\nto connect to an existing Wi-Fi AP.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-baseline"}
+          {"$ref": "#/parameters/interface-all"}
         ],
         "responses": {
           "200": {
@@ -79,6 +79,7 @@
             "x-example":
               {
                 "rt": ["oic.r.wificonf"],
+                "if": ["oic.if.rw", "oic.if.baseline"],
                 "swmt" : ["A", "B", "G"],
                 "swf": ["2.4G", "5G"],
                 "tnn": "Home_AP_SSID",
@@ -95,7 +96,7 @@
       "post": {
         "description": "Deliver Wi-Fi AP's information for an unboxing device to connect to it.\n",
         "parameters": [
-          {"$ref": "#/parameters/interface-baseline"},
+          {"$ref": "#/parameters/interface-all"},
           {
             "name": "body",
             "in": "body",
@@ -115,29 +116,25 @@
             "description" : "",
             "x-example":
               {
+                "rt": ["oic.r.wificonf"],
+                "if": ["oic.if.rw", "oic.if.baseline"],
                 "tnn": "Home_AP_SSID",
                 "cd": "Home_AP_PWD",
                 "wat": "WPA2_PSK",
                 "wet": "AES"
               },
-            "schema": { "$ref": "#/definitions/WiFiConfUpdate" }
+            "schema": { "$ref": "#/definitions/WiFiConf" }
           }
         }
       }
     }
   },
   "parameters": {
-    "interface-rw" : {
+    "interface-all" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.rw"]
-    },
-    "interface-baseline" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.baseline"]
+      "enum" : ["oic.if.rw", "oic.if.baseline"]
     }
   },
   "definitions": {
@@ -254,13 +251,13 @@
           "description": "The OCF Interfaces supported by this Resource",
           "items": {
             "enum": [
-              "oic.if.baseline",
-              "oic.if.rw"
+              "oic.if.rw",
+              "oic.if.baseline"
             ],
             "type": "string",
             "maxLength": 64
           },
-          "minItems": 1,
+          "minItems": 2,
           "uniqueItems": true,
           "readOnly": true,
           "type": "array"
