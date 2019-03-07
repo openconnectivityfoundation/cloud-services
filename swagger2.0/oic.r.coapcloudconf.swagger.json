@@ -31,7 +31,7 @@
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
                 },
-              "schema": { "$ref": "#/definitions/CoAPCloudConf" }
+              "schema": { "$ref": "#/definitions/CoAPCloudConf-RW" }
             }
         }
       },
@@ -63,7 +63,7 @@
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
                 },
-              "schema": { "$ref": "#/definitions/CoAPCloudConf" }
+              "schema": { "$ref": "#/definitions/CoAPCloudConf-RW" }
             }
         }
       }
@@ -86,7 +86,7 @@
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
                 },
-              "schema": { "$ref": "#/definitions/CoAPCloudConf" }
+              "schema": { "$ref": "#/definitions/CoAPCloudConf-Baseline" }
             }
         }
       },
@@ -118,7 +118,7 @@
                   "sid" : "987e6543-a21f-10d1-a112-421345746237",
                   "clec": 0
                 },
-              "schema": { "$ref": "#/definitions/CoAPCloudConf" }
+              "schema": { "$ref": "#/definitions/CoAPCloudConf-Baseline" }
             }
         }
       }
@@ -133,7 +133,7 @@
     }
   },
   "definitions": {
-    "CoAPCloudConf" : {
+    "CoAPCloudConf-RW" : {
       "properties": {
         "rt" : {
           "description": "Resource Type of the Resource",
@@ -196,6 +196,70 @@
       },
       "type" : "object",
       "required":["cis", "sid"]
+    },
+    "CoAPCloudConf-Baseline" : {
+      "properties": {
+        "rt" : {
+          "description": "Resource Type of the Resource",
+          "items": {
+            "enum": ["oic.r.coapcloudconf"],
+            "type": "string",
+            "maxLength": 64
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n" : {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
+        },
+        "cis" : {
+          "description": "URL of OCF Cloud",
+          "format": "uri",
+          "type": "string"
+        },
+        "apn" : {
+          "description": "The Authorisation Provider through which an Access Token was obtained.",
+          "type": "string"
+        },
+        "sid" : {
+          "description": "Format pattern according to IETF RFC 4122.",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+          "type": "string"
+        },
+        "clec" : {
+          "description": "Last Error Code during Cloud Provisioning (0: No Error, 1: Error response from the OCF Cloud, 2: Failed to connect to the OCF Cloud, 3: Failed to refresh Access Token, 4~254: Reserved, 255: Unknown error)",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            255
+          ],
+          "readOnly": true
+        },
+        "id" : {
+          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
+        },
+        "if" : {
+          "description": "The OCF Interfaces supported by this Resource",
+          "items": {
+            "enum": [
+              "oic.if.rw",
+              "oic.if.baseline"
+            ],
+            "type": "string",
+            "maxLength": 64
+          },
+          "minItems": 2,
+          "uniqueItems": true,
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type" : "object",
+      "required":["cis", "sid", "if", "rt"]
     },
     "CoAPCloudConfUpdate" : {
       "properties": {
