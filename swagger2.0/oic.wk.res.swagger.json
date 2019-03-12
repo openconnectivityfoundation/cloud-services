@@ -71,7 +71,7 @@
         "responses": {
           "200": {
             "description": "",
-            "x-example": [
+            "x-example":
               {
                 "rt": ["oic.wk.res"],
                 "if": ["oic.if.ll", "oic.if.baseline"],
@@ -97,8 +97,7 @@
                     ]
                   }
                 ]
-              }
-            ],
+              },
             "schema": {
               "$ref": "#/definitions/sbaseline"
             }
