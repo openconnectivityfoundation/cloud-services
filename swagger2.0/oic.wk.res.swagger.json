@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Discoverable Resources",
-    "version": "2019-03-04",
+    "version": "2019-03-13",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://openconnectivityfoundation.github.io/core/LICENSE.md",
@@ -71,7 +71,7 @@
         "responses": {
           "200": {
             "description": "",
-            "x-example":
+            "x-example": [
               {
                 "rt": ["oic.wk.res"],
                 "if": ["oic.if.ll", "oic.if.baseline"],
@@ -97,7 +97,8 @@
                     ]
                   }
                 ]
-              },
+              }
+            ],
             "schema": {
               "$ref": "#/definitions/sbaseline"
             }
@@ -191,50 +192,56 @@
     },
     "slinklist": {
       "type" : "array",
+      "readOnly": true,
       "items": {
         "$ref": "#/definitions/oic.oic-link"
       }
     },
     "sbaseline": {
-      "type": "object",
-      "properties": {
-        "n": {
-          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
-        },
-        "id": {
-          "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
-        },
-        "rt": {
-          "description": "Resource Type of this Resource",
-          "items": {
-            "enum": ["oic.wk.res"],
-            "type": "string",
-            "maxLength": 64
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "n": {
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
           },
-          "minItems": 1,
-          "readOnly": true,
-          "uniqueItems": true,
-          "type": "array"
-        },
-        "if": {
-          "description": "The OCF Interfaces supported by this Resource",
-          "items": {
-            "enum": [
-              "oic.if.ll",
-              "oic.if.baseline"
-            ],
-            "type": "string",
-            "maxLength": 64
+          "id": {
+            "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
           },
-          "minItems": 2,
-          "readOnly": true,
-          "uniqueItems": true,
-          "type": "array"
-        },
-        "links": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/oic.oic-link"
+          "rt": {
+            "description": "Resource Type of this Resource",
+            "items": {
+              "enum": ["oic.wk.res"],
+              "type": "string",
+              "maxLength": 64
+            },
+            "minItems": 1,
+            "readOnly": true,
+            "uniqueItems": true,
+            "type": "array"
+          },
+          "if": {
+            "description": "The OCF Interfaces supported by this Resource",
+            "items": {
+              "enum": [
+                "oic.if.ll",
+                "oic.if.baseline"
+              ],
+              "type": "string",
+              "maxLength": 64
+            },
+            "minItems": 2,
+            "readOnly": true,
+            "uniqueItems": true,
+            "type": "array"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/oic.oic-link"
+            }
           }
         }
       },
