@@ -16,7 +16,7 @@
   "paths": {
     "/WiFiConfResURI?if=oic.if.rw" : {
       "get": {
-        "description": "WiFiConf Resource stores essential information to help an unboxing Device\nto connect to an existing Wi-Fi AP.\n",
+        "description": "The WiFiConf Resource stores essential information to help an unboxing Device connect to an existing Wi-Fi AP.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-all"}
         ],

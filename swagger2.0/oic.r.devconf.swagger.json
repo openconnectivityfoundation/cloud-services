@@ -16,7 +16,7 @@
   "paths": {
     "/example/DevConfResURI" : {
       "get": {
-        "description": "Device configuration Resource stores Device settings such as \nDevice name. Vender-specfic information can be added to the Resource.\n1. Device name (human-friendly name to be detected by a Mediator during\n   easy setup)\n",
+        "description": "The Device configuration Resource stores Device settings such as the Device name. Vendor-specific information can be added to the Resource.\nThe Device name is a human-friendly name read by a Mediator during easy setup.\n",
         "parameters": [
           {"$ref": "#/parameters/interface"}
         ],

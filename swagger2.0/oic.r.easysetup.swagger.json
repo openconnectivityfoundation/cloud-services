@@ -16,7 +16,7 @@
   "paths": {
     "/EasySetupResURI?if=oic.if.ll" : {
       "get": {
-        "description": "Easy Setup Resource stores useful information including current status of\nunboxing Device and last error code which are produced in the process of\neasy setup.\nNote that, Easy Setup Resource is a type of Collection Resource, which\ncontains Links to WiFiConf, DevConf Resources and may additionally contain\nLinks to other Resources.\n",
+        "description": "The Easy Setup Resource stores useful information including the current status of unboxing a Device and the last error code which are produced in the process of easy setup.\nNote that the Easy Setup Resource is a Collection Resource, which contains Links to WiFiConf, and DevConf Resources and may additionally contain Links to other Resources.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-all"}
         ],
@@ -61,7 +61,7 @@
     },
     "/EasySetupResURI?if=oic.if.b" : {
       "get": {
-        "description": "Easy Setup Resource stores useful information including current status of\nunboxing Device and last error code which are produced in the process of\neasy setup.\nNote that, Easy Setup Resource is a type of Collection Resource, which\ncontains Links to WiFiConf, DevConf Resources and may additionally contain\nLinks to other Resources.\n",
+        "description": "The Easy Setup Resource stores useful information including the current status of unboxing a Device and the last error code which are produced in the process of easy setup.\nNote that the Easy Setup Resource is a Collection Resource, which contains Links to WiFiConf, and DevConf Resources and may additionally contain Links to other Resources.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-all"}
         ],
@@ -167,7 +167,7 @@
     },
     "/EasySetupResURI?if=oic.if.baseline" : {
       "get": {
-        "description": "Easy Setup Resource stores useful information including current status of\nunboxing Device and last error code which are produced in the process of\neasy setup.\nNote that, Easy Setup Resource is a type of Collection Resource, which\ncontains Links to WiFiConf, DevConf Resources and may additionally contain\nLinks to other Resources.\n",
+        "description": "The Easy Setup Resource stores useful information including the current status of unboxing a Device and the last error code which are produced in the process of easy setup.\nNote that the Easy Setup Resource is a Collection Resource, which contains Links to WiFiConf, and DevConf Resources and may additionally contain Links to other Resources.\n",
         "parameters": [
           {"$ref": "#/parameters/interface-all"}
         ],
