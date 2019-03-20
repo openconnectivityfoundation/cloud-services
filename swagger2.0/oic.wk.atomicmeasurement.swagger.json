@@ -16,7 +16,7 @@
 	"paths": {
 		"/AtomicMeasurementResURI?if=oic.if.ll": {
 			"get": {
-				"description": "The oic.if.ll OCF Interface exposes a representation of the Links\n",
+				"description": "The oic.if.ll OCF Interface exposes a representation of the Links",
 				"parameters": [
           {
             "$ref": "#/parameters/interface-all"
@@ -263,8 +263,28 @@
           "uniqueItems": true,
           "type": "array"
         },
-				"rts": { "$ref": "#/definitions/oic.core/properties/rt"},
-				"rts-m": { "$ref": "#/definitions/oic.core/properties/rt"},
+				"rts": {
+					"description": "An array of Resource Types that are supported within an array of Links exposed by the Resource",
+					"items": {
+						"maxLength": 64,
+						"type": "string"
+					},
+					"minItems": 1,
+					"readOnly": true,
+					"uniqueItems": true,
+					"type": "array"
+				},
+				"rts-m": {
+					"description": "An array of Resource Types that are mandatory to be exposed within an array of Links exposed by the Resource",
+					"items": {
+						"maxLength": 64,
+						"type": "string"
+					},
+					"minItems": 1,
+					"readOnly": true,
+					"uniqueItems": true,
+					"type": "array"
+				},
 				"if": {
 					"description": "The OCF Interface set supported by this Resource",
 					"items": {
@@ -283,23 +303,6 @@
         "if",
         "links"
       ]
-		},
-
-		"oic.core": {
-			"properties": {
-				"rt": {
-					"description": "Resource Type of the Resource",
-					"items": {
-						"maxLength": 64,
-						"type": "string"
-					},
-					"minItems": 1,
-					"readOnly": true,
-					"uniqueItems": true,
-					"type": "array"
-				}
-			},
-			"type": "object"
 		},
 		"oic.oic-link": {
 			"properties": {
