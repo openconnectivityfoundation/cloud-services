@@ -24,10 +24,10 @@
           "200": {
             "description" : "",
             "x-example": [
-              {"href": "/myAlert1ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
-              {"href": "/myAlert2ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
-              {"href": "/myAlert3ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
-              {"href": "/myAlert4ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]}
+              {"href": "/myAlert1ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.r","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+              {"href": "/myAlert2ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.r","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+              {"href": "/myAlert3ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.r","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+              {"href": "/myAlert4ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.r","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]}
             ],
             "schema": { "$ref": "#/definitions/AlertCollection-ll" }
           }
@@ -88,10 +88,10 @@
               "rts":   ["oic.r.alert"],
               "if":    ["oic.if.ll", "oic.if.b", "oic.if.baseline"],
               "links": [
-                {"href": "/myAlert1ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
-                {"href": "/myAlert2ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
-                {"href": "/myAlert3ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
-                {"href": "/myAlert4ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.s","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]}
+                {"href": "/myAlert1ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.r","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+                {"href": "/myAlert2ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.r","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+                {"href": "/myAlert3ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.r","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]},
+                {"href": "/myAlert4ResURI", "rt": ["oic.r.alert"], "if": ["oic.if.r","oic.if.baseline"], "eps": [{"ep": "coaps://[fe80::b1d6]:1122"}]}
               ]
             },
             "schema": { "$ref": "#/definitions/AlertCollection-baseline" }
