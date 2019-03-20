@@ -91,7 +91,7 @@
       "type" : "string",
       "enum" : ["oic.if.rw"]
     },
-    "interface-baseline" : {
+    "interface-all" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
