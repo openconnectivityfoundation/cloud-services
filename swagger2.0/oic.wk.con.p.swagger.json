@@ -145,8 +145,7 @@
           "type": "array"
         }
       },
-      "type" : "object",
-      "required": ["n"]
+      "type" : "object"
     },
     "Update_Platform": {
       "properties": {
