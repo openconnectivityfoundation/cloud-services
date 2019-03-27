@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Easy Setup Collection",
-    "version": "20190306",
+    "version": "20190327",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -86,7 +86,9 @@
                     "tnn": "Home_AP_SSID",
                     "cd": "Home_AP_PWD",
                     "wat": "WPA2_PSK",
-                    "wet": "AES"
+                    "wet": "AES",
+                    "swat": ["WPA_PSK", "WPA2_PSK"],
+                    "swet": ["TKIP", "AES", "TKIP_AES"]
                   }
                 },
                 {
@@ -150,7 +152,9 @@
                     "tnn": "Home_AP_SSID",
                     "cd": "Home_AP_PWD",
                     "wat": "WPA2_PSK",
-                    "wet": "AES"
+                    "wet": "AES",
+                    "swat": ["WPA_PSK", "WPA2_PSK"],
+                    "swet": ["TKIP", "AES", "TKIP_AES"]
                   }
                 },
                 {
@@ -226,11 +230,9 @@
             "required": true,
             "schema": { "$ref": "#/definitions/EasySetupUpdate" },
             "x-example":
-             [
-               {
-                 "cn": [1]
-               }
-             ]
+             {
+               "cn": [1]
+             }
           }
         ],
         "responses": {

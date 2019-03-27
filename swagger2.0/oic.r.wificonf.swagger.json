@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Wi-Fi Configuration",
-    "version": "20190306",
+    "version": "20190327",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -26,9 +26,13 @@
             "x-example":
               {
                 "tnn": "Home_AP_SSID",
+                "swmt" : ["A", "B", "G"],
+                "swf": ["2.4G", "5G"],
                 "cd": "Home_AP_PWD",
                 "wat": "WPA2_PSK",
-                "wet": "AES"
+                "wet": "AES",
+                "swat": ["WPA_PSK", "WPA2_PSK"],
+                "swet": ["TKIP", "AES", "TKIP_AES"]
               },
             "schema": { "$ref": "#/definitions/WiFiConf" }
           }
@@ -58,9 +62,13 @@
             "x-example":
               {
                 "tnn": "Home_AP_SSID",
+                "swmt" : ["A", "B", "G"],
+                "swf": ["2.4G", "5G"],
                 "cd": "Home_AP_PWD",
                 "wat": "WPA2_PSK",
-                "wet": "AES"
+                "wet": "AES",
+                "swat": ["WPA_PSK", "WPA2_PSK"],
+                "swet": ["TKIP", "AES", "TKIP_AES"]
               },
             "schema": { "$ref": "#/definitions/WiFiConf" }
           }
@@ -119,9 +127,13 @@
                 "rt": ["oic.r.wificonf"],
                 "if": ["oic.if.rw", "oic.if.baseline"],
                 "tnn": "Home_AP_SSID",
+                "swmt" : ["A", "B", "G"],
+                "swf": ["2.4G", "5G"],
                 "cd": "Home_AP_PWD",
                 "wat": "WPA2_PSK",
-                "wet": "AES"
+                "wet": "AES",
+                "swat": ["WPA_PSK", "WPA2_PSK"],
+                "swet": ["TKIP", "AES", "TKIP_AES"]
               },
             "schema": { "$ref": "#/definitions/WiFiConf" }
           }
