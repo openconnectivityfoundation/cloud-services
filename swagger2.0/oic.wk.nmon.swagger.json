@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Network Monitoring",
-    "version": "2019-02-26",
+    "version": "2019-03-27",
     "license": {
       "name": "OCF Data Model License",
       "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
@@ -64,10 +64,10 @@
                 "col" : true,
                 "tx" : 0,
                 "rx" : 0,
-                "mms-tx" : 0,
-                "ams-tx" : 0,
-                "mms-rx" : 0,
-                "ams-rx" : 0
+                "mmstx" : 0,
+                "amstx" : 0,
+                "mmsrx" : 0,
+                "amsrx" : 0
               },
               "schema": { "$ref": "#/definitions/nmon" }
             }
