@@ -189,13 +189,13 @@
     "swupdate-update": {
       "properties": {
         "purl": {
-          "$ref": "#/definitions/swupdate/purl"
+          "$ref": "#/definitions/swupdate/properties/purl"
         },
         "swupdateaction" : {
-          "$ref": "#/definitions/swupdate/swupdateaction"
+          "$ref": "#/definitions/swupdate/properties/swupdateaction"
         },
         "updatetime": {
-          "$ref": "#/definitions/swupdate/updatetime"
+          "$ref": "#/definitions/swupdate/properties/updatetime"
         }
       },
       "required": ["purl", "swupdateaction", "updatetime"]
