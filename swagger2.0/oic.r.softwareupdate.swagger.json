@@ -32,9 +32,9 @@
                   "swupdateaction": "idle",
                   "swupdatestate" : "idle",
                   "swupdateresult" : 0,
-                  "lastupdate" : "2015-01-09T14:30Z",
+                  "lastupdate" : "2015-01-09T14:30:00Z",
                   "signed" : "vendor",
-                  "updatetime" : "2015-01-09T14:30Z"
+                  "updatetime" : "2015-01-09T14:30:00Z"
                 },
               "schema": { "$ref": "#/definitions/swupdate" }
             }
@@ -53,7 +53,7 @@
               {
                   "purl":  "https://myvendor/newversion",
                   "swupdateaction": "upgrade",
-                  "updatetime" : "2030-01-09T14:30Z"
+                  "updatetime" : "2030-01-09T14:30:00Z"
               }
           }
         ],
@@ -67,9 +67,9 @@
                   "swupdateaction": "upgrade",
                   "swupdatestate" : "idle",
                   "swupdateresult" : 0,
-                  "lastupdate" : "2015-01-09T14:30Z",
+                  "lastupdate" : "2015-01-09T14:30:00Z",
                   "signed" : "vendor",
-                  "updatetime" : "2030-01-09T14:30Z"
+                  "updatetime" : "2030-01-09T14:30:00Z"
                 },
                 "schema": { "$ref": "#/definitions/swupdate" }
             }
