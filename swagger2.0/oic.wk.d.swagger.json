@@ -192,6 +192,18 @@
           "uniqueItems": true,
           "readOnly": true,
           "type": "array"
+        },
+        "econame" : {
+          "description": "Ecosystem Name of the Bridged Device which is exposed by this VOD.",
+          "type": "string",
+          "enum": ["BLE", "oneM2M", "UPlus", "Zigbee", "Z-Wave"],
+          "readOnly": true
+        },
+        "ecoversion" : {
+          "description": "Version of ecosystem that a Bridged Device belongs to. Typical version string format is like n.n (e.g. 5.0).",
+          "type": "string",
+          "maxLength": 64,
+          "readOnly": true
         }
       },
       "type": "object",
