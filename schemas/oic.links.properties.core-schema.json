@@ -64,7 +64,7 @@
               "maxLength": 64
           },
           "minItems": 1,
-          "default": "application/cbor"
+          "default": "application/vnd.ocf+cbor"
       },
       "eps": {
           "type": "array",
