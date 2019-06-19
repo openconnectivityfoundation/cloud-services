@@ -251,34 +251,6 @@
           }
         }
       }
-    },
-    "/CollectionResURI?if=oic.if.create" : {
-      "get": {
-        "description": "Observe a Collection Resource Type for any newly created Resources.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface-all"
-          }
-        ],
-        "responses": {
-          "201": {
-          },
-          "204": {
-          }
-        }
-      },
-      "post": {
-        "description": "Create a new Resource and add the Link of the create Resource into the Collection.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface-rw"
-          }
-        ],
-        "responses": {
-          "201": {
-          }
-        }
-      }
     }
   },
   "parameters": {
@@ -286,13 +258,13 @@
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.ll", "oic.if.b", "oic.if.baseline", "oic.if.create"]
+      "enum" : ["oic.if.ll", "oic.if.b", "oic.if.baseline"]
     },
     "interface-update" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
-      "enum" : ["oic.if.b", "oic.if.baseline", "oic.if.create"]
+      "enum" : ["oic.if.b", "oic.if.baseline"]
     }
   },
   "definitions": {
