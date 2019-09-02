@@ -1,0 +1,1063 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "OCF Cloud API for Cloud Services",
+    "version": "0.0.3-20190828",
+    "license": {
+      "name": "Copyright 2019 Open Connectivity Foundation, Inc. All rights reserved.",
+      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    }
+  },
+  "host": "api.example.com",
+  "schemes": [
+    "https"
+  ],
+  "tags": [
+    {
+      "name": "Devices",
+      "description": "Basic information about devices"
+    },
+    {
+      "name": "Resources",
+      "description": "Read or change the configuration of the device"
+    },
+    {
+      "name": "Events",
+      "description": "Be notified about changes occuring on the device"
+    }
+  ],
+  "paths": {
+    "/api/v1/devices": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/CorrelationId"
+        },
+        {
+          "$ref": "#/parameters/Accept"
+        },
+        {
+          "$ref": "#/parameters/BatchFormat"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Get all devices",
+        "description": "Get all devices which are signed up to the OCF Cloud - either `online` or `offline`. Devices which are `online` are signed in to the system and are accessible. Offline devices are signed up to the system, but currently disconnected.\n",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of devices",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Device"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "r:deviceinformation"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/devices/subscriptions": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/CorrelationId"
+        },
+        {
+          "$ref": "#/parameters/Accept"
+        },
+        {
+          "$ref": "#/parameters/ContentType"
+        }
+      ],
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Subscribe to events against the set of devices",
+        "description": "Subscribe to devices events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n\n**Supported events** and required scopes\n- `devices_registered` 🡆 `r:deviceinformation`\n- `devices_unregistered` 🡆 `r:deviceinformation`\n- `devices_online` 🡆 `r:deviceinformation`\n- `devices_offline` 🡆 `r:deviceinformation`\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SubscribeRequest"
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/definitions/SubscribeResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "w:subscriptions",
+              "r:deviceinformation"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/devices/subscriptions/{subscriptionId}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/CorrelationId"
+        },
+        {
+          "$ref": "#/parameters/SubscriptionIdPath"
+        }
+      ],
+      "delete": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Unsubscribe from events against the set of devices",
+        "description": "Cancel subscription identified by the id returned in a response for subscription.\n",
+        "responses": {
+          "202": {
+            "description": "Subscription was marked for cancellation"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "w:subscriptions",
+              "r:deviceinformation"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/devices/{deviceId}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/CorrelationId"
+        },
+        {
+          "$ref": "#/parameters/Accept"
+        },
+        {
+          "$ref": "#/parameters/DeviceId"
+        },
+        {
+          "$ref": "#/parameters/BatchFormat"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Get the device by ID",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Device requested with content=all query parameter",
+            "schema": {
+              "$ref": "#/definitions/DeviceContentAll"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "r:deviceinformation"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/devices/{deviceId}/subscriptions": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/CorrelationId"
+        },
+        {
+          "$ref": "#/parameters/DeviceId"
+        },
+        {
+          "$ref": "#/parameters/Accept"
+        },
+        {
+          "$ref": "#/parameters/ContentType"
+        }
+      ],
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Subscribe to events against a specific device",
+        "description": "Subscribe to device events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n\n**Supported events** and required scopes\n- `resources_published` 🡆 `r:deviceinformation`\n- `resources_unpublished` 🡆 `r:deviceinformation`\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SubscribeRequest"
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/definitions/SubscribeResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "w:subscriptions",
+              "r:deviceinformation"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/devices/{deviceId}/subscriptions/{subscriptionId}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/CorrelationId"
+        },
+        {
+          "$ref": "#/parameters/DeviceId"
+        },
+        {
+          "$ref": "#/parameters/SubscriptionIdPath"
+        }
+      ],
+      "delete": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Unsubscribe from events against a specific device",
+        "description": "Cancel subscription identified by the id returned in a response for subscription.\n",
+        "responses": {
+          "202": {
+            "description": "Subscription was marked for cancellation"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "w:subscriptions",
+              "r:deviceinformation"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/devices/{deviceId}/{resourceLinkHref}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/CorrelationId"
+        },
+        {
+          "$ref": "#/parameters/DeviceId"
+        },
+        {
+          "$ref": "#/parameters/ResourceLinkHref"
+        },
+        {
+          "$ref": "#/parameters/Accept"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Retrieve resource values",
+        "consumes": [
+          "application/json",
+          "application/vnd.ocf+cbor"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.ocf+cbor"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/definitions/ResourceRetrieveResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "503": {
+            "description": "#/responses/ServiceUnavailable"
+          },
+          "504": {
+            "description": "#/responses/GatewayTimeout"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "r:resources"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Update resource values",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ResourceUpdateRequest"
+          },
+          {
+            "$ref": "#/parameters/ContentType"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/vnd.ocf+cbor"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.ocf+cbor"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/definitions/ResourceRetrieveResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "415": {
+            "description": "Unsupported media type specified in the Content-Type header"
+          },
+          "503": {
+            "description": "#/responses/ServiceUnavailable"
+          },
+          "504": {
+            "description": "#/responses/GatewayTimeout"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "w:resources"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/devices/{deviceId}/{resourceLinkHref}/subscriptions": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/CorrelationId"
+        },
+        {
+          "$ref": "#/parameters/DeviceId"
+        },
+        {
+          "$ref": "#/parameters/ResourceLinkHref"
+        },
+        {
+          "$ref": "#/parameters/Accept"
+        },
+        {
+          "$ref": "#/parameters/ContentType"
+        }
+      ],
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Subscribe to events against a specific resource",
+        "description": "Subscribe to resource events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n \n**Supported events** and required scopes\n- `resource_contentchanged` 🡆 `r:resources`",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SubscribeRequest"
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/definitions/SubscribeResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "w:subscriptions",
+              "r:resources"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/devices/{deviceId}/{resourceLinkHref}/subscriptions/{subscriptionId}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/CorrelationId"
+        },
+        {
+          "$ref": "#/parameters/DeviceId"
+        },
+        {
+          "$ref": "#/parameters/ResourceLinkHref"
+        },
+        {
+          "$ref": "#/parameters/SubscriptionIdPath"
+        }
+      ],
+      "delete": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Unsubscribe from events against a specific resource",
+        "description": "Cancel subscription identified by the id returned in a response for subscription.\n",
+        "responses": {
+          "202": {
+            "description": "Subscription was marked for cancellation"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "w:subscriptions",
+              "r:resources"
+            ]
+          }
+        ]
+      }
+    },
+    "/{eventsUrl}": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Events endpoint provided by the subscriber, where events are delivered",
+        "description": "Events endpoint provided during subscription where events specified in the subscription will be sent to  as defined per event type. Confirmation of each event sent to the `eventsUrl` endpoint is required with `2xx` success code. Events you will receive based on event type you're subscribed to are:\n - `subscription_canceled` 🡆 `SubscriptionCanceledEvent`\n - `devices_registered` 🡆 `DevicesRegisteredEvent`\n - `devices_unregistered` 🡆 `DevicesUnregisteredEvent`\n - `resources_published` 🡆 `ResourcesPublishedEvent`\n - `resources_unpublished` 🡆 `ResourcesUnpublishedEvent`\n - `devices_online` 🡆 `DevicesOnlineEvent`\n - `devices_offline` 🡆 `DevicesOfflineEvent`\n - `resource_contentchanged` 🡆 `ResourceContentChangedEvent`",
+        "parameters": [
+          {
+            "$ref": "#/parameters/CorrelationId"
+          },
+          {
+            "$ref": "#/parameters/ContentType"
+          },
+          {
+            "$ref": "#/parameters/EventType"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "$ref": "#/parameters/SequenceNumber"
+          },
+          {
+            "$ref": "#/parameters/EventSignature"
+          },
+          {
+            "$ref": "#/parameters/EventsUrl"
+          },
+          {
+            "$ref": "#/parameters/Event"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/vnd.ocf+cbor"
+        ],
+        "responses": {
+          "200": {
+            "description": "Event successfully recieved"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "410": {
+            "description": "The subscription identified by the Subscription-ID header is no more in demand and shall be canceled"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://example.com/api/oauth/dialog",
+      "tokenUrl": "https://example.com/api/oauth/token",
+      "scopes": {
+        "r:deviceinformation": "Read basic device information",
+        "r:resources": "Read content of published resource",
+        "w:resources": "Update content of published resource",
+        "w:subscriptions": "Create subscriptions"
+      }
+    }
+  },
+  "parameters": {
+    "CorrelationId": {
+      "name": "Correlation-ID",
+      "in": "header",
+      "type": "string",
+      "format": "uuid",
+      "description": "A Correlation ID, also known as a Transit ID, is a unique identifier value that is attached to requests and messages that allow reference to a particular transaction or event chain.\n"
+    },
+    "ContentType": {
+      "name": "Content-Type",
+      "in": "header",
+      "type": "string",
+      "enum": [
+        "application/json",
+        "application/vnd.ocf+cbor"
+      ],
+      "required": true,
+      "description": "The Content-Type header is used to indicate the media type of the resource. In responses, a Content-Type header tells the client what the content type of the returned content actually is. In requests, (such as POST), the client tells the server what type of data is actually sent.\n"
+    },
+    "Accept": {
+      "name": "Accept",
+      "in": "header",
+      "type": "string",
+      "enum": [
+        "application/json",
+        "application/vnd.ocf+cbor"
+      ],
+      "description": "The Accept request header can be used to specify certain media types which are acceptable for the response. Accept headers can be used to indicate that the request is specifically limited to a small set of desired types.\n"
+    },
+    "SubscriptionId": {
+      "name": "Subscription-ID",
+      "in": "header",
+      "description": "Unique id of the subscription",
+      "type": "string",
+      "format": "uuid",
+      "required": true
+    },
+    "SequenceNumber": {
+      "name": "Sequence-Number",
+      "in": "header",
+      "description": "Unique id of the subscription",
+      "type": "string",
+      "format": "uuid",
+      "required": true
+    },
+    "EventSignature": {
+      "name": "Event-Signature",
+      "in": "header",
+      "description": "The signature created by combining the `signingSecret` from the subscription request, headers and the body of the request using a stanard HMAC-SHA256 keyed hash.",
+      "type": "string",
+      "required": true
+    },
+    "EventType": {
+      "name": "Event-Type",
+      "in": "header",
+      "type": "string",
+      "enum": [
+        "subscription_canceled",
+        "devices_registered",
+        "devices_unregistered",
+        "resource_contentchanged",
+        "resources_published",
+        "resources_unpublished",
+        "devices_online",
+        "devices_offline"
+      ],
+      "required": true
+    },
+    "DeviceType": {
+      "description": "Filter devices by device type",
+      "name": "rt",
+      "in": "query",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ResourceLinkHref": {
+      "description": "Path to resource",
+      "name": "resourceLinkHref",
+      "in": "path",
+      "type": "string",
+      "required": true
+    },
+    "DeviceId": {
+      "description": "Id of the device",
+      "name": "deviceId",
+      "in": "path",
+      "type": "string",
+      "format": "uuid",
+      "required": true
+    },
+    "SubscriptionIdPath": {
+      "name": "subscriptionId",
+      "in": "path",
+      "type": "string",
+      "format": "uuid",
+      "required": true
+    },
+    "BatchFormat": {
+      "name": "content",
+      "in": "query",
+      "description": "Indicates to the recipient that the response payload shall be the resolved (i.e. resource representation) Link and not the Link itself. Default is base",
+      "type": "string",
+      "enum": [
+        "base",
+        "all"
+      ]
+    },
+    "EventsUrl": {
+      "name": "eventsUrl",
+      "type": "string",
+      "in": "path",
+      "required": true
+    },
+    "ResourceUpdateRequest": {
+      "description": "Map of resource values to be updated",
+      "name": "content",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/ResourceUpdateRequest"
+      },
+      "required": true
+    },
+    "SubscribeRequest": {
+      "name": "content",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/SubscribeRequest"
+      },
+      "required": true
+    },
+    "Event": {
+      "description": "Event of a specific type, based on what you are subscribed to",
+      "name": "content",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/ResourceContentChangedEvent"
+      },
+      "required": true
+    }
+  },
+  "responses": {
+    "Unauthorized": {
+      "description": "Unauthorized"
+    },
+    "NotFound": {
+      "description": "Not found"
+    },
+    "SubscriptionCancellationPending": {
+      "description": "Subscription was marked for cancellation"
+    },
+    "Forbidden": {
+      "description": "Insufficient permissions"
+    },
+    "BadRequest": {
+      "description": "The request was malformed or badly constructed"
+    },
+    "ServiceUnavailable": {
+      "description": "The service on the Target Cloud is unavailable for the reason indicated in the diagnostic payload"
+    },
+    "GatewayTimeout": {
+      "description": "The target Device is registered at the target Cloud, however the Device itself is unavailable, offline, or otherwise unreachable. The response should include a Retry-After header containing the time after which the request may be re-attempted. Additional information is indicated in the diagnostic payload."
+    }
+  },
+  "definitions": {
+    "Device": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "$ref": "https://raw.githubusercontent.com/ondrejtomcik/coreocf/Bugzilla-2709/swagger2.0/oic.wk.d.swagger.json#/definitions/Device"
+        },
+        "status": {
+          "$ref": "#/definitions/DeviceStatus"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "https://raw.githubusercontent.com/ondrejtomcik/coreocf/Bugzilla-2709/swagger2.0/oic.wk.res.swagger.json#/definitions/oic.oic-link"
+          }
+        }
+      },
+      "example": {
+        "device": {
+          "dmn": "Open Connectivity Foundation",
+          "n": "Food safety sensor",
+          "di": "53080a4f-5e3e-4291-802f-3436238232d2"
+        },
+        "status": "online",
+        "links": [
+          {
+            "href": "/53080a4f-5e3e-4291-802f-3436238232d2/humidity",
+            "rt": [
+              "oic.r.humidity"
+            ]
+          },
+          {
+            "href": "/53080a4f-5e3e-4291-802f-3436238232d2/temperature",
+            "rt": [
+              "oic.r.temperature"
+            ]
+          }
+        ]
+      }
+    },
+    "DeviceContentAll": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "$ref": "https://raw.githubusercontent.com/ondrejtomcik/coreocf/Bugzilla-2709/swagger2.0/oic.wk.d.swagger.json#/definitions/Device"
+        },
+        "status": {
+          "$ref": "#/definitions/DeviceStatus"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "href": {
+                "type": "string"
+              },
+              "rep": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "example": {
+        "device": {
+          "dmn": "Open Connectivity Foundation",
+          "n": "Food safety sensor",
+          "di": "53080a4f-5e3e-4291-802f-3436238232d2"
+        },
+        "status": "online",
+        "links": [
+          {
+            "href": "/humidity",
+            "rep": {
+              "humidity": 62,
+              "desiredHumidity": 65
+            }
+          },
+          {
+            "href": "/temperature",
+            "rep": {
+              "temperature": 21,
+              "units": "C"
+            }
+          }
+        ]
+      }
+    },
+    "DeviceStatus": {
+      "description": "Device status available from the OCF Cloud, which tracks if the device has opened TCP connection and is signed in",
+      "type": "string",
+      "enum": [
+        "online",
+        "offline"
+      ]
+    },
+    "ResourceUpdateRequest": {
+      "type": "string",
+      "description": "Desired content of the resource",
+      "example": "o29kZXNpcmVkSHVtaWRpdHkYPGV0eXBlc4Fub2ljLnIuaHVtaWRpdHloaHVtaWRpdHkYKA=="
+    },
+    "ResourceRetrieveResponse": {
+      "type": "string",
+      "description": "Content of the resource returned from the device",
+      "example": "o29kZXNpcmVkSHVtaWRpdHkYPGV0eXBlc4Fub2ljLnIuaHVtaWRpdHloaHVtaWRpdHkYKA=="
+    },
+    "EventType": {
+      "type": "string",
+      "enum": [
+        "subscription_canceled",
+        "devices_registered",
+        "devices_unregistered",
+        "resource_contentchanged",
+        "resources_published",
+        "resources_unpublished",
+        "devices_online",
+        "devices_offline"
+      ]
+    },
+    "SubscriptionId": {
+      "description": "Unique id of the subscription",
+      "type": "string",
+      "format": "uuid"
+    },
+    "SubscribeRequest": {
+      "type": "object",
+      "properties": {
+        "eventsUrl": {
+          "$ref": "#/definitions/EventsUrl"
+        },
+        "eventTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EventType"
+          }
+        },
+        "signingSecret": {
+          "type": "string",
+          "maxLength": 32,
+          "minLength": 32
+        }
+      },
+      "required": [
+        "eventsUrl",
+        "eventTypes",
+        "signingSecret"
+      ],
+      "example": {
+        "eventsUrl": "https://events.example.com/",
+        "eventTypes": [
+          "devices_registered",
+          "devices_unregistered"
+        ]
+      }
+    },
+    "SubscribeResponse": {
+      "description": "Subscription was registered, waiting for verification",
+      "type": "object",
+      "properties": {
+        "subscriptionId": {
+          "$ref": "#/definitions/SubscriptionId"
+        }
+      },
+      "required": [
+        "subscriptionId"
+      ],
+      "example": {
+        "subscriptionId": "1eeb465c-5e8d-4305-a366-bbf035fff671"
+      }
+    },
+    "EventsUrl": {
+      "type": "string",
+      "format": "url",
+      "example": "https://events.exaple.com/"
+    },
+    "SubscriptionCanceledEvent": {
+      "type": "object",
+      "description": "Subscription with provided id was canceled"
+    },
+    "DevicesRegisteredEvent": {
+      "description": "Device was successfully signed up to the OCF Cloud, as defined in the `oic.sec.account`",
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "di": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          }
+        }
+      }
+    },
+    "DevicesUnregisteredEvent": {
+      "description": "Device was successfully signed off from the OCF Cloud, as defined in the `oic.sec.account`",
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "di": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          }
+        }
+      }
+    },
+    "ResourcesPublishedEvent": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "https://raw.githubusercontent.com/ondrejtomcik/coreocf/Bugzilla-2709/swagger2.0/oic.wk.res.swagger.json#/definitions/oic.oic-link"
+          }
+        }
+      }
+    },
+    "ResourcesUnpublishedEvent": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "https://raw.githubusercontent.com/ondrejtomcik/coreocf/Bugzilla-2709/swagger2.0/oic.wk.res.swagger.json#/definitions/oic.oic-link"
+          }
+        }
+      }
+    },
+    "DevicesOnlineEvent": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "di": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          }
+        }
+      }
+    },
+    "DevicesOfflineEvent": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "di": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          }
+        }
+      }
+    },
+    "ResourceContentChangedEvent": {
+      "type": "string",
+      "description": "New Content of the resource returned from the device",
+      "example": "o29kZXNpcmVkSHVtaWRpdHkYPGV0eXBlc4Fub2ljLnIuaHVtaWRpdHloaHVtaWRpdHkYKA=="
+    }
+  }
+}
