@@ -583,6 +583,9 @@
             "$ref": "#/parameters/EventSignature"
           },
           {
+            "$ref": "#/parameters/EventTimestamp"
+          },
+          {
             "$ref": "#/parameters/EventsUrl"
           },
           {
@@ -669,6 +672,13 @@
       "name": "Event-Signature",
       "in": "header",
       "description": "The signature created by combining the `signingSecret` from the subscription request, headers and the body of the request using a stanard HMAC-SHA256 keyed hash.",
+      "type": "string",
+      "required": true
+    },
+    "EventTimestamp": {
+      "name": "Event-Timestamp",
+      "in": "header",
+      "description": "Time when the event occurred in standard Unix time format",
       "type": "string",
       "required": true
     },
