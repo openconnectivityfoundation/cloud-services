@@ -71,7 +71,7 @@
         "security": [
           {
             "oauth2": [
-              "r:deviceinformation"
+              "r:deviceinformation:*"
             ]
           }
         ]
@@ -94,7 +94,7 @@
           "Events"
         ],
         "summary": "Subscribe to events against the set of devices",
-        "description": "Subscribe to devices events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n\n**Supported events** and required scopes\n- `devices_registered`: `r:deviceinformation`\n- `devices_unregistered`: `r:deviceinformation`\n- `devices_online`: `r:deviceinformation`\n- `devices_offline`: `r:deviceinformation`\n",
+        "description": "Subscribe to devices events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n\n**Supported events** and required scopes\n- `devices_registered`: `r:deviceinformation:*`\n- `devices_unregistered`: `r:deviceinformation:*`\n- `devices_online`: `r:deviceinformation:*`\n- `devices_offline`: `r:deviceinformation:*`\n",
         "parameters": [
           {
             "$ref": "#/parameters/SubscribeRequest"
@@ -123,8 +123,8 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions",
-              "r:deviceinformation"
+              "w:subscriptions:*",
+              "r:deviceinformation:*"
             ]
           }
         ]
@@ -165,8 +165,8 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions",
-              "r:deviceinformation"
+              "w:subscriptions:*",
+              "r:deviceinformation:*"
             ]
           }
         ]
@@ -221,7 +221,7 @@
         "security": [
           {
             "oauth2": [
-              "r:deviceinformation"
+              "r:deviceinformation:*"
             ]
           }
         ]
@@ -247,7 +247,7 @@
           "Events"
         ],
         "summary": "Subscribe to events against a specific device",
-        "description": "Subscribe to device events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n\n**Supported events** and required scopes\n- `resources_published`: `r:deviceinformation`\n- `resources_unpublished`: `r:deviceinformation`\n",
+        "description": "Subscribe to device events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n\n**Supported events** and required scopes\n- `resources_published`: `r:deviceinformation:*`\n- `resources_unpublished`: `r:deviceinformation:*`\n",
         "parameters": [
           {
             "$ref": "#/parameters/SubscribeRequest"
@@ -279,8 +279,8 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions",
-              "r:deviceinformation"
+              "w:subscriptions:*",
+              "r:deviceinformation:*"
             ]
           }
         ]
@@ -324,8 +324,8 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions",
-              "r:deviceinformation"
+              "w:subscriptions:*",
+              "r:deviceinformation:*"
             ]
           }
         ]
@@ -385,7 +385,7 @@
         "security": [
           {
             "oauth2": [
-              "r:resources"
+              "r:resources:*"
             ]
           }
         ]
@@ -440,7 +440,7 @@
         "security": [
           {
             "oauth2": [
-              "w:resources"
+              "w:resources:*"
             ]
           }
         ]
@@ -469,7 +469,7 @@
           "Events"
         ],
         "summary": "Subscribe to events against a specific resource",
-        "description": "Subscribe to resource events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n \n**Supported events** and required scopes\n- `resource_contentchanged`: `r:resources`",
+        "description": "Subscribe to resource events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n \n**Supported events** and required scopes\n- `resource_contentchanged`: `r:resources:*`",
         "parameters": [
           {
             "$ref": "#/parameters/SubscribeRequest"
@@ -501,8 +501,8 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions",
-              "r:resources"
+              "w:subscriptions:*",
+              "r:resources:*"
             ]
           }
         ]
@@ -549,8 +549,8 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions",
-              "r:resources"
+              "w:subscriptions:*",
+              "r:resources:*"
             ]
           }
         ]
@@ -614,10 +614,10 @@
       "authorizationUrl": "https://example.com/api/oauth/dialog",
       "tokenUrl": "https://example.com/api/oauth/token",
       "scopes": {
-        "r:deviceinformation": "Read basic device information",
-        "r:resources": "Read content of published resource",
-        "w:resources": "Update content of published resource",
-        "w:subscriptions": "Create subscriptions"
+        "r:deviceinformation:*": "Read basic device information",
+        "r:resources:*": "Read content of published resource",
+        "w:resources:*": "Update content of published resource",
+        "w:subscriptions:*": "Create subscriptions"
       }
     }
   },
@@ -722,7 +722,7 @@
     "BatchFormat": {
       "name": "content",
       "in": "query",
-      "description": "Indicates to the recipient that the response payload shall be the resolved (i.e. resource representation) Link and not the Link itself. Default is base",
+      "description": "Indicates to the recipient that the response payload shall be the resolved (i.e. resource representation) Link and not the Link itself. Default is `base`. When requesting `all`, additional scope `r:resources:*:*` is required",
       "type": "string",
       "enum": [
         "base",
