@@ -885,8 +885,8 @@
               "dmn": "Open Connectivity Foundation",
               "n": "Food safety sensor",
               "di": "53080a4f-5e3e-4291-802f-3436238232d2",
-              "icv":  "ocf.2.0.2",
-              "dmv":  "ocf.res.1.0.0, ocf.sh.1.0.0",
+              "icv":  "ocf.2.0.5",
+              "dmv":  "ocf.res.1.3.0, ocf.sh.1.3.0",
               "piid": "6F0AAC04-2BB0-468D-B57C-16570A26AE48"
             }
           },
