@@ -814,6 +814,7 @@
       },
       "example": {
         "device": {
+          "rt": ["oic.wk.d","oic.d.sensor"]
           "dmn": "Open Connectivity Foundation",
           "n": "Food safety sensor",
           "di": "53080a4f-5e3e-4291-802f-3436238232d2"
@@ -823,7 +824,8 @@
           {
             "href": "/oic/d",
             "rt": [
-              "oic.wk.d"
+              "oic.wk.d",
+              "oic.d.sensor"
             ]
           },
           {
