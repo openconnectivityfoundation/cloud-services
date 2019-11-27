@@ -66,6 +66,12 @@
           },
           "403": {
             "$ref": "#/responses/Forbidden"
+          },
+          "503": {
+            "description": "#/responses/ServiceUnavailable"
+          },
+          "504": {
+            "description": "#/responses/GatewayTimeout"
           }
         },
         "security": [
@@ -216,6 +222,12 @@
           },
           "404": {
             "$ref": "#/responses/NotFound"
+          },
+          "503": {
+            "description": "#/responses/ServiceUnavailable"
+          },
+          "504": {
+            "description": "#/responses/GatewayTimeout"
           }
         },
         "security": [
@@ -564,7 +576,7 @@
           "Events"
         ],
         "summary": "Events endpoint provided by the subscriber, where events are delivered",
-        "description": "Events endpoint provided during subscription where events specified in the subscription will be sent to  as defined per event type. Confirmation of each event sent to the `eventsUrl` endpoint is required with `2xx` success code. Events you will receive based on event type you're subscribed to are:\n - `subscription_canceled`: `SubscriptionCanceledEvent`\n - `devices_registered`: `DevicesRegisteredEvent`\n - `devices_unregistered`: `DevicesUnregisteredEvent`\n - `resources_published`: `ResourcesPublishedEvent`\n - `resources_unpublished`: `ResourcesUnpublishedEvent`\n - `devices_online`: `DevicesOnlineEvent`\n - `devices_offline`: `DevicesOfflineEvent`\n - `resource_contentchanged`: `ResourceContentChangedEvent`",
+        "description": "Events endpoint provided during subscription where events specified in the subscription will be sent to  as defined per event type. Confirmation of each event sent to the `eventsUrl` endpoint is required with `2xx` success code. Events you will receive based on event type you're subscribed to are:\n - `subscription_cancelled`: `SubscriptionCancelledEvent`\n - `devices_registered`: `DevicesRegisteredEvent`\n - `devices_unregistered`: `DevicesUnregisteredEvent`\n - `resources_published`: `ResourcesPublishedEvent`\n - `resources_unpublished`: `ResourcesUnpublishedEvent`\n - `devices_online`: `DevicesOnlineEvent`\n - `devices_offline`: `DevicesOfflineEvent`\n - `resource_contentchanged`: `ResourceContentChangedEvent`",
         "parameters": [
           {
             "$ref": "#/parameters/CorrelationId"
@@ -606,7 +618,7 @@
             "$ref": "#/responses/BadRequest"
           },
           "410": {
-            "description": "The subscription identified by the Subscription-ID header is no more in demand and shall be canceled"
+            "description": "The subscription identified by the Subscription-ID header is no more in demand and shall be cancelled"
           }
         }
       }
@@ -689,7 +701,7 @@
       "in": "header",
       "type": "string",
       "enum": [
-        "subscription_canceled",
+        "subscription_cancelled",
         "devices_registered",
         "devices_unregistered",
         "resource_contentchanged",
@@ -941,7 +953,7 @@
     "EventType": {
       "type": "string",
       "enum": [
-        "subscription_canceled",
+        "subscription_cancelled",
         "devices_registered",
         "devices_unregistered",
         "resource_contentchanged",
@@ -1007,9 +1019,9 @@
       "format": "url",
       "example": "https://events.exaple.com/"
     },
-    "SubscriptionCanceledEvent": {
+    "SubscriptionCancelledEvent": {
       "type": "object",
-      "description": "Subscription with provided id was canceled"
+      "description": "Subscription with provided id was cancelled"
     },
     "DevicesRegisteredEvent": {
       "description": "Device was successfully signed up to the OCF Cloud, as defined in the `oic.sec.account`",
