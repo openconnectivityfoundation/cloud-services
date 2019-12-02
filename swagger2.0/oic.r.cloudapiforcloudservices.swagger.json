@@ -814,7 +814,7 @@
       "type": "object",
       "properties": {
         "device": {
-          "$ref": "https://raw.githubusercontent.com/ondrejtomcik/coreocf/Bugzilla-2709/swagger2.0/oic.wk.d.swagger.json#/definitions/Device"
+          "$ref": "https://raw.githubusercontent.com/openconnectivityfoundation/core/c2c/swagger2.0/oic.wk.d.swagger.json#/definitions/DeviceProperties"
         },
         "status": {
           "$ref": "#/definitions/DeviceStatus"
@@ -822,7 +822,7 @@
         "links": {
           "type": "array",
           "items": {
-            "$ref": "https://raw.githubusercontent.com/ondrejtomcik/coreocf/Bugzilla-2709/swagger2.0/oic.wk.res.swagger.json#/definitions/oic.oic-link"
+            "$ref": "http://openconnectivityfoundation.github.io/core/swagger2.0/oic.wk.res.swagger.json#/definitions/oic.oic-link"
           }
         }
       },
@@ -840,24 +840,40 @@
             "rt": [
               "oic.wk.d",
               "oic.d.sensor"
+            ],
+            "if": [
+              "oic.if.r",
+              "oic.if.baseline"
             ]
           },
           {
             "href": "/oic/p",
             "rt": [
               "oic.wk.p"
+            ],
+            "if": [
+              "oic.if.r",
+              "oic.if.baseline"
             ]
           },
           {
             "href": "/53080a4f-5e3e-4291-802f-3436238232d2/humidity",
             "rt": [
               "oic.r.humidity"
+            ],
+            "if": [
+              "oic.if.s",
+              "oic.if.baseline"
             ]
           },
           {
             "href": "/53080a4f-5e3e-4291-802f-3436238232d2/temperature",
             "rt": [
               "oic.r.temperature"
+            ],
+            "if": [
+              "oic.if.s",
+              "oic.if.baseline"
             ]
           }
         ]
