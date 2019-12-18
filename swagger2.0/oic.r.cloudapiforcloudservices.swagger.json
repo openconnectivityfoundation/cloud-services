@@ -1012,7 +1012,8 @@
         "eventTypes": [
           "devices_registered",
           "devices_unregistered"
-        ]
+        ],
+        "signingSecret": "3BZ6oI9xbRJzOUvUoRb5RgaZjPqHrmql"
       }
     },
     "SubscribeResponse": {
