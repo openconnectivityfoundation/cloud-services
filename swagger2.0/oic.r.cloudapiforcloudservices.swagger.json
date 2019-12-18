@@ -1034,7 +1034,7 @@
     "EventsUrl": {
       "type": "string",
       "format": "url",
-      "example": "https://events.exaple.com/"
+      "example": "https://events.example.com/"
     },
     "SubscriptionCancelledEvent": {
       "type": "object",
