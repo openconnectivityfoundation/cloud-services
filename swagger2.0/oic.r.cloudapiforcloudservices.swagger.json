@@ -836,7 +836,7 @@
         "status": "online",
         "links": [
           {
-            "href": "/oic/d",
+            "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/d",
             "rt": [
               "oic.wk.d",
               "oic.d.sensor"
@@ -847,7 +847,7 @@
             ]
           },
           {
-            "href": "/oic/p",
+            "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/p",
             "rt": [
               "oic.wk.p"
             ],
@@ -913,7 +913,7 @@
         "status": "online",
         "links": [
           {
-            "href": "/oic/d",
+            "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/d",
             "rep": {
               "rt": ["oic.wk.d","oic.d.sensor"],
               "dmn": "Open Connectivity Foundation",
@@ -925,21 +925,21 @@
             }
           },
           {
-            "href": "/oic/p",
+            "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/p",
             "rep": {
               "pi":   "54919CA5-4101-4AE4-595B-353C51AA983C",
               "mnfv": "1.1.20"
             }
           },
           {
-            "href": "/humidity",
+            "href": "/53080a4f-5e3e-4291-802f-3436238232d2/humidity",
             "rep": {
               "humidity": 62,
               "desiredHumidity": 65
             }
           },
           {
-            "href": "/temperature",
+            "href": "/53080a4f-5e3e-4291-802f-3436238232d2/temperature",
             "rep": {
               "temperature": 21,
               "units": "C"
