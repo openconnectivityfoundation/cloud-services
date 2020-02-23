@@ -77,7 +77,7 @@
         "security": [
           {
             "oauth2": [
-              "r:deviceinformation:*"
+              "r:*"
             ]
           }
         ]
@@ -90,18 +90,60 @@
         },
         {
           "$ref": "#/parameters/Accept"
-        },
-        {
-          "$ref": "#/parameters/ContentType"
         }
       ],
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get all active subscriptions created against the set of devices",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of currently active subscriptions",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Subscription"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "503": {
+            "description": "#/responses/ServiceUnavailable"
+          },
+          "504": {
+            "description": "#/responses/GatewayTimeout"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "r:*"
+            ]
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Events"
         ],
         "summary": "Subscribe to events against the set of devices",
-        "description": "Subscribe to devices events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n\n**Supported events** and required scopes\n- `devices_registered`: `r:deviceinformation:*`\n- `devices_unregistered`: `r:deviceinformation:*`\n- `devices_online`: `r:deviceinformation:*`\n- `devices_offline`: `r:deviceinformation:*`\n",
+        "description": "Subscribe to devices events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n\n**Supported events**\n- `devices_registered`\n- `devices_unregistered`\n- `devices_online`\n- `devices_offline`\n",
         "parameters": [
+          {
+            "$ref": "#/parameters/ContentType"
+          },
           {
             "$ref": "#/parameters/SubscribeRequest"
           }
@@ -129,8 +171,7 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions:*",
-              "r:deviceinformation:*"
+              "r:*"
             ]
           }
         ]
@@ -171,8 +212,7 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions:*",
-              "r:deviceinformation:*"
+              "r:*"
             ]
           }
         ]
@@ -233,7 +273,7 @@
         "security": [
           {
             "oauth2": [
-              "r:deviceinformation:*"
+              "r:*"
             ]
           }
         ]
@@ -249,18 +289,60 @@
         },
         {
           "$ref": "#/parameters/Accept"
-        },
-        {
-          "$ref": "#/parameters/ContentType"
         }
       ],
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get all active subscriptions created against a specific device",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of currently active subscriptions",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Subscription"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "503": {
+            "description": "#/responses/ServiceUnavailable"
+          },
+          "504": {
+            "description": "#/responses/GatewayTimeout"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "r:*"
+            ]
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Events"
         ],
         "summary": "Subscribe to events against a specific device",
-        "description": "Subscribe to device events by providing `eventTypes` you're interested in and `eventsUrl` API Endpoint where notifications will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each notification. First notification for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new notifications in case of any change.\n\n**Supported events** and required scopes\n- `resources_published`: `r:deviceinformation:*`\n- `resources_unpublished`: `r:deviceinformation:*`\n",
+        "description": "Subscribe to device events by providing `eventTypes` you're interested in and `eventsUrl` API Endpoint where notifications will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each notification. First notification for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new notifications in case of any change.\n\n**Supported events**\n- `resources_published`\n- `resources_unpublished`\n",
         "parameters": [
+          {
+            "$ref": "#/parameters/ContentType"
+          },
           {
             "$ref": "#/parameters/SubscribeRequest"
           }
@@ -291,8 +373,7 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions:*",
-              "r:deviceinformation:*"
+              "r:*"
             ]
           }
         ]
@@ -336,8 +417,7 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions:*",
-              "r:deviceinformation:*"
+              "r:*"
             ]
           }
         ]
@@ -397,8 +477,7 @@
         "security": [
           {
             "oauth2": [
-              "r:deviceinformation:*",
-              "r:resources:*"
+              "r:*"
             ]
           }
         ]
@@ -453,8 +532,8 @@
         "security": [
           {
             "oauth2": [
-              "r:deviceinformation:*",
-              "w:resources:*"
+              "r:*",
+              "w:*"
             ]
           }
         ]
@@ -473,18 +552,60 @@
         },
         {
           "$ref": "#/parameters/Accept"
-        },
-        {
-          "$ref": "#/parameters/ContentType"
         }
       ],
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get all active subscriptions created against a specific resource",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of currently active subscriptions",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Subscription"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "503": {
+            "description": "#/responses/ServiceUnavailable"
+          },
+          "504": {
+            "description": "#/responses/GatewayTimeout"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "r:*"
+            ]
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Events"
         ],
         "summary": "Subscribe to events against a specific resource",
-        "description": "Subscribe to resource events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n \n**Supported events** and required scopes\n- `resource_contentchanged`: `r:resources:*`",
+        "description": "Subscribe to resource events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n \n**Supported events**\n- `resource_contentchanged`",
         "parameters": [
+          {
+            "$ref": "#/parameters/ContentType"
+          },
           {
             "$ref": "#/parameters/SubscribeRequest"
           }
@@ -515,8 +636,7 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions:*",
-              "r:resources:*"
+              "r:*"
             ]
           }
         ]
@@ -563,8 +683,7 @@
         "security": [
           {
             "oauth2": [
-              "w:subscriptions:*",
-              "r:resources:*"
+              "r:*"
             ]
           }
         ]
@@ -631,10 +750,8 @@
       "authorizationUrl": "https://example.com/api/oauth/dialog",
       "tokenUrl": "https://example.com/api/oauth/token",
       "scopes": {
-        "r:deviceinformation:*": "Read basic device information",
-        "r:resources:*": "Read content of published resource",
-        "w:resources:*": "Update content of published resource",
-        "w:subscriptions:*": "Create subscriptions"
+        "r:*": "Read device data",
+        "w:*": "Update content of published resource"
       }
     }
   },
@@ -746,7 +863,7 @@
     "BatchFormat": {
       "name": "content",
       "in": "query",
-      "description": "Indicates to the recipient that the response payload shall be the resolved (i.e. resource representation) Link and not the Link itself. Default is `base`. When requesting `all`, additional scope `r:resources:*:*` is required",
+      "description": "Indicates to the recipient that the response payload shall be the resolved (i.e. resource representation) Link and not the Link itself. Default is `base`. When requesting `all`, additional scope `r:*` is required",
       "type": "string",
       "enum": [
         "base",
@@ -760,7 +877,7 @@
       "required": true
     },
     "ResourceUpdateRequest": {
-      "description": "Map of resource values to be updated",
+      "description": "Map of resource values encoded to application/vnd.ocf+cbor type",
       "name": "content",
       "in": "body",
       "schema": {
@@ -810,11 +927,69 @@
     }
   },
   "definitions": {
+    "DeviceProperties": {
+      "properties": {
+        "rt":  {
+          "description": "Resource Type of the Resource",
+          "items": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "uniqueItems": true,
+          "type": "array"
+        },
+        "di": {
+          "allOf": [
+            {
+              "$ref" : "http://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/uuid"
+            },
+            {
+              "description": "Unique identifier for the Device",
+              "readOnly": true
+            }
+          ]
+        },
+        "dmn":  {
+          "description": "Manufacturer Name.",
+          "items": {
+            "properties": {
+              "language": {
+                "allOf": [
+                  {
+                    "$ref" : "http://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/language-tag"
+                  },
+                  {
+                    "description": "An RFC 5646 language tag.",
+                    "readOnly": true
+                  }
+                ]
+              },
+              "value": {
+                "description": "Manufacturer name in the indicated language.",
+                "maxLength": 64,
+                "readOnly": true,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n":  {
+          "$ref" : "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
+        }
+      },
+      "type": "object"
+    },
     "Device": {
       "type": "object",
       "properties": {
         "device": {
-          "$ref": "https://raw.githubusercontent.com/openconnectivityfoundation/core/c2c/swagger2.0/oic.wk.d.swagger.json#/definitions/DeviceProperties"
+          "$ref":"#/definitions/DeviceProperties"
         },
         "status": {
           "$ref": "#/definitions/DeviceStatus"
@@ -883,7 +1058,7 @@
       "type": "object",
       "properties": {
         "device": {
-          "$ref": "https://raw.githubusercontent.com/openconnectivityfoundation/core/c2c/swagger2.0/oic.wk.d.swagger.json#/definitions/DeviceProperties"
+          "$ref":"#/definitions/DeviceProperties"
         },
         "status": {
           "$ref": "#/definitions/DeviceStatus"
@@ -1029,6 +1204,20 @@
       ],
       "example": {
         "subscriptionId": "1eeb465c-5e8d-4305-a366-bbf035fff671"
+      }
+    },
+    "Subscription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/SubscriptionId"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "example": {
+        "id": "1eeb465c-5e8d-4305-a366-bbf035fff671"
       }
     },
     "EventsUrl": {
