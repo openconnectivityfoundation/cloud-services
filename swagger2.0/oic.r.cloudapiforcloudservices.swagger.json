@@ -259,7 +259,7 @@
             "$ref": "#/parameters/ContentType"
           },
           {
-            "$ref": "#/parameters/SubscribeRequest"
+            "$ref": "#/parameters/SubscribeRequestDevices"
           }
         ],
         "consumes": [
@@ -573,7 +573,7 @@
             "$ref": "#/parameters/ContentType"
           },
           {
-            "$ref": "#/parameters/SubscribeRequest"
+            "$ref": "#/parameters/SubscribeRequestDevice"
           }
         ],
         "consumes": [
@@ -749,7 +749,7 @@
             "$ref": "#/responses/NotFound"
           },
           "415": {
-            "$ref": "Unsupported media type specified in the Content-Type header"
+            "$ref": "#/responses/UnsupportedMediaType"
           },
           "503": {
             "$ref": "#/responses/ServiceUnavailable"
@@ -794,7 +794,7 @@
             "$ref": "#/parameters/ContentType"
           },
           {
-            "$ref": "#/parameters/SubscribeRequest"
+            "$ref": "#/parameters/SubscribeRequestResources"
           }
         ],
         "consumes": [
@@ -1072,11 +1072,27 @@
       },
       "required": true
     },
-    "SubscribeRequest": {
+    "SubscribeRequestDevices": {
       "name": "content",
       "in": "body",
       "schema": {
-        "$ref": "#/definitions/SubscribeRequest"
+        "$ref": "#/definitions/SubscribeRequestDevices"
+      },
+      "required": true
+    },
+    "SubscribeRequestDevice": {
+      "name": "content",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/SubscribeRequestDevice"
+      },
+      "required": true
+    },
+    "SubscribeRequestResources": {
+      "name": "content",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/SubscribeRequestResources"
       },
       "required": true
     },
@@ -1111,6 +1127,9 @@
     },
     "GatewayTimeout": {
       "description": "The target Device is registered at the target Cloud, however the Device itself is unavailable, offline, or otherwise unreachable. The response should include a Retry-After header containing the time after which the request may be re-attempted. Additional information is indicated in the diagnostic payload."
+    },
+    "UnsupportedMediaType": {
+      "description": "The request contained an unsupported media type in the Content-Type header"
     }
   },
   "definitions": {
@@ -1262,7 +1281,14 @@
                 "type": "string"
               },
               "rep": {
-                "type": "object"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "type": "array"
+                  }
+                ]  
               }
             }
           }
