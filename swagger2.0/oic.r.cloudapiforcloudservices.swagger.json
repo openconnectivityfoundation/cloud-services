@@ -121,6 +121,9 @@
           "403": {
             "$ref": "#/responses/Forbidden"
           },
+          "406": {
+            "$ref": "#/responses/NotAcceptable"
+          },
           "503": {
             "$ref": "#/responses/ServiceUnavailable"
           },
@@ -223,6 +226,9 @@
           "403": {
             "$ref": "#/responses/Forbidden"
           },
+          "406": {
+            "$ref": "#/responses/NotAcceptable"
+          },
           "503": {
             "$ref": "#/responses/ServiceUnavailable"
           },
@@ -321,6 +327,9 @@
           },
           "404": {
             "$ref": "#/responses/NotFound"
+          },
+          "406": {
+            "$ref": "#/responses/NotAcceptable"
           }
         },
         "security": [
@@ -429,6 +438,9 @@
           "404": {
             "$ref": "#/responses/NotFound"
           },
+          "406": {
+            "$ref": "#/responses/NotAcceptable"
+          },
           "503": {
             "$ref": "#/responses/ServiceUnavailable"
           },
@@ -534,6 +546,9 @@
           "404": {
             "$ref": "#/responses/NotFound"
           },
+          "406": {
+            "$ref": "#/responses/NotAcceptable"
+          },
           "503": {
             "$ref": "#/responses/ServiceUnavailable"
           },
@@ -597,6 +612,9 @@
           },
           "404": {
             "$ref": "#/responses/NotFound"
+          },
+          "406": {
+            "$ref": "#/responses/NotAcceptable"
           }
         },
         "security": [
@@ -695,6 +713,9 @@
           },
           "404": {
             "$ref": "#/responses/NotFound"
+          },
+          "406": {
+            "$ref": "#/responses/NotAcceptable"
           },
           "503": {
             "$ref": "#/responses/ServiceUnavailable"
@@ -818,6 +839,9 @@
           },
           "404": {
             "$ref": "#/responses/NotFound"
+          },
+          "406": {
+            "$ref": "#/responses/NotAcceptable"
           }
         },
         "security": [
@@ -1130,6 +1154,9 @@
     },
     "UnsupportedMediaType": {
       "description": "The request contained an unsupported media type in the Content-Type header"
+    },
+    "NotAcceptable": {
+      "description": "The server cannot honour the Content-Type requested in the Accept header"
     }
   },
   "definitions": {
@@ -1288,7 +1315,7 @@
                   {
                     "type": "array"
                   }
-                ]  
+                ]
               }
             }
           }
