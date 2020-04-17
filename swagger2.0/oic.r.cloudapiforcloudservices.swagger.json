@@ -56,61 +56,7 @@
               "items": {
                 "$ref": "#/definitions/Device"
               }
-            },
-            "x-example": [
-              {
-                "device": {
-                  "rt": ["oic.wk.d","oic.d.sensor"],
-                  "dmn": "Open Connectivity Foundation",
-                  "n": "Food safety sensor",
-                  "di": "53080a4f-5e3e-4291-802f-3436238232d2"
-                },
-                "status": "online",
-                "links": [
-                  {
-                    "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/d",
-                    "rt": [
-                      "oic.wk.d",
-                      "oic.d.sensor"
-                    ],
-                    "if": [
-                      "oic.if.r",
-                      "oic.if.baseline"
-                    ]
-                  },
-                  {
-                    "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/p",
-                    "rt": [
-                      "oic.wk.p"
-                    ],
-                    "if": [
-                      "oic.if.r",
-                      "oic.if.baseline"
-                    ]
-                  },
-                  {
-                    "href": "/53080a4f-5e3e-4291-802f-3436238232d2/humidity",
-                    "rt": [
-                      "oic.r.humidity"
-                    ],
-                    "if": [
-                      "oic.if.s",
-                      "oic.if.baseline"
-                    ]
-                  },
-                  {
-                    "href": "/53080a4f-5e3e-4291-802f-3436238232d2/temperature",
-                    "rt": [
-                      "oic.r.temperature"
-                    ],
-                    "if": [
-                      "oic.if.s",
-                      "oic.if.baseline"
-                    ]
-                  }
-                ]
-              }
-            ]
+            }
           },
           "400": {
             "$ref": "#/responses/BadRequest"
@@ -169,53 +115,7 @@
               "items": {
                 "$ref": "#/definitions/DeviceContentAll"
               }
-            },
-            "x-example": [
-              {
-                "device": {
-                  "rt": ["oic.wk.d","oic.d.sensor"],
-                  "dmn": "Open Connectivity Foundation",
-                  "n": "Food safety sensor",
-                  "di": "53080a4f-5e3e-4291-802f-3436238232d2"
-                },
-                "status": "online",
-                "links": [
-                  {
-                    "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/d",
-                    "rep": {
-                      "rt": ["oic.wk.d","oic.d.sensor"],
-                      "dmn": "Open Connectivity Foundation",
-                      "n": "Food safety sensor",
-                      "di": "53080a4f-5e3e-4291-802f-3436238232d2",
-                      "icv":  "ocf.2.0.5",
-                      "dmv":  "ocf.res.1.3.0, ocf.sh.1.3.0",
-                      "piid": "6F0AAC04-2BB0-468D-B57C-16570A26AE48"
-                    }
-                  },
-                  {
-                    "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/p",
-                    "rep": {
-                      "pi":   "54919CA5-4101-4AE4-595B-353C51AA983C",
-                      "mnfv": "1.1.20"
-                    }
-                  },
-                  {
-                    "href": "/53080a4f-5e3e-4291-802f-3436238232d2/humidity",
-                    "rep": {
-                      "humidity": 62,
-                      "desiredHumidity": 65
-                    }
-                  },
-                  {
-                    "href": "/53080a4f-5e3e-4291-802f-3436238232d2/temperature",
-                    "rep": {
-                      "temperature": 21,
-                      "units": "C"
-                    }
-                  }
-                ]
-              }
-            ]
+            }
           },
           "400": {
             "$ref": "#/responses/BadRequest"
@@ -372,58 +272,6 @@
             "description": "Device requested with content=all query parameter",
             "schema": {
               "$ref": "#/definitions/DeviceContentAll"
-            },
-            "x-example": {
-              "device": {
-                "rt": ["oic.wk.d","oic.d.sensor"],
-                "dmn": "Open Connectivity Foundation",
-                "n": "Food safety sensor",
-                "di": "53080a4f-5e3e-4291-802f-3436238232d2"
-              },
-              "status": "online",
-              "links": [
-                {
-                  "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/d",
-                  "rt": [
-                    "oic.wk.d",
-                    "oic.d.sensor"
-                  ],
-                  "if": [
-                    "oic.if.r",
-                    "oic.if.baseline"
-                  ]
-                },
-                {
-                  "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/p",
-                  "rt": [
-                    "oic.wk.p"
-                  ],
-                  "if": [
-                    "oic.if.r",
-                    "oic.if.baseline"
-                  ]
-                },
-                {
-                  "href": "/53080a4f-5e3e-4291-802f-3436238232d2/humidity",
-                  "rt": [
-                    "oic.r.humidity"
-                  ],
-                  "if": [
-                    "oic.if.s",
-                    "oic.if.baseline"
-                  ]
-                },
-                {
-                  "href": "/53080a4f-5e3e-4291-802f-3436238232d2/temperature",
-                  "rt": [
-                    "oic.r.temperature"
-                  ],
-                  "if": [
-                    "oic.if.s",
-                    "oic.if.baseline"
-                  ]
-                }
-              ]
             }
           },
           "400": {
@@ -488,50 +336,6 @@
             "description": "Device requested with content=all query parameter",
             "schema": {
               "$ref": "#/definitions/DeviceContentAll"
-            },
-            "x-example": {
-              "device": {
-                "rt": ["oic.wk.d","oic.d.sensor"],
-                "dmn": "Open Connectivity Foundation",
-                "n": "Food safety sensor",
-                "di": "53080a4f-5e3e-4291-802f-3436238232d2"
-              },
-              "status": "online",
-              "links": [
-                {
-                  "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/d",
-                  "rep": {
-                    "rt": ["oic.wk.d","oic.d.sensor"],
-                    "dmn": "Open Connectivity Foundation",
-                    "n": "Food safety sensor",
-                    "di": "53080a4f-5e3e-4291-802f-3436238232d2",
-                    "icv":  "ocf.2.0.5",
-                    "dmv":  "ocf.res.1.3.0, ocf.sh.1.3.0",
-                    "piid": "6F0AAC04-2BB0-468D-B57C-16570A26AE48"
-                  }
-                },
-                {
-                  "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/p",
-                  "rep": {
-                    "pi":   "54919CA5-4101-4AE4-595B-353C51AA983C",
-                    "mnfv": "1.1.20"
-                  }
-                },
-                {
-                  "href": "/53080a4f-5e3e-4291-802f-3436238232d2/humidity",
-                  "rep": {
-                    "humidity": 62,
-                    "desiredHumidity": 65
-                  }
-                },
-                {
-                  "href": "/53080a4f-5e3e-4291-802f-3436238232d2/temperature",
-                  "rep": {
-                    "temperature": 21,
-                    "units": "C"
-                  }
-                }
-              ]
             }
           },
           "400": {
