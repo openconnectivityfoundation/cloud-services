@@ -44,7 +44,7 @@
           "Devices"
         ],
         "summary": "Get all devices with resource links",
-        "description": "Get all devices which are signed up to the OCF Cloud - either `online` or `offline`. Devices which are `online` are signed in to the system and are accessible. Offline devices are signed up to the system, but currently disconnected.\n",
+        "description": "Get meta-information, including Resource Links, for all Devices which are signed up to the OCF Cloud - either \"online\" or \"offline\". Devices which are \"online\" are signed in to the system and are accessible. Offline devices are signed up to the system, but currently disconnected.",
         "produces": [
           "application/json"
         ],
@@ -103,7 +103,7 @@
           "Devices"
         ],
         "summary": "Get all devices with resource representations",
-        "description": "Get all devices which are signed up to the OCF Cloud - either `online` or `offline`. Devices which are `online` are signed in to the system and are accessible. Offline devices are signed up to the system, but currently disconnected. The response payload includes an array of the representations of the resources themselves, that are exposed per each device.\n",
+        "description": "Get meta-information, including Resource Representations, for all Devices which are signed up to the OCF Cloud - either \"online\" or \"offline\". Devices which are \"online\" are signed in to the system and are accessible. Offline devices are signed up to the system, but currently disconnected.",
         "produces": [
           "application/json"
         ],
@@ -159,7 +159,7 @@
           "Events"
         ],
         "summary": "Subscribe to events against the set of devices",
-        "description": "Subscribe to devices events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n\n**Supported events**\n- `devices_registered`\n- `devices_unregistered`\n- `devices_online`\n- `devices_offline`\n",
+        "description": "Subscribe to devices events by providing \"eventTypes\" you're interested in and an \"eventsUrl\" endpoint where notifications will be sent to as defined. A successful response contains a \"subscriptionId\" which identifies the registered subscription and is part of each notification. First notification for each registered event type is received immediately after subscription and contains the actual state of the resource, followed by new notifications in case of any change.\n\nSupported events:\n- \"devices_registered\"\n- \"devices_unregistered\"\n- \"devices_online\"\n- \"devices_offline\"",
         "parameters": [
           {
             "$ref": "#/parameters/ContentType"
@@ -211,7 +211,7 @@
           "Events"
         ],
         "summary": "Unsubscribe from events against the set of devices",
-        "description": "Cancel subscription identified by the id returned in a response for subscription.\n",
+        "description": "Cancel the subscription identified by the provided \"subscriptionId\" that was returned in the response to the subscription request.",
         "responses": {
           "202": {
             "description": "Subscription was marked for cancellation"
@@ -261,6 +261,7 @@
           "Devices"
         ],
         "summary": "Get the device with resource links by ID",
+        "description": "Get the meta-information for the Device given by the provided \"deviceId\" including Resource Links.",
         "consumes": [
           "application/json"
         ],
@@ -325,6 +326,7 @@
           "Devices"
         ],
         "summary": "Get the device with resource representations by ID",
+        "description": "Get the meta-information for the Device given by the provided \"deviceId\" including Resource Representations.",
         "consumes": [
           "application/json"
         ],
@@ -386,7 +388,7 @@
           "Events"
         ],
         "summary": "Subscribe to events against a specific device",
-        "description": "Subscribe to device events by providing `eventTypes` you're interested in and `eventsUrl` API Endpoint where notifications will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each notification. First notification for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new notifications in case of any change.\n\n**Supported events**\n- `resources_published`\n- `resources_unpublished`\n",
+        "description": "Subscribe to Device level events by providing \"eventTypes\" you're interested in and an \"eventsUrl\" API Endpoint where notifications will be sent to as defined. A successful response contains a \"subscriptionId\" which identifies the registered subscription and is part of each notification. First notification for each registered event type is received immediately after subscription and contains the actual state of the resource, followed by new notifications in case of any change.\n\nSupported events:\n- \"resources_published\"\n- \"resources_unpublished\"",
         "parameters": [
           {
             "$ref": "#/parameters/ContentType"
@@ -447,7 +449,7 @@
           "Events"
         ],
         "summary": "Unsubscribe from events against a specific device",
-        "description": "Cancel subscription identified by the id returned in a response for subscription.\n",
+        "description": "Cancel the subscription identified by the provided \"subscriptionId\" that was returned in the response to the subscription request.",
         "responses": {
           "202": {
             "description": "Subscription was marked for cancellation"
@@ -494,6 +496,7 @@
           "Resources"
         ],
         "summary": "Retrieve resource values",
+        "description": "Get or update the Resource Representation of the Resource found at \"resourceLinkHref\" on the Device with the given \"deviceId\"",
         "consumes": [
           "application/json",
           "application/vnd.ocf+cbor"
@@ -613,7 +616,7 @@
           "Events"
         ],
         "summary": "Subscribe to events against a specific resource",
-        "description": "Subscribe to resource events by providing `eventTypes` you're interested in and `eventsUrl` endpoint where events will be sent to as defined. Successful response contains `subscriptionId` which identifies registered subscription and is part of each event. First event for each registered event type is received immediately after subscription and contains actual state of the resource, followed by new events in case of any change.\n \n**Supported events**\n- `resource_contentchanged`",
+        "description": "Subscribe to Resource level events by providing \"eventTypes\" you're interested in and \"eventsUrl\" API Endpoint where notifications will be sent to as defined. A successful response contains a \"subscriptionId\" which identifies the registered subscription and is part of each event. First notification for each registered event type is received immediately after subscription and contains the actual state of the resource, followed by new notifications in case of any change.\n \nSupported events:\n- \"resource_contentchanged\"",
         "parameters": [
           {
             "$ref": "#/parameters/ContentType"
@@ -677,7 +680,7 @@
           "Events"
         ],
         "summary": "Unsubscribe from events against a specific resource",
-        "description": "Cancel subscription identified by the id returned in a response for subscription.\n",
+        "description": "Cancel the subscription identified by the provided \"subscriptionId\" that was returned in the response to the subscription request.",
         "responses": {
           "202": {
             "description": "Subscription was marked for cancellation"
@@ -710,7 +713,7 @@
           "Events"
         ],
         "summary": "Events endpoint provided by the subscriber, where events are delivered",
-        "description": "Events endpoint provided during subscription where events specified in the subscription will be sent to  as defined per event type. Confirmation of each event sent to the `eventsUrl` endpoint is required with `2xx` success code. Events you will receive based on event type you're subscribed to are:\n - `subscription_cancelled`: `SubscriptionCancelledEvent`\n - `devices_registered`: `DevicesRegisteredEvent`\n - `devices_unregistered`: `DevicesUnregisteredEvent`\n - `resources_published`: `ResourcesPublishedEvent`\n - `resources_unpublished`: `ResourcesUnpublishedEvent`\n - `devices_online`: `DevicesOnlineEvent`\n - `devices_offline`: `DevicesOfflineEvent`\n - `resource_contentchanged`: `ResourceContentChangedEvent`",
+        "description": "Events endpoint provided during subscription where notifications for the events specified in the subscription will be sent to  as defined per event type. Confirmation of each notification sent to the \"eventsUrl\" endpoint is required with a \"2xx\" success code.\n\nNotifications you may receive based on the event type you're subscribed to are:\n - \"subscription_cancelled\": \"SubscriptionCancelledEvent\"\n - \"devices_registered\": \"DevicesRegisteredEvent\"\n - \"devices_unregistered\": \"DevicesUnregisteredEvent\"\n - \"resources_published\": \"ResourcesPublishedEvent\"\n - \"resources_unpublished\": \"ResourcesUnpublishedEvent\"\n - \"devices_online\": \"DevicesOnlineEvent\"\n - \"devices_offline\": \"DevicesOfflineEvent\"\n - \"resource_contentchanged\": \"ResourceContentChangedEvent\"",
         "parameters": [
           {
             "$ref": "#/parameters/CorrelationId"
