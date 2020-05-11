@@ -1046,7 +1046,7 @@
       "example": {
         "device": {
           "rt": ["oic.wk.d","oic.d.sensor"],
-          "dmn": "Open Connectivity Foundation",
+          "dmn": [{"language":"en", "value":"Open Connectivity Foundation"}],
           "n": "Food safety sensor",
           "di": "53080a4f-5e3e-4291-802f-3436238232d2"
         },
@@ -1131,7 +1131,7 @@
       "example": {
         "device": {
           "rt": ["oic.wk.d","oic.d.sensor"],
-          "dmn": "Open Connectivity Foundation",
+          "dmn": [{"language":"en", "value":"Open Connectivity Foundation"}],
           "n": "Food safety sensor",
           "di": "53080a4f-5e3e-4291-802f-3436238232d2"
         },
@@ -1141,7 +1141,7 @@
             "href": "/53080a4f-5e3e-4291-802f-3436238232d2/oic/d",
             "rep": {
               "rt": ["oic.wk.d","oic.d.sensor"],
-              "dmn": "Open Connectivity Foundation",
+              "dmn": [{"language":"en", "value":"Open Connectivity Foundation"}],
               "n": "Food safety sensor",
               "di": "53080a4f-5e3e-4291-802f-3436238232d2",
               "icv":  "ocf.2.0.5",
