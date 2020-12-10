@@ -270,9 +270,9 @@
         ],
         "responses": {
           "200": {
-            "description": "Device requested with content=all query parameter",
+            "description": "Device requested with content=base query parameter",
             "schema": {
-              "$ref": "#/definitions/DeviceContentAll"
+              "$ref": "#/definitions/Device"
             }
           },
           "400": {
