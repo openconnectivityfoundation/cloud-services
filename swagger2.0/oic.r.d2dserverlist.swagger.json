@@ -1,0 +1,175 @@
+{
+   "swagger": "2.0",
+   "info": {
+      "title": "D2D Server List",
+      "version": "2021-05-25",
+      "license": {
+         "name": "OCF Data Model License",
+         "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
+         "x-copyright": "Copyright 2021 Open Connectivity Foundation, Inc. All rights reserved."
+      },
+      "termsOfService": "https://openconnectivityfoundation.github.io/core/DISCLAIMER.md"
+   },
+   "schemes": ["http"],
+   "consumes": ["application/json"],
+   "produces": ["application/json"],
+   "paths": {
+      "/D2DList-URI": {
+         "get": {
+            "description": "A Cloud Proxy returns the list of Device UUID that the Cloud Proxy proxies",
+            "parameters": [
+               { "$ref": "#/parameters/interface" }
+            ],
+            "responses": {
+               "200": {
+                  "description": "example response payload",
+                  "x-example": {
+                     "rt": ["oic.r.d2dserverlist"],
+                     "dis": [
+                        "374a0ba2-f904-11ea-8002-0c9d928536d7",
+                        "b63ece84-f904-11ea-bf17-0c9d928536d7"
+                     ]
+                  },
+                  "schema": { "$ref": "#/definitions/D2DServerList" }
+               }
+            }
+         },
+         "post": {
+            "description": "A Client that wishes to add a Device UUID to the list of Device UUIDs that is exposed by an instance of a D2DServerList shall send an UPDATE operation containing a di query parameter, this query parameter contains the Device UUID that is to be added to the dis Property.",
+            "parameters": [
+               { "$ref": "#/parameters/device-id" }
+            ],
+            "responses": {
+               "201": {
+                  "description": "new Device UUID was added",
+                  "x-example": {
+                     "dis": [
+                        "374a0ba2-f904-11ea-8002-0c9d928536d7",
+                        "b63ece84-f904-11ea-bf17-0c9d928536d7"
+                     ]
+                  },
+                  "schema": { "$ref":"#/definitions/D2DServerList-dis" }
+               },
+               "203": {
+                  "description": "requested Device UUID already exists",
+                  "x-example": {
+                     "dis": [
+                        "374a0ba2-f904-11ea-8002-0c9d928536d7",
+                        "b63ece84-f904-11ea-bf17-0c9d928536d7"
+                     ]
+                  },
+                  "schema": { "$ref":"#/definitions/D2DServerList-dis" }
+               },
+               "400": {
+                  "description": "UPDATE request without Device UUID parameter"
+               },
+               "404": {
+                  "description": "There is no Device that has requested Device UUID"
+               }
+            }
+         },
+         "delete": {
+            "description": "A Client that wishes to remove a Device UUID from the list of Device UUIDs that is exposed by an instance of a D2DServerList shall send a DELETE operation containing a di query parameter, this query parameter contains the Device UUID that is to be removed from the dis Property.",
+            "parameters": [
+               { "$ref": "#/parameters/device-id" }
+            ],
+            "responses": {
+               "202": {
+                  "description": "requested Device UUID was deleted",
+                  "x-example": {
+                     "dis": [
+                        "b63ece84-f904-11ea-bf17-0c9d928536d7"
+                     ]
+                  },
+                  "schema": { "$ref":"#/definitions/D2DServerList-dis" }
+               },
+               "404": {
+                  "description": "requested Device UUID was not found"
+               }
+            }
+         }
+      }
+   },
+   "parameters": {
+      "interface": {
+         "in": "query",
+         "name": "if",
+         "type": "string",
+         "enum": ["oic.if.rw", "oic.if.baseline"]
+      },
+      "interface-rw": {
+         "in": "query",
+         "name": "if",
+         "type": "string",
+         "enum": ["oic.if.rw"]
+      },
+      "device-id": {
+         "in": "query",
+         "name": "di",
+         "type": "string",
+         "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      }
+   },
+   "definitions": {
+      "D2DServerList": {
+         "description": "The D2DServerList Resource keeps Device UUID of D2D Devices which connect to the OCF Cloud through the Cloud Proxy.",
+         "type": "object",
+         "properties": {
+            "rt": {
+               "description": "Resource Type",
+               "type": "array",
+               "minItems": 1,
+               "uniqueItems": true,
+               "items": {
+                  "maxLength": 64,
+                  "type": "string",
+                  "enum": ["oic.r.d2dserverlist"]
+               },
+               "readOnly": true
+            },
+            "n": {
+               "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n"
+            },
+            "id": {
+               "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
+            },
+            "if": {
+               "description": "The OCF Interface set supported by this Resource",
+               "type": "array",
+               "minItems": 2,
+               "uniqueItems": true,
+               "items": {
+                  "type": "string",
+                  "enum": ["oic.if.baseline", "oic.if.rw"]
+               },
+               "readOnly": true
+            },
+            "dis": {
+               "description": "This Property maintains the list of D2D Device's Device UUID",
+               "type": "array",
+               "uniqueItems": true,
+               "items": {
+                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
+               },
+               "readOnly": true
+            }
+         },
+         "required": ["dis"]
+      },
+      "D2DServerList-dis": {
+         "type": "object",
+         "properties": {
+            "dis": {
+               "description": "current list of D2D Device's Device UUID",
+               "type": "array",
+               "uniqueItems": true,
+               "items": {
+                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/uuid"
+               },
+               "readOnly":true
+            }
+         },
+         "required": ["dis"]
+      }
+   }
+}
