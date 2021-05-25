@@ -149,7 +149,7 @@
                "type": "array",
                "uniqueItems": true,
                "items": {
-                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id"
+                  "$ref": "https://openconnectivityfoundation.github.io/core/schemas/oic.types-schema.json#/definitions/uuid"
                },
                "readOnly": true
             }
