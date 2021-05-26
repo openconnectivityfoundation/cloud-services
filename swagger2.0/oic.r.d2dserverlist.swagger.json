@@ -84,7 +84,7 @@
                   "schema": { "$ref":"#/definitions/D2DServerList-dis" }
                },
                "404": {
-                  "description": "requested Device UUID was not found"
+                  "description": "There is no Device for the requested Device UUID parameter"
                }
             }
          }
